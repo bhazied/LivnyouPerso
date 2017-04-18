@@ -47,7 +47,7 @@ class PhysicalActivityRESTController extends BaseRESTController
     /**
      * Get a Physical Activity entity
      *
-     * @Get("/{locale}/api/physicalActivities/{id}")
+     * @Get("/{locale}/api/physicalactivities/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -56,16 +56,20 @@ class PhysicalActivityRESTController extends BaseRESTController
      */
     public function getAction($id)
     {
+        try {
             $entity = $this->getDoctrine()->getRepository('LivnYouBundle:PhysicalActivity')->findOneById($id);
-        $entity = $this->translateEntity($entity);
-        $this->createSubDirectory($entity);
-        return $entity;
+            $entity = $this->translateEntity($entity);
+            $this->createSubDirectory($entity);
+            return $entity;
+        } catch (\Exception $e) {
+            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
      * Get all Physical Activity entities.
      *
-     * @Get("/{locale}/api/physicalActivities")
+     * @Get("/{locale}/api/physicalactivities")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -170,7 +174,7 @@ class PhysicalActivityRESTController extends BaseRESTController
     /**
      * Create a Physical Activity entity.
      *
-     * @Post("/{locale}/api/physicalActivities")
+     * @Post("/{locale}/api/physicalactivities")
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -197,7 +201,7 @@ class PhysicalActivityRESTController extends BaseRESTController
     /**
      * Update a Physical Activity entity.
      *
-     * @Put("/{locale}/api/physicalActivities/{id}")
+     * @Put("/{locale}/api/physicalactivities/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -229,7 +233,7 @@ class PhysicalActivityRESTController extends BaseRESTController
     /**
      * Partial Update to a Physical Activity entity.
      *
-     * @Patch("/{locale}/api/physicalActivities/{id}")
+     * @Patch("/{locale}/api/physicalactivities/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -246,7 +250,7 @@ class PhysicalActivityRESTController extends BaseRESTController
     /**
      * Delete a Physical Activity entity.
      *
-     * @Delete("/{locale}/api/physicalActivities/{id}")
+     * @Delete("/{locale}/api/physicalactivities/{id}")
      *
      * @View(statusCode=204)
      *
