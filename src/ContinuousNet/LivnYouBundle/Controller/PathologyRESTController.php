@@ -47,7 +47,7 @@ class PathologyRESTController extends BaseRESTController
     /**
      * Get a Pathology entity
      *
-     * @Get(/{locale}/api/pathologies/{id})
+     * @Get("/{locale}/api/pathologies/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -65,7 +65,7 @@ class PathologyRESTController extends BaseRESTController
     /**
      * Get all Pathology entities.
      *
-     * @Get(/{locale}/api/pathologies)
+     * @Get("/{locale}/api/pathologies")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -178,7 +178,7 @@ class PathologyRESTController extends BaseRESTController
     /**
      * Create a Pathology entity.
      *
-     * @Post(/{locale}/api/pathologies)
+     * @Post("/{locale}/api/pathologies")
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -205,7 +205,7 @@ class PathologyRESTController extends BaseRESTController
     /**
      * Update a Pathology entity.
      *
-     * @Put(/{locale}/api/pathologies/{id})
+     * @Put("/{locale}/api/pathologies/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -247,7 +247,7 @@ class PathologyRESTController extends BaseRESTController
     /**
      * Partial Update to a Pathology entity.
      *
-     * @Patch(/{locale}/api/pathologies/{id})
+     * @Patch("/{locale}/api/pathologies/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -264,7 +264,7 @@ class PathologyRESTController extends BaseRESTController
     /**
      * Delete a Pathology entity.
      *
-     * @Delete(/{locale}/api/pathologies/{id})
+     * @Delete("/{locale}/api/pathologies/{id}")
      *
      * @View(statusCode=204)
      *

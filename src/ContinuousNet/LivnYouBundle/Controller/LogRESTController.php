@@ -47,7 +47,7 @@ class LogRESTController extends BaseRESTController
     /**
      * Get a Log entity
      *
-     * @Get(/{locale}/api/logs/{id})
+     * @Get("/{locale}/api/logs/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -64,7 +64,7 @@ class LogRESTController extends BaseRESTController
     /**
      * Get all Log entities.
      *
-     * @Get(/{locale}/api/logs)
+     * @Get("/{locale}/api/logs")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -168,7 +168,7 @@ class LogRESTController extends BaseRESTController
     /**
      * Create a Log entity.
      *
-     * @Post(/{locale}/api/logs)
+     * @Post("/{locale}/api/logs")
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -195,7 +195,7 @@ class LogRESTController extends BaseRESTController
     /**
      * Update a Log entity.
      *
-     * @Put(/{locale}/api/logs/{id})
+     * @Put("/{locale}/api/logs/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -226,7 +226,7 @@ class LogRESTController extends BaseRESTController
     /**
      * Partial Update to a Log entity.
      *
-     * @Patch(/{locale}/api/logs/{id})
+     * @Patch("/{locale}/api/logs/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -243,7 +243,7 @@ class LogRESTController extends BaseRESTController
     /**
      * Delete a Log entity.
      *
-     * @Delete(/{locale}/api/logs/{id})
+     * @Delete("/{locale}/api/logs/{id}")
      *
      * @View(statusCode=204)
      *
