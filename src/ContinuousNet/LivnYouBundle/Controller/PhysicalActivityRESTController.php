@@ -55,7 +55,7 @@ class PhysicalActivityRESTController extends BaseRESTController
      */
     public function getAction($id)
     {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:PhysicalActivity')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:PhysicalActivity')->findOneById($id);
         $entity = $this->translateEntity($entity);
         $this->createSubDirectory($entity);
         return $entity;
@@ -208,7 +208,7 @@ class PhysicalActivityRESTController extends BaseRESTController
     public function putAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:PhysicalActivity')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:PhysicalActivity')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(new PhysicalActivityType(), $entity, array('method' => $request->getMethod()));
@@ -257,7 +257,7 @@ class PhysicalActivityRESTController extends BaseRESTController
     public function deleteAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:PhysicalActivity')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:PhysicalActivity')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $em->remove($entity);
             $em->flush();

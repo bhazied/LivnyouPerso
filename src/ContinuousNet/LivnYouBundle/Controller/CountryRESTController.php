@@ -55,7 +55,7 @@ class CountryRESTController extends BaseRESTController
      */
     public function getAction($id)
     {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->findOneById($id);
         $entity = $this->translateEntity($entity);
         $this->createSubDirectory($entity);
         return $entity;
@@ -208,7 +208,7 @@ class CountryRESTController extends BaseRESTController
     public function putAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(new CountryType(), $entity, array('method' => $request->getMethod()));
@@ -257,7 +257,7 @@ class CountryRESTController extends BaseRESTController
     public function deleteAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $em->remove($entity);
             $em->flush();

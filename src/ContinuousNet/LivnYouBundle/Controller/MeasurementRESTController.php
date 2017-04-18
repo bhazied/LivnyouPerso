@@ -55,7 +55,7 @@ class MeasurementRESTController extends BaseRESTController
      */
     public function getAction($id)
     {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById($id);
         $this->createSubDirectory($entity);
         return $entity;
     }
@@ -7368,7 +7368,7 @@ class MeasurementRESTController extends BaseRESTController
     public function putAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $roles = $this->getUser()->getRoles();
@@ -12791,7 +12791,7 @@ class MeasurementRESTController extends BaseRESTController
     public function deleteAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById($id);
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {

@@ -55,7 +55,7 @@ class TemplateRESTController extends BaseRESTController
      */
     public function getAction($id)
     {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Template')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Template')->findOneById($id);
         $this->createSubDirectory($entity);
         return $entity;
     }
@@ -234,7 +234,7 @@ class TemplateRESTController extends BaseRESTController
     public function putAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Template')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Template')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $roles = $this->getUser()->getRoles();
@@ -312,7 +312,7 @@ class TemplateRESTController extends BaseRESTController
     public function deleteAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Template')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Template')->findOneById($id);
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {

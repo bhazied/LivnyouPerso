@@ -55,7 +55,7 @@ class PathologyRESTController extends BaseRESTController
      */
     public function getAction($id)
     {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->findOneById($id);
         $entity = $this->translateEntity($entity);
         $this->createSubDirectory($entity);
         return $entity;
@@ -216,7 +216,7 @@ class PathologyRESTController extends BaseRESTController
     public function putAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $roles = $this->getUser()->getRoles();
@@ -275,7 +275,7 @@ class PathologyRESTController extends BaseRESTController
     public function deleteAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->findOneById($id);
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {

@@ -55,7 +55,7 @@ class LogRESTController extends BaseRESTController
      */
     public function getAction($id)
     {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Log')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Log')->findOneById($id);
         $this->createSubDirectory($entity);
         return $entity;
     }
@@ -206,7 +206,7 @@ class LogRESTController extends BaseRESTController
     public function putAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Log')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Log')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(new LogType(), $entity, array('method' => $request->getMethod()));
@@ -254,7 +254,7 @@ class LogRESTController extends BaseRESTController
     public function deleteAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Log')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Log')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $em->remove($entity);
             $em->flush();

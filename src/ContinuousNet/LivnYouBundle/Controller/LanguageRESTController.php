@@ -55,7 +55,7 @@ class LanguageRESTController extends BaseRESTController
      */
     public function getAction($id)
     {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->findOneById($id);
         $this->createSubDirectory($entity);
         return $entity;
     }
@@ -206,7 +206,7 @@ class LanguageRESTController extends BaseRESTController
     public function putAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(new LanguageType(), $entity, array('method' => $request->getMethod()));
@@ -255,7 +255,7 @@ class LanguageRESTController extends BaseRESTController
     public function deleteAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->findOneById();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $em->remove($entity);
             $em->flush();
