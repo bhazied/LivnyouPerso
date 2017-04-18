@@ -1,0 +1,30 @@
+measurement:
+    path:     /
+    defaults: { _controller: "LivnYouBundle:Measurement:index" }
+
+measurement_details:
+    path:     /{id}/details
+    defaults: { _controller: "LivnYouBundle:Measurement:show" }
+
+measurement_new:
+    path:     /new
+    defaults: { _controller: "LivnYouBundle:Measurement:new" }
+
+measurement_create:
+    path:     /create
+    defaults: { _controller: "LivnYouBundle:Measurement:create" }
+    methods:  POST
+
+measurement_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LivnYouBundle:Measurement:edit" }
+
+measurement_update:
+    path:     /{id}/update
+    defaults: { _controller: "LivnYouBundle:Measurement:update" }
+    methods:  [POST, PUT]
+
+measurement_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LivnYouBundle:Measurement:delete" }
+    methods:  [POST, DELETE]
