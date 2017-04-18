@@ -47,7 +47,7 @@ class CountryRESTController extends BaseRESTController
     /**
      * Get a Country entity
      *
-     * @Get(/{locale}/api/countries/{id})
+     * @Get("/{locale}/api/countries/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -65,7 +65,7 @@ class CountryRESTController extends BaseRESTController
     /**
      * Get all Country entities.
      *
-     * @Get(/{locale}/api/countries)
+     * @Get("/{locale}/api/countries")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -170,7 +170,7 @@ class CountryRESTController extends BaseRESTController
     /**
      * Create a Country entity.
      *
-     * @Post(/{locale}/api/countries)
+     * @Post("/{locale}/api/countries")
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -197,7 +197,7 @@ class CountryRESTController extends BaseRESTController
     /**
      * Update a Country entity.
      *
-     * @Put(/{locale}/api/countries/{id})
+     * @Put("/{locale}/api/countries/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -229,7 +229,7 @@ class CountryRESTController extends BaseRESTController
     /**
      * Partial Update to a Country entity.
      *
-     * @Patch(/{locale}/api/countries/{id})
+     * @Patch("/{locale}/api/countries/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -246,7 +246,7 @@ class CountryRESTController extends BaseRESTController
     /**
      * Delete a Country entity.
      *
-     * @Delete(/{locale}/api/countries/{id})
+     * @Delete("/{locale}/api/countries/{id}")
      *
      * @View(statusCode=204)
      *

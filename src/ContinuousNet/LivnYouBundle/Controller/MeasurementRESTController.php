@@ -47,7 +47,7 @@ class MeasurementRESTController extends BaseRESTController
     /**
      * Get a Measurement entity
      *
-     * @Get(/{locale}/api/measurements/{id})
+     * @Get("/{locale}/api/measurements/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -64,7 +64,7 @@ class MeasurementRESTController extends BaseRESTController
     /**
      * Get all Measurement entities.
      *
-     * @Get(/{locale}/api/measurements)
+     * @Get("/{locale}/api/measurements")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -178,7 +178,7 @@ class MeasurementRESTController extends BaseRESTController
     /**
      * Create a Measurement entity.
      *
-     * @Post(/{locale}/api/measurements)
+     * @Post("/{locale}/api/measurements")
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -7357,7 +7357,7 @@ class MeasurementRESTController extends BaseRESTController
     /**
      * Update a Measurement entity.
      *
-     * @Put(/{locale}/api/measurements/{id})
+     * @Put("/{locale}/api/measurements/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -12763,7 +12763,7 @@ class MeasurementRESTController extends BaseRESTController
     /**
      * Partial Update to a Measurement entity.
      *
-     * @Patch(/{locale}/api/measurements/{id})
+     * @Patch("/{locale}/api/measurements/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -12780,7 +12780,7 @@ class MeasurementRESTController extends BaseRESTController
     /**
      * Delete a Measurement entity.
      *
-     * @Delete(/{locale}/api/measurements/{id})
+     * @Delete("/{locale}/api/measurements/{id}")
      *
      * @View(statusCode=204)
      *

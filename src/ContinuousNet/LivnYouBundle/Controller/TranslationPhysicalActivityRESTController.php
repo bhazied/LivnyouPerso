@@ -47,7 +47,7 @@ class TranslationPhysicalActivityRESTController extends BaseRESTController
     /**
      * Get a Translation Physical Activity entity
      *
-     * @Get(/{locale}/api/translationPhysicalActivities/{id})
+     * @Get("/{locale}/api/translationPhysicalActivities/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -64,7 +64,7 @@ class TranslationPhysicalActivityRESTController extends BaseRESTController
     /**
      * Get all Translation Physical Activity entities.
      *
-     * @Get(/{locale}/api/translationPhysicalActivities)
+     * @Get("/{locale}/api/translationPhysicalActivities")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -169,7 +169,7 @@ class TranslationPhysicalActivityRESTController extends BaseRESTController
     /**
      * Create a Translation Physical Activity entity.
      *
-     * @Post(/{locale}/api/translationPhysicalActivities)
+     * @Post("/{locale}/api/translationPhysicalActivities")
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -196,7 +196,7 @@ class TranslationPhysicalActivityRESTController extends BaseRESTController
     /**
      * Update a Translation Physical Activity entity.
      *
-     * @Put(/{locale}/api/translationPhysicalActivities/{id})
+     * @Put("/{locale}/api/translationPhysicalActivities/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -228,7 +228,7 @@ class TranslationPhysicalActivityRESTController extends BaseRESTController
     /**
      * Partial Update to a Translation Physical Activity entity.
      *
-     * @Patch(/{locale}/api/translationPhysicalActivities/{id})
+     * @Patch("/{locale}/api/translationPhysicalActivities/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -245,7 +245,7 @@ class TranslationPhysicalActivityRESTController extends BaseRESTController
     /**
      * Delete a Translation Physical Activity entity.
      *
-     * @Delete(/{locale}/api/translationPhysicalActivities/{id})
+     * @Delete("/{locale}/api/translationPhysicalActivities/{id}")
      *
      * @View(statusCode=204)
      *

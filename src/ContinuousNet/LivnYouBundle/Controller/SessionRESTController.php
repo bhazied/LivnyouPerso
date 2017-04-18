@@ -47,7 +47,7 @@ class SessionRESTController extends BaseRESTController
     /**
      * Get a Session entity
      *
-     * @Get(/{locale}/api/sessions/{id})
+     * @Get("/{locale}/api/sessions/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -64,7 +64,7 @@ class SessionRESTController extends BaseRESTController
     /**
      * Get all Session entities.
      *
-     * @Get(/{locale}/api/sessions)
+     * @Get("/{locale}/api/sessions")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -168,7 +168,7 @@ class SessionRESTController extends BaseRESTController
     /**
      * Create a Session entity.
      *
-     * @Post(/{locale}/api/sessions)
+     * @Post("/{locale}/api/sessions")
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -195,7 +195,7 @@ class SessionRESTController extends BaseRESTController
     /**
      * Update a Session entity.
      *
-     * @Put(/{locale}/api/sessions/{id})
+     * @Put("/{locale}/api/sessions/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -227,7 +227,7 @@ class SessionRESTController extends BaseRESTController
     /**
      * Partial Update to a Session entity.
      *
-     * @Patch(/{locale}/api/sessions/{id})
+     * @Patch("/{locale}/api/sessions/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -244,7 +244,7 @@ class SessionRESTController extends BaseRESTController
     /**
      * Delete a Session entity.
      *
-     * @Delete(/{locale}/api/sessions/{id})
+     * @Delete("/{locale}/api/sessions/{id}")
      *
      * @View(statusCode=204)
      *
