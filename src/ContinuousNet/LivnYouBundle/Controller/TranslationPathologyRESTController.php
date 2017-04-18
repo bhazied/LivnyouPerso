@@ -56,9 +56,13 @@ class TranslationPathologyRESTController extends BaseRESTController
      */
     public function getAction($id)
     {
+        try {
             $entity = $this->getDoctrine()->getRepository('LivnYouBundle:TranslationPathology')->findOneById($id);
-        $this->createSubDirectory($entity);
-        return $entity;
+            $this->createSubDirectory($entity);
+            return $entity;
+        } catch (\Exception $e) {
+            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**

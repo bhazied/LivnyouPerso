@@ -56,10 +56,14 @@ class PhysicalActivityRESTController extends BaseRESTController
      */
     public function getAction($id)
     {
+        try {
             $entity = $this->getDoctrine()->getRepository('LivnYouBundle:PhysicalActivity')->findOneById($id);
-        $entity = $this->translateEntity($entity);
-        $this->createSubDirectory($entity);
-        return $entity;
+            $entity = $this->translateEntity($entity);
+            $this->createSubDirectory($entity);
+            return $entity;
+        } catch (\Exception $e) {
+            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
