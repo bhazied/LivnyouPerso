@@ -1,8 +1,5 @@
-continuous_net_livn_you:
-    resource: "@ContinuousNetLivnYouBundle/Controller/"
+livn_you:
+    resource: "@LivnYouBundle/Controller/"
     type:     annotation
     prefix:   /
 
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation

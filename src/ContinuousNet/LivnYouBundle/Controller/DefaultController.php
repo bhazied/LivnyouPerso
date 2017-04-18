@@ -12,6 +12,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('ContinuousNetLivnYouBundle:Default:index.html.twig');
+        return $this->render('LivnYouBundle:Default:index.html.twig');
     }
 }

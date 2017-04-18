@@ -1,4 +1,4 @@
 services:
-#    continuous_net_livn_you.example:
+#    livn_you.example:
 #        class: ContinuousNet\LivnYouBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
