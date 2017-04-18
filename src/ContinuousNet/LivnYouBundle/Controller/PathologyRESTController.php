@@ -7,6 +7,10 @@ use ContinuousNet\LivnYouBundle\Form\PathologyType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\Put;
+use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View as FOSView;
@@ -17,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Finder\Finder;;
 use Symfony\Component\Finder\SplFileInfo;
-use Voryx\RESTGeneratorBundle\Controller\VoryxController;
 
 /**
  * Pathology REST Controller
@@ -43,13 +46,16 @@ class PathologyRESTController extends BaseRESTController
     /**
      * Get a Pathology entity
      *
+     * @Get(/{locale}/api/pathologies/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
      *
      */
-    public function getAction(Pathology $entity)
+    public function getAction($id)
     {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->findOneById();
         $entity = $this->translateEntity($entity);
         $this->createSubDirectory($entity);
         return $entity;
@@ -57,6 +63,8 @@ class PathologyRESTController extends BaseRESTController
 
     /**
      * Get all Pathology entities.
+     *
+     * @Get(/{locale}/api/pathologies)
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -169,6 +177,8 @@ class PathologyRESTController extends BaseRESTController
     /**
      * Create a Pathology entity.
      *
+     * @Post(/{locale}/api/pathologies)
+     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -194,16 +204,19 @@ class PathologyRESTController extends BaseRESTController
     /**
      * Update a Pathology entity.
      *
+     * @Put(/{locale}/api/pathologies/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function putAction(Request $request, Pathology $entity)
+    public function putAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->findOneById();
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $roles = $this->getUser()->getRoles();
@@ -233,31 +246,36 @@ class PathologyRESTController extends BaseRESTController
     /**
      * Partial Update to a Pathology entity.
      *
+     * @Patch(/{locale}/api/pathologies/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function patchAction(Request $request, Pathology $entity)
+    public function patchAction(Request $request, $id)
     {
-        return $this->putAction($request, $entity);
+        return $this->putAction($request, $id);
     }
 
     /**
      * Delete a Pathology entity.
      *
+     * @Delete(/{locale}/api/pathologies/{id})
+     *
      * @View(statusCode=204)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function deleteAction(Request $request, Pathology $entity)
+    public function deleteAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->findOneById();
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {

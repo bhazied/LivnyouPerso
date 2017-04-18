@@ -7,6 +7,10 @@ use ContinuousNet\LivnYouBundle\Form\CountryType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\Put;
+use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View as FOSView;
@@ -17,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Finder\Finder;;
 use Symfony\Component\Finder\SplFileInfo;
-use Voryx\RESTGeneratorBundle\Controller\VoryxController;
 
 /**
  * Country REST Controller
@@ -43,13 +46,16 @@ class CountryRESTController extends BaseRESTController
     /**
      * Get a Country entity
      *
+     * @Get(/{locale}/api/countries/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
      *
      */
-    public function getAction(Country $entity)
+    public function getAction($id)
     {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->findOneById();
         $entity = $this->translateEntity($entity);
         $this->createSubDirectory($entity);
         return $entity;
@@ -57,6 +63,8 @@ class CountryRESTController extends BaseRESTController
 
     /**
      * Get all Country entities.
+     *
+     * @Get(/{locale}/api/countries)
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -161,6 +169,8 @@ class CountryRESTController extends BaseRESTController
     /**
      * Create a Country entity.
      *
+     * @Post(/{locale}/api/countries)
+     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -186,16 +196,19 @@ class CountryRESTController extends BaseRESTController
     /**
      * Update a Country entity.
      *
+     * @Put(/{locale}/api/countries/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function putAction(Request $request, Country $entity)
+    public function putAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->findOneById();
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(new CountryType(), $entity, array('method' => $request->getMethod()));
@@ -215,31 +228,36 @@ class CountryRESTController extends BaseRESTController
     /**
      * Partial Update to a Country entity.
      *
+     * @Patch(/{locale}/api/countries/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function patchAction(Request $request, Country $entity)
+    public function patchAction(Request $request, $id)
     {
-        return $this->putAction($request, $entity);
+        return $this->putAction($request, $id);
     }
 
     /**
      * Delete a Country entity.
      *
+     * @Delete(/{locale}/api/countries/{id})
+     *
      * @View(statusCode=204)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function deleteAction(Request $request, Country $entity)
+    public function deleteAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->findOneById();
             $em = $this->getDoctrine()->getManager();
             $em->remove($entity);
             $em->flush();

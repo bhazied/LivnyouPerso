@@ -7,6 +7,10 @@ use ContinuousNet\LivnYouBundle\Form\SessionType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\Put;
+use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View as FOSView;
@@ -17,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Finder\Finder;;
 use Symfony\Component\Finder\SplFileInfo;
-use Voryx\RESTGeneratorBundle\Controller\VoryxController;
 
 /**
  * Session REST Controller
@@ -43,19 +46,24 @@ class SessionRESTController extends BaseRESTController
     /**
      * Get a Session entity
      *
+     * @Get(/{locale}/api/sessions/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
      *
      */
-    public function getAction(Session $entity)
+    public function getAction($id)
     {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Session')->findOneById();
         $this->createSubDirectory($entity);
         return $entity;
     }
 
     /**
      * Get all Session entities.
+     *
+     * @Get(/{locale}/api/sessions)
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -159,6 +167,8 @@ class SessionRESTController extends BaseRESTController
     /**
      * Create a Session entity.
      *
+     * @Post(/{locale}/api/sessions)
+     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -184,16 +194,19 @@ class SessionRESTController extends BaseRESTController
     /**
      * Update a Session entity.
      *
+     * @Put(/{locale}/api/sessions/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function putAction(Request $request, Session $entity)
+    public function putAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Session')->findOneById();
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(new SessionType(), $entity, array('method' => $request->getMethod()));
@@ -213,31 +226,36 @@ class SessionRESTController extends BaseRESTController
     /**
      * Partial Update to a Session entity.
      *
+     * @Patch(/{locale}/api/sessions/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function patchAction(Request $request, Session $entity)
+    public function patchAction(Request $request, $id)
     {
-        return $this->putAction($request, $entity);
+        return $this->putAction($request, $id);
     }
 
     /**
      * Delete a Session entity.
      *
+     * @Delete(/{locale}/api/sessions/{id})
+     *
      * @View(statusCode=204)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function deleteAction(Request $request, Session $entity)
+    public function deleteAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Session')->findOneById();
             $em = $this->getDoctrine()->getManager();
             $em->remove($entity);
             $em->flush();

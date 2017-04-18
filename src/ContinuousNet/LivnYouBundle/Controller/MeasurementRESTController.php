@@ -7,6 +7,10 @@ use ContinuousNet\LivnYouBundle\Form\MeasurementType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\Put;
+use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View as FOSView;
@@ -17,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Finder\Finder;;
 use Symfony\Component\Finder\SplFileInfo;
-use Voryx\RESTGeneratorBundle\Controller\VoryxController;
 
 /**
  * Measurement REST Controller
@@ -43,19 +46,24 @@ class MeasurementRESTController extends BaseRESTController
     /**
      * Get a Measurement entity
      *
+     * @Get(/{locale}/api/measurements/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
      *
      */
-    public function getAction(Measurement $entity)
+    public function getAction($id)
     {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById();
         $this->createSubDirectory($entity);
         return $entity;
     }
 
     /**
      * Get all Measurement entities.
+     *
+     * @Get(/{locale}/api/measurements)
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -168,6 +176,8 @@ class MeasurementRESTController extends BaseRESTController
 
     /**
      * Create a Measurement entity.
+     *
+     * @Post(/{locale}/api/measurements)
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -7346,16 +7356,19 @@ class MeasurementRESTController extends BaseRESTController
     /**
      * Update a Measurement entity.
      *
+     * @Put(/{locale}/api/measurements/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function putAction(Request $request, Measurement $entity)
+    public function putAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById();
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $roles = $this->getUser()->getRoles();
@@ -12749,31 +12762,36 @@ class MeasurementRESTController extends BaseRESTController
     /**
      * Partial Update to a Measurement entity.
      *
+     * @Patch(/{locale}/api/measurements/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function patchAction(Request $request, Measurement $entity)
+    public function patchAction(Request $request, $id)
     {
-        return $this->putAction($request, $entity);
+        return $this->putAction($request, $id);
     }
 
     /**
      * Delete a Measurement entity.
      *
+     * @Delete(/{locale}/api/measurements/{id})
+     *
      * @View(statusCode=204)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function deleteAction(Request $request, Measurement $entity)
+    public function deleteAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById();
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {

@@ -7,6 +7,10 @@ use ContinuousNet\LivnYouBundle\Form\GroupType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\Put;
+use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View as FOSView;
@@ -17,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Finder\Finder;;
 use Symfony\Component\Finder\SplFileInfo;
-use Voryx\RESTGeneratorBundle\Controller\VoryxController;
 
 /**
  * Group REST Controller
@@ -43,19 +46,24 @@ class GroupRESTController extends BaseRESTController
     /**
      * Get a Group entity
      *
+     * @Get(/{locale}/api/groups/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
      *
      */
-    public function getAction(Group $entity)
+    public function getAction($id)
     {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Group')->findOneById();
         $this->createSubDirectory($entity);
         return $entity;
     }
 
     /**
      * Get all Group entities.
+     *
+     * @Get(/{locale}/api/groups)
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -159,6 +167,8 @@ class GroupRESTController extends BaseRESTController
     /**
      * Create a Group entity.
      *
+     * @Post(/{locale}/api/groups)
+     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -184,16 +194,19 @@ class GroupRESTController extends BaseRESTController
     /**
      * Update a Group entity.
      *
+     * @Put(/{locale}/api/groups/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function putAction(Request $request, Group $entity)
+    public function putAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Group')->findOneById();
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $entity->setRoles(array());
@@ -214,31 +227,36 @@ class GroupRESTController extends BaseRESTController
     /**
      * Partial Update to a Group entity.
      *
+     * @Patch(/{locale}/api/groups/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function patchAction(Request $request, Group $entity)
+    public function patchAction(Request $request, $id)
     {
-        return $this->putAction($request, $entity);
+        return $this->putAction($request, $id);
     }
 
     /**
      * Delete a Group entity.
      *
+     * @Delete(/{locale}/api/groups/{id})
+     *
      * @View(statusCode=204)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function deleteAction(Request $request, Group $entity)
+    public function deleteAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Group')->findOneById();
             $em = $this->getDoctrine()->getManager();
             $em->remove($entity);
             $em->flush();

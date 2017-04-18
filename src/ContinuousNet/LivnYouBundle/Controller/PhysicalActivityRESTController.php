@@ -7,6 +7,10 @@ use ContinuousNet\LivnYouBundle\Form\PhysicalActivityType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\Put;
+use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View as FOSView;
@@ -17,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Finder\Finder;;
 use Symfony\Component\Finder\SplFileInfo;
-use Voryx\RESTGeneratorBundle\Controller\VoryxController;
 
 /**
  * Physical Activity REST Controller
@@ -43,13 +46,16 @@ class PhysicalActivityRESTController extends BaseRESTController
     /**
      * Get a Physical Activity entity
      *
+     * @Get(/{locale}/api/physicalActivities/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
      *
      */
-    public function getAction(PhysicalActivity $entity)
+    public function getAction($id)
     {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:PhysicalActivity')->findOneById();
         $entity = $this->translateEntity($entity);
         $this->createSubDirectory($entity);
         return $entity;
@@ -57,6 +63,8 @@ class PhysicalActivityRESTController extends BaseRESTController
 
     /**
      * Get all Physical Activity entities.
+     *
+     * @Get(/{locale}/api/physicalActivities)
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -161,6 +169,8 @@ class PhysicalActivityRESTController extends BaseRESTController
     /**
      * Create a Physical Activity entity.
      *
+     * @Post(/{locale}/api/physicalActivities)
+     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -186,16 +196,19 @@ class PhysicalActivityRESTController extends BaseRESTController
     /**
      * Update a Physical Activity entity.
      *
+     * @Put(/{locale}/api/physicalActivities/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function putAction(Request $request, PhysicalActivity $entity)
+    public function putAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:PhysicalActivity')->findOneById();
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(new PhysicalActivityType(), $entity, array('method' => $request->getMethod()));
@@ -215,31 +228,36 @@ class PhysicalActivityRESTController extends BaseRESTController
     /**
      * Partial Update to a Physical Activity entity.
      *
+     * @Patch(/{locale}/api/physicalActivities/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function patchAction(Request $request, PhysicalActivity $entity)
+    public function patchAction(Request $request, $id)
     {
-        return $this->putAction($request, $entity);
+        return $this->putAction($request, $id);
     }
 
     /**
      * Delete a Physical Activity entity.
      *
+     * @Delete(/{locale}/api/physicalActivities/{id})
+     *
      * @View(statusCode=204)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function deleteAction(Request $request, PhysicalActivity $entity)
+    public function deleteAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:PhysicalActivity')->findOneById();
             $em = $this->getDoctrine()->getManager();
             $em->remove($entity);
             $em->flush();

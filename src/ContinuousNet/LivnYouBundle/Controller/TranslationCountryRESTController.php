@@ -7,6 +7,10 @@ use ContinuousNet\LivnYouBundle\Form\TranslationCountryType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\Put;
+use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View as FOSView;
@@ -17,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Finder\Finder;;
 use Symfony\Component\Finder\SplFileInfo;
-use Voryx\RESTGeneratorBundle\Controller\VoryxController;
 
 /**
  * Translation Country REST Controller
@@ -43,19 +46,24 @@ class TranslationCountryRESTController extends BaseRESTController
     /**
      * Get a Translation Country entity
      *
+     * @Get(/{locale}/api/translationCountries/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
      *
      */
-    public function getAction(TranslationCountry $entity)
+    public function getAction($id)
     {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:TranslationCountry')->findOneById();
         $this->createSubDirectory($entity);
         return $entity;
     }
 
     /**
      * Get all Translation Country entities.
+     *
+     * @Get(/{locale}/api/translationCountries)
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -160,6 +168,8 @@ class TranslationCountryRESTController extends BaseRESTController
     /**
      * Create a Translation Country entity.
      *
+     * @Post(/{locale}/api/translationCountries)
+     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -185,16 +195,19 @@ class TranslationCountryRESTController extends BaseRESTController
     /**
      * Update a Translation Country entity.
      *
+     * @Put(/{locale}/api/translationCountries/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function putAction(Request $request, TranslationCountry $entity)
+    public function putAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:TranslationCountry')->findOneById();
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(new TranslationCountryType(), $entity, array('method' => $request->getMethod()));
@@ -214,31 +227,36 @@ class TranslationCountryRESTController extends BaseRESTController
     /**
      * Partial Update to a Translation Country entity.
      *
+     * @Patch(/{locale}/api/translationCountries/{id})
+     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function patchAction(Request $request, TranslationCountry $entity)
+    public function patchAction(Request $request, $id)
     {
-        return $this->putAction($request, $entity);
+        return $this->putAction($request, $id);
     }
 
     /**
      * Delete a Translation Country entity.
      *
+     * @Delete(/{locale}/api/translationCountries/{id})
+     *
      * @View(statusCode=204)
      *
      * @param Request $request
-     * @param $entity
+     * @param $id
      *
      * @return Response
      */
-    public function deleteAction(Request $request, TranslationCountry $entity)
+    public function deleteAction(Request $request, $id)
     {
         try {
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:TranslationCountry')->findOneById();
             $em = $this->getDoctrine()->getManager();
             $em->remove($entity);
             $em->flush();
