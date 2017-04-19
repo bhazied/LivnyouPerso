@@ -15,6 +15,7 @@
 /vendor/
 /web/bundles/
 /.idea/
+/web/.htaccess
 /web/js/
 /web/css/
 /web/assetics/
