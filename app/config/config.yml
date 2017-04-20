@@ -8,6 +8,10 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    jwt_private_key_path: '%kernel.root_dir%/../varjwt/private.pem'
+    jwt_public_key_path: '%kernel.root_dir%/../varjwt/public.pem'
+    jwt_key_pass_phrase: ''
+    jwt_token_ttl: 8600
 
 lexik_jwt_authentication:
     private_key_path: '%jwt_private_key_path%'
