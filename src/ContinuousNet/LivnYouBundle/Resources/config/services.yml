@@ -1,4 +1,16 @@
+parameters:
+    livn_you.services.measurement_interpretation.class: ContinuousNet\LivnYouBundle\Services\MeasurementInterpretation
+    livn_you.subscriber.cryptor.class: ContinuousNet\LivnYouBundle\Subscriber\CryptorSubscriber
+
 services:
+    livn_you.services.measurement_interpretation:
+        class: %livn_you.services.measurement_interpretation.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @translator
+            - @logger
+            - %livn_you.services.measurement_interpretation%
+    
 #    livn_you.example:
 #        class: ContinuousNet\LivnYouBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
