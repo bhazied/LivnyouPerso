@@ -1,0 +1,27 @@
+
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" ng-class="{'dropup': $column.display}" ng-click="$column.display = !$column.display">
+        [[$column.title()]]
+        <span class="caret"></span>
+        <span class="sr-only"></span>
+    </button>
+    <ul class="dropdown-menu my-dropdown" ng-show="$column.display">
+        <li ng-repeat="row in $column.data">
+            <div class="checkbox clip-check check-primary check-sm" style="margin: 3px 5px;">
+                <input ng-disabled="$filterRow.disabled" type="checkbox" id="[[$column.field]]_[[row.id]]" ng-model="params.filter()[name+'.'+row.id]" />
+                <label for="[[$column.field]]_[[row.id]]">[[row.title]]</label>
+            </div>
+        </li>
+        <li class="divider"></li>
+        <li ng-init="params.filter()[name+'.0'] = 'and'" class="padding-left-10">
+            <div class="radio continuous-radio radio-primary radio-sm radio-inline">
+                <input ng-model="params.filter()[name+'.0']" id="[[$column.field]]_0_or" name="[[$column.field]]_operator" value="or" type="radio" />
+                <label for="[[$column.field]]_0_or" translate="content.common.OR">OR</label>
+            </div>
+            <div class="radio continuous-radio radio-primary radio-sm radio-inline">
+                <input ng-model="params.filter()[name+'.0']" id="[[$column.field]]_0_and" name="[[$column.field]]_operator" value="and" type="radio" />
+                <label for="[[$column.field]]_0_and"translate="content.common.AND">AND</label>
+            </div>
+        </li>
+    </ul>
+</div>

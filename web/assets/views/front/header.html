@@ -1,0 +1,58 @@
+<nav class="navbar navbar-static-top navbar-dark bg-inverse" id="electricity-navbar">
+
+    <div class="col-lg-10 offset-lg-1 col-md-12 offset-md-0 col-sm-12 offset-sm-0">
+
+        <!--a ng-if="showLogo" class="navbar-logo-icon" ui-sref="front.home"></a-->
+
+        <a class="navbar-logo-text" ui-sref="front.home"></a><!-- ng-if="showBrandName" -->
+
+        <form ng-if="SearchFormHeader" ng-controller="SearchFormCtrl" class="float-xs-left" name="searchForm" id="searchForm" ng-submit="submitSearch(searchText)">
+            <div class="input-group">
+                <div class="input-group-btn" uib-dropdown>
+                    <a class="btn btn-primary dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-list-ul"></i>
+                    </a>
+                    <div class="dropdown-menu" uib-dropdown-menu>
+                        <a class="dropdown-item" ui-sref="front.tenders({section: 'Tender'})"><i class="fa fa-file-text-o"></i><span translate="front.TENDERS">Tenders</span></a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <a class="dropdown-item"  ui-sref="front.tenders({section: 'Consultation'})"><i class="fa fa-user-secret"></i><span translate="front.CONSULTATIONS">Consultations</span></a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <a class="dropdown-item" ui-sref="front.categories"><i class="fa fa-folder-open-o"></i><span translate="front.CATEGORIES">Categories</span></a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <a class="dropdown-item" ui-sref="front.buyers"><i class="fa fa-shopping-cart"></i><span translate="front.BUYERS">Buyers</span></a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <a class="dropdown-item" ui-sref="front.suppliers"><i class="fa fa-handshake-o"></i><span translate="front.SUPPLIERS">Suppliers</span></a>
+                    </div>
+                </div>
+                <input class="form-control" translate-attr-placeholder="front.ELECTRICITYBOOKSEARCH" placeholder="Electricity Book Search..." type="text" id="searchText" name="searchText" ng-model="searchText"/>
+                <button type="submit" ng-submit="submitSearch(searchText)"></button>
+            </div>
+        </form>
+
+        <div class="float-xs-right" id="language-switcher">
+            <span class="current-language flag [[currentLanguage]]" title="[[ languages[currentLanguage] ]]">
+                <ul ng-if="countLanguages > 1" class="languages">
+                    <li ng-repeat="(langCode, langName) in languages" ng-if="langCode != currentLanguage" class="flag [[langCode]]" title="[[langName]]" ng-click="changeLanguage('[[langCode]]')"></li>
+                </ul>
+            </span>
+            <a ng-if="countLanguages > 1" class="fa fa-caret-down" translate-attr-title="front.SWITCHLANGUAGE" title="Switch language"></a>
+        </div>
+
+        <ul class="nav navbar-nav float-xs-right">
+            <li class="nav-item" ng-if="!user.email">
+                <a class="nav-link" ui-sref="front.login({type: 'Buyer'})" ng-bind-html-unsafe="'front.IMABUYER' | translate">I'm a <b>buyer</b></a>
+            </li>
+            <li class="nav-item" ng-if="user.type == 'Buyer' || user.type == 'Both'">
+                <a class="nav-link" ui-sref="front.usermenu" ng-bind-html-unsafe="'front.IMABUYER' | translate">I'm a <b>buyer</b></a>
+            </li>
+            <li class="nav-item" ng-if="!user.email">
+                <a class="nav-link" ui-sref="front.login({type: 'Supplier'})" ng-bind-html-unsafe="'front.IMASUPPLIER' | translate">I'm a <b>supplier</b></a>
+            </li>
+            <li class="nav-item" ng-if="user.type == 'Supplier' || user.type == 'Both'">
+                <a class="nav-link" ui-sref="front.usermenu" ng-bind-html-unsafe="'front.IMASUPPLIER' | translate">I'm a <b>supplier</b></a>
+            </li>
+        </ul>
+
+    </div>
+
+</nav>

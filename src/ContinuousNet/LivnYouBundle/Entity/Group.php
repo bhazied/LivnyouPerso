@@ -53,28 +53,7 @@ class Group  extends BaseGroup
      */
     protected $id;
 
-    /**
-     * @var string
-     * @access protected
-     *
-     * @ORM\Column(name="`name`", type="string", length=50, nullable=false, unique=false)
-     * 
-     * @Expose
-     * 
-     */
-    protected $name;
-
-    /**
-     * @var array
-     * @access protected
-     *
-     * @ORM\Column(name="`roles`", type="array", nullable=false, unique=false)
-     * 
-     * @Expose
-     * 
-     */
-    protected $roles;
-
+    
     /**
      * @var \DateTime
      * @access protected
@@ -148,53 +127,7 @@ class Group  extends BaseGroup
         return $this->id;
     }
 
-    /**
-     * Set name
-     *
-     * @access public
-     * @param string $name
-     * @return Group
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
 
-    /**
-     * Get name
-     *
-     * @access public
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set roles
-     *
-     * @access public
-     * @param array $roles
-     * @return Group
-     */
-    public function setRoles(array $roles)
-    {
-        $this->roles = $roles;
-        return $this;
-    }
-
-    /**
-     * Get roles
-     *
-     * @access public
-     * @return array 
-     */
-    public function getRoles()
-    {
-        return $this->roles;
-    }
 
     /**
      * Set createdAt
