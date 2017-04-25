@@ -1,6 +1,9 @@
 parameters:
     livn_you.services.measurement_interpretation.class: ContinuousNet\LivnYouBundle\Services\MeasurementInterpretation
     livn_you.subscriber.cryptor.class: ContinuousNet\LivnYouBundle\Subscriber\CryptorSubscriber
+    livn_you.event.jwt_created_listener.class: ContinuousNet\LivnYouBundle\EventListener\JWTCreatedListener
+    livn_you.event.jwt_authentication_success_listener.class: ContinuousNet\LivnYouBundle\EventListener\AuthenticationSuccessListener
+    livn_you.event.jwt_authentication_failure_listener.class: ContinuousNet\LivnYouBundle\EventListener\AuthenticationFailureListener
 
 services:
     livn_you.services.measurement_interpretation:
@@ -10,7 +13,21 @@ services:
             - "@translator"
             - "@logger"
             - "%livn_you.services.measurement_interpretation%"
-    
-#    livn_you.example:
-#        class: ContinuousNet\LivnYouBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    livn_you.event.jwt_created_listener:
+        class: %livn_you.event.jwt_created_listener.class%
+        arguments: ['@request_stack']
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
+
+    livn_you.event.authentication_success.event:
+        class: %livn_you.event.jwt_authentication_success_listener.class%
+        autowire: true
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
+
+    livn_you.event.authentication_failure.event:
+        class: %livn_you.event.jwt_authentication_failure_listener.class%
+        autowire: true
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_failure, method: onAuthenticationFailureResponse }

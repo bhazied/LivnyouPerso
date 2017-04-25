@@ -20,7 +20,7 @@ app.constant('JS_REQUIRES', {
         'spin': '/assets/bower_components/spin.js/spin.js',
 
         //*** jQuery Plugins
-        'perfect-scrollbar-plugin': ['/assets/bower_components/perfect-scrollbar/js/min/perfect-scrollbar.jquery.min.js', '/assets/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css'],
+        'perfect-scrollbar-plugin': ['/assets/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js', '/assets/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css'],
         'ladda': ['/assets/bower_components/ladda/dist/ladda.min.js', '/assets/bower_components/ladda/dist/ladda-themeless.min.css'],
         'sweet-alert': ['/assets/bower_components/sweetalert/lib/sweet-alert.min.js', '/assets/bower_components/sweetalert/lib/sweet-alert.css'],
         'chartjs': '/assets/bower_components/chartjs/Chart.min.js',
