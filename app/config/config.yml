@@ -8,16 +8,11 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    jwt_private_key_path: '%kernel.root_dir%/../varjwt/private.pem'
-    jwt_public_key_path: '%kernel.root_dir%/../varjwt/public.pem'
-    jwt_key_pass_phrase: ''
-    jwt_token_ttl: 8600
+    jwt_private_key_path: %kernel.root_dir%/../varjwt/private.pem
+    jwt_public_key_path: %kernel.root_dir%/../varjwt/public.pem
+    jwt_key_pass_phrase: livnyou
+    jwt_token_ttl: 3600
 
-lexik_jwt_authentication:
-    private_key_path: '%jwt_private_key_path%'
-    public_key_path:  '%jwt_public_key_path%'
-    pass_phrase:      '%jwt_key_pass_phrase%'
-    token_ttl:        '%jwt_token_ttl%'
 
 framework:
     #esi: ~
@@ -44,6 +39,7 @@ framework:
     assets: ~
     php_errors:
         log: true
+    serializer: { enable_annotations: true }
 
 # Twig Configuration
 twig:
@@ -79,3 +75,243 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+# FOS Rest
+fos_rest:
+    #format_listener:
+    #    rules:
+    #        - { path: "^/api", priorities: ["json"], fallback_format: json, prefer_extension: false }
+    #        - { path: "^/", priorities: ["html"], fallback_format: html, prefer_extension: false }
+    view:
+        view_response_listener: true
+        formats:
+            json: true
+            xml:  false
+    routing_loader:
+        default_format: json
+    serializer:
+        serialize_null: true
+    param_fetcher_listener: true
+    access_denied_listener:
+        json: true
+    disable_csrf_role: ROLE_API
+    body_listener:
+        array_normalizer:
+            service: fos_rest.normalizer.camel_keys
+            forms: true
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: ContinuousNet\LivnYouBundle\Entity\User
+    use_listener:           true
+    use_username_form_type: true
+    model_manager_name:     null
+    from_email:
+        address: livnyou@continuousnet.com
+        sender_name: livnyou
+
+
+lexik_jwt_authentication:
+    private_key_path: %jwt_private_key_path%
+    public_key_path:  %jwt_public_key_path%
+    pass_phrase:      %jwt_key_pass_phrase%
+    token_ttl:        %jwt_token_ttl%
+    encoder:
+        service:     lexik_jwt_authentication.encoder.default   # token encoder / decoder service - defaults to the jwt encoder (based on the namshi/jose library)
+    user_identity_field: email
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+    assets:
+        bootstrap_4_css:
+            inputs:
+                - "assets/bower_components/tether/dist/css/tether.min.css"
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.min.css
+        bootstrap_4_js:
+            inputs:
+                - "assets/bower_components/tether/dist/js/tether.min.js"
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.min.js
+        google_fonts:
+            inputs:
+                #- "http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
+                - "assets/css/fonts.googleapis.com.css"
+        bootstrap:
+            inputs:
+                - "assets/bower_components/bootstrap/dist/css/bootstrap.min.css"
+        flags:
+            inputs:
+                - "assets/bower_components/flag-icon-css/css/flag-icon.min.css"
+        font_awesome:
+            inputs:
+                - "assets/bower_components/components-font-awesome/css/font-awesome.min.css"
+        themify_icons:
+            inputs:
+                - "assets/bower_components/themify-icons/css/themify-icons.css"
+        loading_bar_css:
+            inputs:
+                - "assets/bower_components/angular-loading-bar/build/loading-bar.min.css"
+        animate_css:
+            inputs:
+                - "assets/bower_components/animate.css/animate.min.css"
+        angular_table_css:
+            inputs:
+                - "assets/bower_components/ng-table/dist/ng-table.min.css"
+        toaster_css:
+            inputs:
+                - "assets/bower_components/AngularJS-Toaster/toaster.css"
+        jqueryui_css:
+            inputs:
+                - "assets/bower_components/jquery-ui/themes/base/jquery-ui.min.css"
+        elfinder_css:
+            inputs:
+                - "assets/bower_components/elfinder/dist/css/elfinder.min.css"
+                - "assets/bower_components/elfinder/dist/css/theme.css" #.min
+        color_picker_css:
+            inputs:
+                - "assets/bower_components/angular-color-picker/angular-color-picker.css"
+        multirange_slider_css:
+            inputs:
+                - "assets/bower_components/angular-multirange-slider/dist/multirange-slider.css"
+        bootstrap_colorpicker_css:
+            inputs:
+                - "assets/bower_components/angular-bootstrap-colorpicker/css/colorpicker.css" #.min
+        continuous_net_css:
+            inputs:
+                - "assets/css/styles.css"
+                - "assets/css/plugins.css"
+                - "assets/css/football_icons.css"
+                - "assets/css/custom.css"
+        jquery:
+            inputs:
+                - "assets/bower_components/jquery/jquery.min.js" #.min
+        locationpicker:
+            inputs:
+                - "assets/bower_components/jquery-locationpicker-plugin/dist/locationpicker.jquery.js" #.min
+        jqueryui:
+            inputs:
+                - "assets/bower_components/jquery-ui/jquery-ui.min.js"
+        elfinder:
+            inputs:
+                - "assets/bower_components/elfinder/dist/js/elfinder.min.js"
+                - "assets/bower_components/elfinder/dist/js/i18n/elfinder.fr.js"
+        fastclick:
+            inputs:
+                - "assets/bower_components/fastclick/lib/fastclick.js"
+        angular:
+            inputs:
+                - "assets/bower_components/angular/angular.js" #.min
+                - "assets/bower_components/angular-cookies/angular-cookies.js" #.min
+                - "assets/bower_components/angular-animate/angular-animate.js" #.min
+                - "assets/bower_components/angular-touch/angular-touch.js" #.min
+                - "assets/bower_components/angular-sanitize/angular-sanitize.js" #.min
+                - "assets/bower_components/angular-ui-router/release/angular-ui-router.js" #.min
+                - "assets/bower_components/angular-resource/angular-resource.js" #.min
+                - "assets/bower_components/angular-bind-html-compile/angular-bind-html-compile.js"
+                - "assets/bower_components/angular-slugify/angular-slugify.js"
+                - "assets/bower_components/AngularJS-Toaster/toaster.js"
+        angular_storage:
+            inputs:
+                - "assets/bower_components/ngstorage/ngStorage.js" #.min
+        angular_table:
+            inputs:
+                - "assets/bower_components/ng-table/dist/ng-table.min.js"
+        videogular:
+            inputs:
+                - "assets/bower_components/videogular/videogular.min.js"
+                - "assets/bower_components/videogular-controls/vg-controls.min.js"
+                - "assets/bower_components/videogular-overlay-play/vg-overlay-play.min.js"
+                - "assets/bower_components/videogular-poster/vg-poster.min.js"
+                - "assets/bower_components/videogular-buffering/vg-buffering.min.js"
+        angular_translate:
+            inputs:
+                - "assets/bower_components/angular-translate/angular-translate.js" #.min
+                - "assets/bower_components/angular-translate-loader-url/angular-translate-loader-url.js" #.min
+                - "assets/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js" #.min
+                - "assets/bower_components/angular-translate-storage-local/angular-translate-storage-local.js" #.min
+                - "assets/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js" #.min
+        angular_scroll:
+            inputs:
+                - "assets/bower_components/angular-scroll/angular-scroll.js" #.min
+        angular_file_uplaod:
+            inputs:
+                - "assets/bower_components/angular-file-upload/angular-file-upload.min.js"
+        bootstrap_colorpicker:
+            inputs:
+                - "assets/bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js" #.min
+        oclazyload:
+            inputs:
+                - "assets/bower_components/oclazyload/dist/ocLazyLoad.js" #.min
+        breadcrumb:
+            inputs:
+                - "assets/bower_components/angular-breadcrumb/dist/angular-breadcrumb.js" #.min
+        ui_bootstrap:
+            inputs:
+                - "assets/bower_components/angular-bootstrap/ui-bootstrap-tpls.js" #.min
+        loading_bar:
+            inputs:
+                - "assets/bower_components/angular-loading-bar/build/loading-bar.js" #.min
+        color_picker:
+            inputs:
+                - "assets/bower_components/tinycolor/tinycolor.js"
+                - "assets/bower_components/angular-color-picker/angular-color-picker.js"
+        multirange_slider:
+            inputs:
+                - "assets/bower_components/angular-multirange-slider/dist/multirange-slider.js" #.min
+        continuous_net_scripts:
+            inputs:
+                - "assets/js/app.js"
+                - "assets/js/main.js"
+                - "assets/js/config.constant.js"
+                - "bundles/livnyou/js/constant.js"
+                - "assets/js/config.router.js"
+                - "bundles/livnyou/js/router.js"
+        site_front_scripts:
+            inputs:
+                - "assets/js/app.js"
+                - "assets/js/front.app.js"
+                - "assets/js/config.constant.js"
+                - "bundles/livnyou/js/constant.js"
+                - "assets/js/front.config.router.js"
+                #- "bundles/livnyou/js/front.router.js"
+                - "assets/bower_components/angular-paging/dist/paging.min.js"
+                - "assets/bower_components/isteven-angular-multiselect/isteven-multi-select.js"
+        continuous_net_services:
+            inputs:
+                - "assets/js/services/savable.js"
+        continuous_net_directives:
+            inputs:
+                - "assets/js/directives/toggle.js"
+                - "assets/js/directives/perfect-scrollbar.js"
+                - "assets/js/directives/empty-links.js"
+                - "assets/js/directives/sidebars.js"
+                - "assets/js/directives/off-click.js"
+                - "assets/js/directives/full-height.js"
+                - "assets/js/directives/panel-tools.js"
+                - "assets/js/directives/char-limit.js"
+                - "assets/js/directives/dismiss.js"
+                - "assets/js/directives/compare-to.js"
+                - "assets/js/directives/select.js"
+                - "assets/js/directives/messages.js"
+                - "assets/js/directives/chat.js"
+                - "assets/js/directives/sparkline.js"
+                - "assets/js/directives/touchspin.js"
+                - "assets/js/directives/file-upload.js"
+                - "assets/js/directives/my-boolean.js"
+                - "assets/js/directives/my-color.js"
+                - "assets/js/directives/my-enum.js"
+                - "assets/js/directives/my-unique-field.js"
+                - "assets/js/directives/recompile.js"
+                - "assets/js/directives/my-tooltip.js"
+                - "assets/js/directives/check-email-existing.js"
+        continuous_net_controllers:
+            inputs:
+                - "assets/js/controllers/bootstrapCtrl.js"
+                - "bundles/livnyou/js/components/Main/AppCtrl.js"
+                - "bundles/livnyou/js/common/FileManager/FileManagerCtrl.js"
+                - "bundles/livnyou/js/common/LocationPicker/LocationPickerCtrl.js"
+        #google_apis:
+            #inputs:
+                #- "//maps.googleapis.com/maps/api/js?v=3.exp&libraries=weather,visualization"

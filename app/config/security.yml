@@ -1,11 +1,21 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
-security:
 
+imports:
+    - { resource: "@LivnYouBundle/Resources/config/security.yml" }
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_API: ROLE_API
+        ROLE_SUBSCRIBER: [ROLE_API, ROLE_SUBSCRIBER]
+        ROLE_ADMIN : [ROLE_API, ROLE_ADMIN]
+        ROLE_SUPER_ADMIN: [ROLE_API, ROLE_SUPER_ADMIN]
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -13,21 +23,43 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
+        countries:
+            pattern:  ^/(en|fr|ar)/api/countries
+            stateless: true
+            anonymous: true
 
-            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
+        languages:
+            pattern: ^/(en|fr|ar)/api/languages
+            stateless: true
+            anonymous: true
 
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-            #form_login: ~
+        emailConfirm:
+            pattern:  ^/(en|fr|ar)/api/v1/emailConfirm
+            stateless: true
+            anonymous: true
+
+        requestResetPassword:
+            pattern:  ^/(en|fr|ar)/api/v1/requestResetPassword
+            stateless: true
+            anonymous: true
+
+        checkConfirmationToken:
+            pattern:  ^/(en|fr|ar)/api/v1/checkConfirmationToken
+            stateless: true
+            anonymous: true
+
+        reset:
+            pattern:  ^/(en|fr|ar)/api/v1/reset
+            stateless: true
+            anonymous: true
         login:
             pattern:  ^/api/login
             stateless: true
             anonymous: true
             form_login:
                 check_path:               /api/login_check
+                username_parameter:       email
+                password_parameter:       password
                 success_handler:          lexik_jwt_authentication.handler.authentication_success
                 failure_handler:          lexik_jwt_authentication.handler.authentication_failure
                 require_previous_session: false
@@ -35,9 +67,51 @@ security:
         api:
             pattern:   ^/api
             stateless: true
-            guard:
-                authenticators:
-                    - lexik_jwt_authentication.jwt_token_authenticator
-    access_control:
-            - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-            - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+            provider: fos_userbundle
+            #anonymous: false
+            #guard:
+             #   authenticators:
+              #      - lexik_jwt_authentication.jwt_token_authenticator
+            lexik_jwt:
+                authorization_header:
+                    enabled: true
+                    prefix:  Bearer
+                cookie:               # check token in a cookie
+                    enabled: false
+                    name:    BEARER
+                query_parameter:
+                    enabled: true
+                    name:    bearer
+                throw_exceptions:        false
+                create_entry_point:      true
+                authentication_provider: lexik_jwt_authentication.security.authentication.provider
+                authentication_listener: lexik_jwt_authentication.security.authentication.listener
+
+        api_lang:
+            pattern:  ^/(en|fr|ar)/api/
+            stateless: true
+            provider: fos_userbundle
+            #anonymous: false
+            #guard:
+             #   authenticators:
+              #      - lexik_jwt_authentication.jwt_token_authenticator
+            lexik_jwt:
+                authorization_header:
+                    enabled: true
+                    prefix:  Bearer
+                cookie:               # check token in a cookie
+                    enabled: false
+                    name:    BEARER
+                query_parameter:
+                    enabled: true
+                    name:    bearer
+                throw_exceptions:        false
+                create_entry_point:      true
+                authentication_provider: lexik_jwt_authentication.security.authentication.provider
+                authentication_listener: lexik_jwt_authentication.security.authentication.listener
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+            logout: true
+            anonymous: true

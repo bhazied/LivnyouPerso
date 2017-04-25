@@ -6,10 +6,10 @@ services:
     livn_you.services.measurement_interpretation:
         class: %livn_you.services.measurement_interpretation.class%
         arguments:
-            - @doctrine.orm.entity_manager
-            - @translator
-            - @logger
-            - %livn_you.services.measurement_interpretation%
+            - "@doctrine.orm.entity_manager"
+            - "@translator"
+            - "@logger"
+            - "%livn_you.services.measurement_interpretation%"
     
 #    livn_you.example:
 #        class: ContinuousNet\LivnYouBundle\Example

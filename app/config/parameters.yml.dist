@@ -17,3 +17,11 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+    livn_you.services.measurement_interpretation:
+         base_url: "https://ws.biodymanager.com/api-restful/"
+         connection_action: "connection"
+         measurement_action: "measurement"
+         auth_key: "ab8ae88c9409e0c1ebc9647d45285f1df121986e"
+         male_value: "1"
+         female_value: "2"
+         birth_date_format: "Y-m-d"

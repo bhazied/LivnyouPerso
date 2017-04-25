@@ -68,82 +68,23 @@ class User  extends BaseUser
      */
     protected $type;
 
-    /**
-     * @var string
-     * @access protected
-     *
-     * @ORM\Column(name="`username`", type="string", length=50, nullable=false, unique=true)
-     * 
-     * @Expose
-     * 
-     */
-    protected $username;
 
-    /**
-     * @var string
-     * @access protected
-     *
-     * @ORM\Column(name="`password`", type="string", length=128, nullable=false, unique=false)
-     * 
-     * @Exclude
-     * 
-     */
-    protected $password;
 
-    /**
-     * @var string
-     * @access protected
-     *
-     * @ORM\Column(name="`salt`", type="string", length=1000, nullable=false, unique=false)
-     * 
-     * @Exclude
-     * 
-     */
-    protected $salt;
 
     /**
      * @var string
      * @access protected
      *
      * @ORM\Column(name="`phone`", type="string", length=20, nullable=true, unique=true)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $phone;
 
-    /**
-     * @var string
-     * @access protected
-     *
-     * @ORM\Column(name="`email`", type="string", length=255, nullable=false, unique=true)
-     * 
-     * @Expose
-     * 
-     */
-    protected $email;
 
-    /**
-     * @var string
-     * @access protected
-     *
-     * @ORM\Column(name="`username_canonical`", type="string", length=255, nullable=true, unique=false)
-     * 
-     * @Expose
-     * 
-     */
-    protected $usernameCanonical;
 
-    /**
-     * @var string
-     * @access protected
-     *
-     * @ORM\Column(name="`email_canonical`", type="string", length=255, nullable=true, unique=false)
-     * 
-     * @Expose
-     * 
-     */
-    protected $emailCanonical;
+
 
     /**
      * @var string
@@ -343,49 +284,10 @@ class User  extends BaseUser
      */
     protected $authenticationMode;
 
-    /**
-     * @var array
-     * @access protected
-     *
-     * @ORM\Column(name="`roles`", type="array", nullable=false, unique=false)
-     * 
-     * @Expose
-     * 
-     */
-    protected $roles;
 
-    /**
-     * @var boolean
-     * @access protected
-     *
-     * @ORM\Column(name="`enabled`", type="boolean", nullable=false, unique=false)
-     * 
-     * @Expose
-     * 
-     */
-    protected $enabled;
 
-    /**
-     * @var string
-     * @access protected
-     *
-     * @ORM\Column(name="`confirmation_token`", type="string", length=255, nullable=true, unique=false)
-     * 
-     * @Expose
-     * 
-     */
-    protected $confirmationToken;
 
-    /**
-     * @var \DateTime
-     * @access protected
-     *
-     * @ORM\Column(name="`password_requested_at`", type="datetime", nullable=true, unique=false)
-     * 
-     * @Expose
-     * 
-     */
-    protected $passwordRequestedAt;
+
 
     /**
      * @var boolean
@@ -442,16 +344,7 @@ class User  extends BaseUser
      */
     protected $credentialsExpireAt;
 
-    /**
-     * @var \DateTime
-     * @access protected
-     *
-     * @ORM\Column(name="`last_login`", type="datetime", nullable=true, unique=false)
-     * 
-     * @Expose
-     * 
-     */
-    protected $lastLogin;
+
 
     /**
      * @var \DateTime
@@ -645,77 +538,7 @@ class User  extends BaseUser
         return $this->type;
     }
 
-    /**
-     * Set username
-     *
-     * @access public
-     * @param string $username
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-        return $this;
-    }
 
-    /**
-     * Get username
-     *
-     * @access public
-     * @return string 
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Set password
-     *
-     * @access public
-     * @param string $password
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @access public
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set salt
-     *
-     * @access public
-     * @param string $salt
-     * @return User
-     */
-    public function setSalt($salt)
-    {
-        $this->salt = $salt;
-        return $this;
-    }
-
-    /**
-     * Get salt
-     *
-     * @access public
-     * @return string 
-     */
-    public function getSalt()
-    {
-        return $this->salt;
-    }
 
     /**
      * Set phone
@@ -741,77 +564,7 @@ class User  extends BaseUser
         return $this->phone;
     }
 
-    /**
-     * Set email
-     *
-     * @access public
-     * @param string $email
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        return $this;
-    }
 
-    /**
-     * Get email
-     *
-     * @access public
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set usernameCanonical
-     *
-     * @access public
-     * @param string $usernameCanonical
-     * @return User
-     */
-    public function setUsernameCanonical($usernameCanonical = null)
-    {
-        $this->usernameCanonical = $usernameCanonical;
-        return $this;
-    }
-
-    /**
-     * Get usernameCanonical
-     *
-     * @access public
-     * @return string 
-     */
-    public function getUsernameCanonical()
-    {
-        return $this->usernameCanonical;
-    }
-
-    /**
-     * Set emailCanonical
-     *
-     * @access public
-     * @param string $emailCanonical
-     * @return User
-     */
-    public function setEmailCanonical($emailCanonical = null)
-    {
-        $this->emailCanonical = $emailCanonical;
-        return $this;
-    }
-
-    /**
-     * Get emailCanonical
-     *
-     * @access public
-     * @return string 
-     */
-    public function getEmailCanonical()
-    {
-        return $this->emailCanonical;
-    }
 
     /**
      * Set gender
@@ -1245,101 +998,9 @@ class User  extends BaseUser
         return $this->authenticationMode;
     }
 
-    /**
-     * Set roles
-     *
-     * @access public
-     * @param array $roles
-     * @return User
-     */
-    public function setRoles(array $roles)
-    {
-        $this->roles = $roles;
-        return $this;
-    }
 
-    /**
-     * Get roles
-     *
-     * @access public
-     * @return array 
-     */
-    public function getRoles()
-    {
-        return $this->roles;
-    }
 
-    /**
-     * Set enabled
-     *
-     * @access public
-     * @param boolean $enabled
-     * @return User
-     */
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-        return $this;
-    }
 
-    /**
-     * Get enabled
-     *
-     * @access public
-     * @return boolean 
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
-    }
-
-    /**
-     * Set confirmationToken
-     *
-     * @access public
-     * @param string $confirmationToken
-     * @return User
-     */
-    public function setConfirmationToken($confirmationToken = null)
-    {
-        $this->confirmationToken = $confirmationToken;
-        return $this;
-    }
-
-    /**
-     * Get confirmationToken
-     *
-     * @access public
-     * @return string 
-     */
-    public function getConfirmationToken()
-    {
-        return $this->confirmationToken;
-    }
-
-    /**
-     * Set passwordRequestedAt
-     *
-     * @access public
-     * @param \DateTime $passwordRequestedAt
-     * @return User
-     */
-    public function setPasswordRequestedAt(\DateTime $passwordRequestedAt = null)
-    {
-        $this->passwordRequestedAt = $passwordRequestedAt;
-        return $this;
-    }
-
-    /**
-     * Get passwordRequestedAt
-     *
-     * @access public
-     * @return \DateTime 
-     */
-    public function getPasswordRequestedAt()
-    {
-        return $this->passwordRequestedAt;
-    }
 
     /**
      * Set locked
@@ -1461,29 +1122,7 @@ class User  extends BaseUser
         return $this->credentialsExpireAt;
     }
 
-    /**
-     * Set lastLogin
-     *
-     * @access public
-     * @param \DateTime $lastLogin
-     * @return User
-     */
-    public function setLastLogin(\DateTime $lastLogin = null)
-    {
-        $this->lastLogin = $lastLogin;
-        return $this;
-    }
 
-    /**
-     * Get lastLogin
-     *
-     * @access public
-     * @return \DateTime 
-     */
-    public function getLastLogin()
-    {
-        return $this->lastLogin;
-    }
 
     /**
      * Set lastFailedLogin
