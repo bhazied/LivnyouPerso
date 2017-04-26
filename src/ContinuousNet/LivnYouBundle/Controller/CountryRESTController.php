@@ -17,6 +17,7 @@ use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\View\View as FOSView;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -188,12 +189,17 @@ class CountryRESTController extends BaseRESTController
         $form = $this->createForm(CountryType::class, $entity, array('method' => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
+        $form->submit($request->request->all());
         if ($form->isValid()) {
             $entity->setCreatorUser($this->getUser());
             $em->persist($entity);
             $em->flush();
             return $entity;
         }
+            return FOSView::create(
+                ["status" => false, "message" => $this->getFormExactError($form->getErrors())],
+                Response::HTTP_OK
+            );
     }
 
     /**
@@ -213,9 +219,10 @@ class CountryRESTController extends BaseRESTController
             $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
-            $form = $this->createForm(new CountryType(), $entity, array('method' => $request->getMethod()));
+            $form = $this->createForm(CountryType::class, $entity, array('method' => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
+            $form->submit($request->request->all());
             if ($form->isValid()) {
                 $entity->setModifierUser($this->getUser());
                 $em->flush();

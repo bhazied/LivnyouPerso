@@ -11,6 +11,8 @@ use FOS\RestBundle\View\View as FOSView;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormErrorIterator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -173,12 +175,12 @@ class BaseRESTController extends FOSRestController
     }
 
 
-    /*protected function createFormNamed($type = null, $data = null, $options = array()){
-         return $this->get('form.factory').createNamed(
-                null,
-                $type,
-                $data,
-                $options
-            );
-    }*/
+    protected  function getFormExactError( FormErrorIterator $errors){
+        $err_messages = [];
+        foreach ($errors as $error) {
+            $message = $this->get('translator')->trans($error->getMessage());
+            array_push($err_messages, $message);
+        }
+        return $err_messages;
+    }
 }
