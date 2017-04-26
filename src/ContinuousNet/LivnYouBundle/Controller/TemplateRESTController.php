@@ -47,8 +47,6 @@ class TemplateRESTController extends BaseRESTController
     /**
      * Get a Template entity
      *
-     * @Get("/{locale}/api/templates/{id}")
-     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
@@ -67,8 +65,6 @@ class TemplateRESTController extends BaseRESTController
 
     /**
      * Get all Template entities.
-     *
-     * @Get("/{locale}/api/templates")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -188,8 +184,6 @@ class TemplateRESTController extends BaseRESTController
     /**
      * Create a Template entity.
      *
-     * @Post("/{locale}/api/templates")
-     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -226,8 +220,6 @@ class TemplateRESTController extends BaseRESTController
 
     /**
      * Update a Template entity.
-     *
-     * @Put("/{locale}/api/templates/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -288,8 +280,6 @@ class TemplateRESTController extends BaseRESTController
     /**
      * Partial Update to a Template entity.
      *
-     * @Patch("/{locale}/api/templates/{id}")
-     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -304,8 +294,6 @@ class TemplateRESTController extends BaseRESTController
 
     /**
      * Delete a Template entity.
-     *
-     * @Delete("/{locale}/api/templates/{id}")
      *
      * @View(statusCode=204)
      *

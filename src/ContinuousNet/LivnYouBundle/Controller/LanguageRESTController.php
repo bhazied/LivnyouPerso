@@ -47,8 +47,6 @@ class LanguageRESTController extends BaseRESTController
     /**
      * Get a Language entity
      *
-     * @Get("/{locale}/api/languages/{id}")
-     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
@@ -67,8 +65,6 @@ class LanguageRESTController extends BaseRESTController
 
     /**
      * Get all Language entities.
-     *
-     * @Get("/{locale}/api/languages")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -172,8 +168,6 @@ class LanguageRESTController extends BaseRESTController
     /**
      * Create a Language entity.
      *
-     * @Post("/{locale}/api/languages")
-     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -198,8 +192,6 @@ class LanguageRESTController extends BaseRESTController
 
     /**
      * Update a Language entity.
-     *
-     * @Put("/{locale}/api/languages/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -230,8 +222,6 @@ class LanguageRESTController extends BaseRESTController
 
     /**
      * Partial Update to a Language entity.
-     *
-     * @Patch("/{locale}/api/languages/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *

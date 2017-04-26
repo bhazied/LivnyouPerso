@@ -47,8 +47,6 @@ class PhysicalActivityRESTController extends BaseRESTController
     /**
      * Get a Physical Activity entity
      *
-     * @Get("/{locale}/api/physicalactivities/{id}")
-     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
@@ -68,8 +66,6 @@ class PhysicalActivityRESTController extends BaseRESTController
 
     /**
      * Get all Physical Activity entities.
-     *
-     * @Get("/{locale}/api/physicalactivities")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -174,8 +170,6 @@ class PhysicalActivityRESTController extends BaseRESTController
     /**
      * Create a Physical Activity entity.
      *
-     * @Post("/{locale}/api/physicalactivities")
-     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -200,8 +194,6 @@ class PhysicalActivityRESTController extends BaseRESTController
 
     /**
      * Update a Physical Activity entity.
-     *
-     * @Put("/{locale}/api/physicalactivities/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -233,8 +225,6 @@ class PhysicalActivityRESTController extends BaseRESTController
     /**
      * Partial Update to a Physical Activity entity.
      *
-     * @Patch("/{locale}/api/physicalactivities/{id}")
-     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -249,8 +239,6 @@ class PhysicalActivityRESTController extends BaseRESTController
 
     /**
      * Delete a Physical Activity entity.
-     *
-     * @Delete("/{locale}/api/physicalactivities/{id}")
      *
      * @View(statusCode=204)
      *

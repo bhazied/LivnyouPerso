@@ -23,13 +23,13 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        countries:
-            pattern:  ^/(en|fr|ar)/api/countries
-            stateless: true
-            anonymous: true
+        #countries:
+         #   pattern:  ^/(en|fr|ar)/api/countries
+          #  stateless: true
+           # anonymous: true
 
         languages:
-            pattern: ^/(en|fr|ar)/api/languages
+            pattern: ^/(en|fr)/api/languages
             stateless: true
             anonymous: true
 
@@ -88,7 +88,7 @@ security:
                 authentication_listener: lexik_jwt_authentication.security.authentication.listener
 
         api_lang:
-            pattern:  ^/(en|fr|ar)/api/
+            pattern:  ^/(en|fr)/api
             stateless: true
             provider: fos_userbundle
             #anonymous: false

@@ -1,3 +1,5 @@
+livn_you_api:
+     resource: "@LivnYouBundle/Resources/config/routing.yml"
 livn_you:
     path:  /
     defaults: { _controller: LivnYouBundle:Default:index }
@@ -21,13 +23,5 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
-
 api_login_check:
     path: /api/login_check
-
-livn_you_api_v1:
-    resource: "@LivnYouBundle/Controller/ApiV1RESTController.php"
-    type:   rest
-    prefix:   /{_locale}/api/v1
-    requirements:
-        _locale: en|fr|ar

@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
 use FOS\RestBundle\Controller\FOSRestController;
@@ -46,7 +47,7 @@ class BaseRESTController extends FOSRestController
         $translationEntityFullName = $ns . $translationEntityName;
         if (class_exists($translationEntityFullName)) {
             $entityField = lcfirst($entityName);
-            $request = $this->get('request');
+            $request = $this->get('request_stack')->getCurrentRequest();
             $em = $this->getDoctrine()->getManager();
             $qb = $em->createQueryBuilder();
             $qb->select('t');
@@ -157,4 +158,27 @@ class BaseRESTController extends FOSRestController
         }
     }
 
+    /**
+     * Get rid on any fields that don't appear in the form
+     *
+     * @param Request $request
+     * @param Form $form
+     */
+    protected function removeExtraFields(Request $request, Form $form)
+    {
+        $data     = $request->request->all();
+        $children = $form->all();
+        $data     = array_intersect_key($data, $children);
+        $request->request->replace($data);
+    }
+
+
+    /*protected function createFormNamed($type = null, $data = null, $options = array()){
+         return $this->get('form.factory').createNamed(
+                null,
+                $type,
+                $data,
+                $options
+            );
+    }*/
 }

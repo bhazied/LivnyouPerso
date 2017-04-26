@@ -625,6 +625,8 @@
       }
     },
     "list": {
+      "PHYSICALACTIVITIES": "Physical activities",
+      "PATHOLOGIES": "Pathologies",
       "LOGIN": "Login",
       "DASHBOARD": "Dashboard",
       "ALERTS": "Alerts",

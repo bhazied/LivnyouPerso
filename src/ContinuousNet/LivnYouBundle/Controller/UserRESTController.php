@@ -47,8 +47,6 @@ class UserRESTController extends BaseRESTController
     /**
      * Get a User entity
      *
-     * @Get("/{locale}/api/users/{id}")
-     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
@@ -67,8 +65,6 @@ class UserRESTController extends BaseRESTController
 
     /**
      * Get all User entities.
-     *
-     * @Get("/{locale}/api/users")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -174,8 +170,6 @@ class UserRESTController extends BaseRESTController
     /**
      * Create a User entity.
      *
-     * @Post("/{locale}/api/users")
-     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -213,8 +207,6 @@ class UserRESTController extends BaseRESTController
 
     /**
      * Update a User entity.
-     *
-     * @Put("/{locale}/api/users/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -261,8 +253,6 @@ class UserRESTController extends BaseRESTController
     /**
      * Partial Update to a User entity.
      *
-     * @Patch("/{locale}/api/users/{id}")
-     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -277,8 +267,6 @@ class UserRESTController extends BaseRESTController
 
     /**
      * Delete a User entity.
-     *
-     * @Delete("/{locale}/api/users/{id}")
      *
      * @View(statusCode=204)
      *

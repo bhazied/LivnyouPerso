@@ -13,14 +13,14 @@ use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-use FOS\RestBundle\Util\Codes;
+//use FOS\RestBundle\Util\Response;
 use FOS\RestBundle\View\View as FOSView;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Finder\Finder;;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
@@ -47,7 +47,6 @@ class CountryRESTController extends BaseRESTController
     /**
      * Get a Country entity
      *
-     * @Get("/{locale}/api/countries/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -62,14 +61,13 @@ class CountryRESTController extends BaseRESTController
             $this->createSubDirectory($entity);
             return $entity;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
     /**
      * Get all Country entities.
      *
-     * @Get("/{locale}/api/countries")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -103,6 +101,7 @@ class CountryRESTController extends BaseRESTController
             $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'country.modifierUser = modifier_user.id');
             $textFields = array('country.name', 'country.picture', 'country.code', 'country.longCode', 'country.prefix');
             $memberOfConditions = array();
+
             foreach ($filters as $field => $value) {
                 if (substr_count($field, '.') > 1) {
                     if ($value == 'true' || $value == 'or' || $value == 'and') {
@@ -167,14 +166,13 @@ class CountryRESTController extends BaseRESTController
             }
             return $data;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
     /**
      * Create a Country entity.
      *
-     * @Post("/{locale}/api/countries")
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -187,7 +185,7 @@ class CountryRESTController extends BaseRESTController
     {
         $em = $this->getDoctrine()->getManager();
         $entity = new Country();
-        $form = $this->createForm(new CountryType(), $entity, array('method' => $request->getMethod()));
+        $form = $this->createForm(CountryType::class, $entity, array('method' => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -201,7 +199,6 @@ class CountryRESTController extends BaseRESTController
     /**
      * Update a Country entity.
      *
-     * @Put("/{locale}/api/countries/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -224,16 +221,15 @@ class CountryRESTController extends BaseRESTController
                 $em->flush();
                 return $entity;
             }
-            return FOSView::create(array('errors' => $form->getErrors()), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create(array('errors' => $form->getErrors()), Response::HTTP_INTERNAL_SERVER_ERROR);
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
     /**
      * Partial Update to a Country entity.
      *
-     * @Patch("/{locale}/api/countries/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -250,7 +246,6 @@ class CountryRESTController extends BaseRESTController
     /**
      * Delete a Country entity.
      *
-     * @Delete("/{locale}/api/countries/{id}")
      *
      * @View(statusCode=204)
      *
@@ -268,7 +263,7 @@ class CountryRESTController extends BaseRESTController
             $em->flush();
             return null;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
     

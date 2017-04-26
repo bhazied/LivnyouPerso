@@ -159,29 +159,24 @@
 			</div>
 		</a>
 		<ul class="sub-menu">
-			<li ng-if="user.roles.join('').indexOf('ADM') > -1" ng-class="{'active':$state.includes('app.settings.languages')}">
-				<a ui-sref="app.settings.languages">
+			<li ng-if="user.roles.join('').indexOf('ADM') > -1" ng-class="{'active':$state.includes('app.translation.languages')}">
+				<a ui-sref="app.translation.languages">
 					<span class="title" translate="content.list.LANGUAGES">Languages</span>
 				</a>
 			</li>
-			<li ng-if="user.roles.join('').indexOf('ADM') > -1" ng-class="{'active':$state.includes('app.settings.countries')}">
-				<a ui-sref="app.settings.countries">
+			<li ng-if="user.roles.join('').indexOf('ADM') > -1" ng-class="{'active':$state.includes('app.systemsettings.countries')}">
+				<a ui-sref="app.systemsettings.countries">
 					<span class="title" translate="content.list.COUNTRIES">Countries</span>
 				</a>
 			</li>
-			<li ng-if="user.roles.join('').indexOf('ADM') > -1" ng-class="{'active':$state.includes('app.settings.regions')}">
-				<a ui-sref="app.settings.regions">
-					<span class="title" translate="content.list.REGIONS">Regions</span>
+			<li ng-if="user.roles.join('').indexOf('ADM') > -1" ng-class="{'active':$state.includes('app.systemsettings.pathologies')}">
+				<a ui-sref="app.systemsettings.pathologies">
+					<span class="title" translate="content.list.PATHOLOGIES">Regions</span>
 				</a>
 			</li>
-			<li ng-if="user.roles.join('').indexOf('ADM') > -1" ng-class="{'active':$state.includes('app.settings.menus')}">
-				<a ui-sref="app.settings.menus">
-					<span class="title" translate="content.list.MENUS">Menus</span>
-				</a>
-			</li>
-			<li ng-if="user.roles.join('').indexOf('ADM') > -1" ng-class="{'active':$state.includes('app.settings.menulinks')}">
-				<a ui-sref="app.settings.menulinks">
-					<span class="title" translate="content.list.MENULINKS">Menu Links</span>
+			<li ng-if="user.roles.join('').indexOf('ADM') > -1" ng-class="{'active':$state.includes('app.systemsettings.physicalactivities')}">
+				<a ui-sref="app.systemsettings.physicalactivities">
+					<span class="title" translate="content.list.PHYSICALACTIVITIES">Regions</span>
 				</a>
 			</li>
 		</ul>
@@ -324,24 +319,9 @@
 					<span class="title" translate="content.list.NOTIFICATIONS">Notifications</span>
 				</a>
 			</li>
-			<li ng-if="user.roles.join('').indexOf('') > -1" ng-class="{'active':$state.includes('app.access.messages')}">
-				<a ui-sref="app.access.messages">
-					<span class="title" translate="content.list.MESSAGES">Messages</span>
-				</a>
-			</li>
 			<li ng-if="user.roles.join('').indexOf('ADM') > -1" ng-class="{'active':$state.includes('app.access.groups')}">
 				<a ui-sref="app.access.groups">
 					<span class="title" translate="content.list.GROUPS">Groups</span>
-				</a>
-			</li>
-			<li ng-if="user.roles.join('').indexOf('') > -1" ng-class="{'active':$state.includes('app.access.alerts')}">
-				<a ui-sref="app.access.alerts">
-					<span class="title" translate="content.list.ALERTS">Alerts</span>
-				</a>
-			</li>
-			<li ng-if="user.roles.join('').indexOf('ADM') > -1" ng-class="{'active':$state.includes('app.access.logs')}">
-				<a ui-sref="app.access.logs">
-					<span class="title" translate="content.list.LOGS">Logs</span>
 				</a>
 			</li>
 			<li ng-if="user.roles.join('').indexOf('ADM') > -1" ng-class="{'active':$state.includes('app.access.usersettings')}">

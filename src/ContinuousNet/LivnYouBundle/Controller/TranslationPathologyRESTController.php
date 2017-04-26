@@ -47,8 +47,6 @@ class TranslationPathologyRESTController extends BaseRESTController
     /**
      * Get a Translation Pathology entity
      *
-     * @Get("/{locale}/api/translationpathologies/{id}")
-     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
@@ -67,8 +65,6 @@ class TranslationPathologyRESTController extends BaseRESTController
 
     /**
      * Get all Translation Pathology entities.
-     *
-     * @Get("/{locale}/api/translationpathologies")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -173,8 +169,6 @@ class TranslationPathologyRESTController extends BaseRESTController
     /**
      * Create a Translation Pathology entity.
      *
-     * @Post("/{locale}/api/translationpathologies")
-     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -199,8 +193,6 @@ class TranslationPathologyRESTController extends BaseRESTController
 
     /**
      * Update a Translation Pathology entity.
-     *
-     * @Put("/{locale}/api/translationpathologies/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -232,8 +224,6 @@ class TranslationPathologyRESTController extends BaseRESTController
     /**
      * Partial Update to a Translation Pathology entity.
      *
-     * @Patch("/{locale}/api/translationpathologies/{id}")
-     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -248,8 +238,6 @@ class TranslationPathologyRESTController extends BaseRESTController
 
     /**
      * Delete a Translation Pathology entity.
-     *
-     * @Delete("/{locale}/api/translationpathologies/{id}")
      *
      * @View(statusCode=204)
      *

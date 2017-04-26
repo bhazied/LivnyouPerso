@@ -1,0 +1,97 @@
+livn_you_api_v1:
+    resource: "@LivnYouBundle/Controller/ApiV1RESTController.php"
+    type:   rest
+    prefix:   /{_locale}/api/v1
+    requirements:
+        _locale: en|fr
+
+livn_you_language_api:
+    resource: "@LivnYouBundle/Controller/LanguageRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr
+
+livn_you_country_api:
+    resource: "@LivnYouBundle/Controller/CountryRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr
+
+livn_you_group_api:
+    resource: "@LivnYouBundle/Controller/GroupRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr
+
+livn_you_log_api:
+    resource: "@LivnYouBundle/Controller/LogRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr
+
+livn_you_measurement_api:
+    resource: "@LivnYouBundle/Controller/MeasurementRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr
+
+livn_you_pathology_api:
+    resource: "@LivnYouBundle/Controller/PathologyRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr
+
+livn_you_physical_activity_api:
+    resource: "@LivnYouBundle/Controller/PhysicalActivityRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr
+
+livn_you_session_api:
+    resource: "@LivnYouBundle/Controller/SessionRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr
+
+livn_you_template_api:
+    resource: "@LivnYouBundle/Controller/TemplateRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr
+
+livn_you_translation_country_api:
+    resource: "@LivnYouBundle/Controller/TranslationCountryRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr
+
+livn_you_translation_pathology_api:
+    resource: "@LivnYouBundle/Controller/TranslationPathologyRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr
+
+livn_you_translation_physical_activity_api:
+    resource: "@LivnYouBundle/Controller/TranslationPhysicalActivityRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr
+
+livn_you_user_api:
+    resource: "@LivnYouBundle/Controller/UserRESTController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr

@@ -47,8 +47,6 @@ class TranslationPhysicalActivityRESTController extends BaseRESTController
     /**
      * Get a Translation Physical Activity entity
      *
-     * @Get("/{locale}/api/translationphysicalactivities/{id}")
-     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
@@ -67,8 +65,6 @@ class TranslationPhysicalActivityRESTController extends BaseRESTController
 
     /**
      * Get all Translation Physical Activity entities.
-     *
-     * @Get("/{locale}/api/translationphysicalactivities")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -173,8 +169,6 @@ class TranslationPhysicalActivityRESTController extends BaseRESTController
     /**
      * Create a Translation Physical Activity entity.
      *
-     * @Post("/{locale}/api/translationphysicalactivities")
-     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -199,8 +193,6 @@ class TranslationPhysicalActivityRESTController extends BaseRESTController
 
     /**
      * Update a Translation Physical Activity entity.
-     *
-     * @Put("/{locale}/api/translationphysicalactivities/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -232,8 +224,6 @@ class TranslationPhysicalActivityRESTController extends BaseRESTController
     /**
      * Partial Update to a Translation Physical Activity entity.
      *
-     * @Patch("/{locale}/api/translationphysicalactivities/{id}")
-     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -248,8 +238,6 @@ class TranslationPhysicalActivityRESTController extends BaseRESTController
 
     /**
      * Delete a Translation Physical Activity entity.
-     *
-     * @Delete("/{locale}/api/translationphysicalactivities/{id}")
      *
      * @View(statusCode=204)
      *

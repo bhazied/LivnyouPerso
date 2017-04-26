@@ -47,7 +47,6 @@ class GroupRESTController extends BaseRESTController
     /**
      * Get a Group entity
      *
-     * @Get("/{locale}/api/groups/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -68,7 +67,6 @@ class GroupRESTController extends BaseRESTController
     /**
      * Get all Group entities.
      *
-     * @Get("/{locale}/api/groups")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -172,8 +170,6 @@ class GroupRESTController extends BaseRESTController
     /**
      * Create a Group entity.
      *
-     * @Post("/{locale}/api/groups")
-     *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -198,8 +194,6 @@ class GroupRESTController extends BaseRESTController
 
     /**
      * Update a Group entity.
-     *
-     * @Put("/{locale}/api/groups/{id}")
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -232,8 +226,6 @@ class GroupRESTController extends BaseRESTController
     /**
      * Partial Update to a Group entity.
      *
-     * @Patch("/{locale}/api/groups/{id}")
-     *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
@@ -248,8 +240,6 @@ class GroupRESTController extends BaseRESTController
 
     /**
      * Delete a Group entity.
-     *
-     * @Delete("/{locale}/api/groups/{id}")
      *
      * @View(statusCode=204)
      *

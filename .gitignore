@@ -1,12 +1,13 @@
 /app/config/parameters.yml
 /build/
 /phpunit.xml
-/var/*
+/var/
 !/var/cache
 /var/cache/*
 !var/cache/.gitkeep
 !/var/logs
 /var/logs/*
+/var/sessions/*
 !var/logs/.gitkeep
 !/var/sessions
 /var/sessions/*
@@ -18,4 +19,7 @@
 /web/.htaccess
 /web/js/
 /web/css/
-/web/assetics/
+/web/assetic/
+/nbproject/*
+.idea/workspace.xml
+/web/assets/bower_components
