@@ -54,7 +54,7 @@ class LanguageRESTController extends BaseRESTController
     public function getAction($id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->findOneById($id);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->get(['id' => $id]);
             $this->createSubDirectory($entity);
             return $entity;
         } catch (\Exception $e) {
@@ -86,78 +86,16 @@ class LanguageRESTController extends BaseRESTController
             $filter_operators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
             $order_by = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
+            $params = compact('offset','limit','filter_operators','order_by','filters');
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
             );
-            $em = $this->getDoctrine()->getManager();
-            $qb = $em->createQueryBuilder();
-            $qb->from('LivnYouBundle:Language', 'language');
-            $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'language.creatorUser = creator_user.id');
-            $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'language.modifierUser = modifier_user.id');
-            $textFields = array('language.name', 'language.locale', 'language.code');
-            $memberOfConditions = array();
-            foreach ($filters as $field => $value) {
-                if (substr_count($field, '.') > 1) {
-                    if ($value == 'true' || $value == 'or' || $value == 'and') {
-                        list ($entityName, $listName, $listItem) = explode('.', $field);
-                        if (!isset($memberOfConditions[$listName])) {
-                            $memberOfConditions[$listName] = array('items' => array(), 'operator' => 'or');
-                        }
-                        if ($value == 'or' || $value == 'and') {
-                            $memberOfConditions[$listName]['operator'] = $value;
-                        } else {
-                            $memberOfConditions[$listName]['items'][] = $listItem;
-                        }
-                    }
-                    continue;
-                }
-                $key = str_replace('.', '', $field);
-                if (!empty($value)) {
-                   if (in_array($field, $textFields)) {
-                       if (isset($filter_operators[$field]) && $filter_operators[$field] == 'eq') {
-                           $qb->andWhere($qb->expr()->eq($field, $qb->expr()->literal($value)));
-                       } else {
-                           $qb->andWhere($qb->expr()->like($field, $qb->expr()->literal('%' . $value . '%')));
-                       }
-                   } else {
-                       $qb->andWhere($field.' = :'.$key.'')->setParameter($key, $value);
-                   }
-                }
-            }
-            foreach ($memberOfConditions as $listName => $memberOfCondition) {
-                if (!empty($memberOfCondition['items'])) {
-                    if ($memberOfCondition['operator'] == 'or') {
-                        $orX = $qb->expr()->orX();
-                        foreach ($memberOfCondition['items'] as $i => $item) {
-                            $orX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'language.'.$listName));
-                            $qb->setParameter($listName.'_value_'.$i, $item);
-                        }
-                        $qb->andWhere($orX);
-                    } else if ($memberOfCondition['operator'] == 'and') {
-                        $andX = $qb->expr()->andX();
-                        foreach ($memberOfCondition['items'] as $i => $item) {
-                            $andX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'language.'.$listName));
-                            $qb->setParameter($listName.'_value_'.$i, $item);
-                        }
-                        $qb->andWhere($andX);
-                    }
-                }
-            }
-            $qbList = clone $qb;
-            $qb->select('count(language.id)');
-            $data['inlineCount'] = $qb->getQuery()->getSingleScalarResult();
-            foreach ($order_by as $field => $direction) {
-                $qbList->addOrderBy($field, $direction);
-            }
-            $qbList->select('language');
-            $qbList->setMaxResults($limit);
-            $qbList->setFirstResult($offset);
-            $qbList->groupBy('language.id');
-            $results = $qbList->getQuery()->getResult();
-            if ($results) {
-                $data['results'] = $results;
-            }
+            list($inlineCount, $results) = array_values($this->getDoctrine()->getRepository('LivnYouBundle:Language')->getAll($params));
+            $data = array(
+                'inlineCount' => $inlineCount,
+                'results' => $results
+            );
             return $data;
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -176,17 +114,13 @@ class LanguageRESTController extends BaseRESTController
      */
     public function postAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
         $entity = new Language();
         $form = $this->createForm(LanguageType::class, $entity, array('method' => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
         $form->submit($request->request->all());
         if ($form->isValid()) {
-            $entity->setCreatorUser($this->getUser());
-            $em->persist($entity);
-            $em->flush();
-            return $entity;
+            return $this->getDoctrine()->getRepository('LivnYouBundle:Language')->store($entity, ['creatorUser' => $this->getUser()]);
         }
         return FOSView::create(
             ["status" => false, "message" => $this->getFormExactError($form->getErrors())],
@@ -207,17 +141,14 @@ class LanguageRESTController extends BaseRESTController
     public function putAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->findOneById($id);
-            $em = $this->getDoctrine()->getManager();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->get(['id' => $id]);
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(LanguageType::class, $entity, array('method' => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
             $form->submit($request->request->all());
             if ($form->isValid()) {
-                $entity->setModifierUser($this->getUser());
-                $em->flush();
-                return $entity;
+                return $this->getDoctrine()->getRepository('LivnYouBundle:Language')->update($entity, ['modifierUser' => $this->getUser()]);
             }
             return FOSView::create(array('errors' => $form->getErrors()), Response::HTTP_INTERNAL_SERVER_ERROR);
         } catch (\Exception $e) {
@@ -255,10 +186,7 @@ class LanguageRESTController extends BaseRESTController
     public function deleteAction(Request $request, $id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->findOneById($id);
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($entity);
-            $em->flush();
+            $this->getDoctrine()->getRepository('LivnYouBundle:Language')->delete($id);
             return null;
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);

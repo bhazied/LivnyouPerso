@@ -5,13 +5,13 @@ namespace ContinuousNet\LivnYouBundle\Repository;
 
 interface IRepository {
 
-    public function getAll();
+    public function getAll($params = []);
 
-    public function get($id);
+    public function get($params = []);
 
-    public function store($entity);
+    public function store($entity,  $params= []);
 
-    public function update($id, $entity);
+    public function update($entity, $params = []);
 
     public function delete($id);
 }

@@ -54,7 +54,7 @@ class SessionRESTController extends BaseRESTController
     public function getAction($id)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Session')->findOneById($id);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Session')->get(['id' => $id]);
             $this->createSubDirectory($entity);
             return $entity;
         } catch (\Exception $e) {
@@ -90,75 +90,18 @@ class SessionRESTController extends BaseRESTController
                 'inlineCount' => 0,
                 'results' => array()
             );
-            $em = $this->getDoctrine()->getManager();
-            $qb = $em->createQueryBuilder();
-            $qb->from('LivnYouBundle:Session', 'session');
-            $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'session.creatorUser = creator_user.id');
-            $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'session.modifierUser = modifier_user.id');
-            $textFields = array('session.ip', 'session.userAgent');
-            $memberOfConditions = array();
-            foreach ($filters as $field => $value) {
-                if (substr_count($field, '.') > 1) {
-                    if ($value == 'true' || $value == 'or' || $value == 'and') {
-                        list ($entityName, $listName, $listItem) = explode('.', $field);
-                        if (!isset($memberOfConditions[$listName])) {
-                            $memberOfConditions[$listName] = array('items' => array(), 'operator' => 'or');
-                        }
-                        if ($value == 'or' || $value == 'and') {
-                            $memberOfConditions[$listName]['operator'] = $value;
-                        } else {
-                            $memberOfConditions[$listName]['items'][] = $listItem;
-                        }
-                    }
-                    continue;
-                }
-                $key = str_replace('.', '', $field);
-                if (!empty($value)) {
-                   if (in_array($field, $textFields)) {
-                       if (isset($filter_operators[$field]) && $filter_operators[$field] == 'eq') {
-                           $qb->andWhere($qb->expr()->eq($field, $qb->expr()->literal($value)));
-                       } else {
-                           $qb->andWhere($qb->expr()->like($field, $qb->expr()->literal('%' . $value . '%')));
-                       }
-                   } else {
-                       $qb->andWhere($field.' = :'.$key.'')->setParameter($key, $value);
-                   }
-                }
-            }
-            foreach ($memberOfConditions as $listName => $memberOfCondition) {
-                if (!empty($memberOfCondition['items'])) {
-                    if ($memberOfCondition['operator'] == 'or') {
-                        $orX = $qb->expr()->orX();
-                        foreach ($memberOfCondition['items'] as $i => $item) {
-                            $orX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'session.'.$listName));
-                            $qb->setParameter($listName.'_value_'.$i, $item);
-                        }
-                        $qb->andWhere($orX);
-                    } else if ($memberOfCondition['operator'] == 'and') {
-                        $andX = $qb->expr()->andX();
-                        foreach ($memberOfCondition['items'] as $i => $item) {
-                            $andX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'session.'.$listName));
-                            $qb->setParameter($listName.'_value_'.$i, $item);
-                        }
-                        $qb->andWhere($andX);
-                    }
-                }
-            }
-            $qbList = clone $qb;
-            $qb->select('count(session.id)');
-            $data['inlineCount'] = $qb->getQuery()->getSingleScalarResult();
-            foreach ($order_by as $field => $direction) {
-                $qbList->addOrderBy($field, $direction);
-            }
-            $qbList->select('session');
-            $qbList->setMaxResults($limit);
-            $qbList->setFirstResult($offset);
-            $qbList->groupBy('session.id');
-            $results = $qbList->getQuery()->getResult();
-            if ($results) {
-                $data['results'] = $results;
-            }
+            $params = compact('offset','limit','filter_operators','order_by','filters');
+            $data = array(
+                'inlineCount' => 0,
+                'results' => array()
+            );
+            list($inlineCount, $results) = array_values($this->getDoctrine()->getRepository('LivnYouBundle:Session')->getAll($params));
+            $data = array(
+                'inlineCount' => $inlineCount,
+                'results' => $results
+            );
             return $data;
+
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
