@@ -9,7 +9,6 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-#use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View AS FOSView;
 use FOS\UserBundle\Model\UserManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -64,7 +63,7 @@ class ApiV1RESTController extends FOSRestController
         if (is_null($entity)) {
             return array();
         }
-        $ns = 'ContinuousNet\UbidElectricityBundle\Entity\\';
+        $ns = 'ContinuousNet\LivnYouBundle\Entity\\';
         $entityName = str_replace($ns, '', get_class($entity));
         $translationEntityName = 'Translation' . $entityName;
         $translationEntityFullName = $ns . $translationEntityName;
@@ -74,7 +73,7 @@ class ApiV1RESTController extends FOSRestController
             $em = $this->getDoctrine()->getManager();
             $qb = $em->createQueryBuilder();
             $qb->select('t');
-            $qb->from('UbidElectricityBundle:' . $translationEntityName, 't');
+            $qb->from('LivnYouBundle:' . $translationEntityName, 't');
             $qb->andWhere('t.locale = :locale')->setParameter('locale', $request->getLocale());
             $qb->andWhere('t.validated = :validated')->setParameter('validated', true);
             $qb->andWhere('t.' . $entityField . ' = :' . $entityField)->setParameter($entityField, $entity->getId());
@@ -127,7 +126,7 @@ class ApiV1RESTController extends FOSRestController
     }
 
     private function getConfig($path) {
-        $config = $this->container->getParameter('ubid_electricity');
+        $config = $this->container->getParameter('livn_you');
         $paths = explode('.', $path);
         foreach ($paths as $index) {
             $config = $config[$index];
@@ -138,7 +137,7 @@ class ApiV1RESTController extends FOSRestController
     private function getLanguageByCode($code) {
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
-        $qb->from('UbidElectricityBundle:Language', 'l_');
+        $qb->from('LivnYouBundle:Language', 'l_');
         $qb->select('l_');
         $qb->andWhere('l_.code = :code')->setParameter('code', $code);
         return $qb->getQuery()->getOneOrNullResult();
@@ -147,7 +146,7 @@ class ApiV1RESTController extends FOSRestController
     private function getGroupByName($name){
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
-        $qb->from('UbidElectricityBundle:Group', 'g_');
+        $qb->from('LivnYouBundle:Group', 'g_');
         $qb->select('g_');
         $qb->where('g_.name= :name')->setParameter('name', $name);
         return $qb->getQuery()->getOneOrNullResult();
@@ -166,7 +165,7 @@ class ApiV1RESTController extends FOSRestController
                     $data = array('status' => false, 'message' => null);
                     $em = $this->getDoctrine()->getManager();
                     $qb = $em->createQueryBuilder();
-                    $qb->from('UbidElectricityBundle:User', 'u_');
+                    $qb->from('LivnYouBundle:User', 'u_');
                     $qb->andWhere('u_.email = :email')->setParameter('email', $email);
                     $qb->select('count(u_.id)');
                     $count = $qb->getQuery()->getSingleScalarResult();
@@ -204,7 +203,7 @@ class ApiV1RESTController extends FOSRestController
                     $data = array('status' => false, 'message' => null);
                     $em = $this->getDoctrine()->getManager();
                     $qb = $em->createQueryBuilder();
-                    $qb->from('UbidElectricityBundle:User', 'u_');
+                    $qb->from('LivnYouBundle:User', 'u_');
                     $qb->andWhere('u_.phone = :phone')->setParameter('phone', $phone);
                     $qb->select('count(u_.id)');
                     $count = $qb->getQuery()->getSingleScalarResult();
@@ -240,7 +239,7 @@ class ApiV1RESTController extends FOSRestController
             $select = array('c_.id', 'c_.name', 'c_.nameAr', 'c_.nameFr');
             $em = $this->getDoctrine()->getManager();
             $qb = $em->createQueryBuilder();
-            $qb->from('UbidElectricityBundle:Country', 'c_');
+            $qb->from('LivnYouBundle:Country', 'c_');
             $qb->select($select);
             if ($locale == 'ar') {
                 $qb->addOrderBy('c_.nameAr', 'ASC');
@@ -423,7 +422,6 @@ class ApiV1RESTController extends FOSRestController
                     $data = array('status' => false, 'message' => null);
                     /** @var $user UserInterface */
                     $user = $this->container->get('fos_user.user_manager')->findUserByUsernameOrEmail($email);
-                    return $user;
                     if (!is_null($user)) {
 
                         if (!$user->isPasswordRequestNonExpired($this->container->getParameter('fos_user.resetting.token_ttl'))) {
@@ -597,9 +595,9 @@ class ApiV1RESTController extends FOSRestController
                 $method = 'set'.ucfirst($field);
                 if (!is_null($value) && !is_array($value)) {
                     if ($field == 'country' ) {
-                        $value = $em->getRepository('UbidElectricityBundle:Country')->findOneById($value);
+                        $value = $em->getRepository('LivnYouBundle:Country')->findOneById($value);
                     } else if ($field == 'language') {
-                        $value = $em->getRepository('UbidElectricityBundle:Language')->findOneByCode($value);
+                        $value = $em->getRepository('LivnYouBundle:Language')->findOneByCode($value);
                     } else if ($field == 'birthDate') {
                         $value = new \DateTime($value);
                     }
@@ -645,7 +643,7 @@ class ApiV1RESTController extends FOSRestController
                 ->setTo($this->container->getParameter('email_contact'))
                 ->setFrom($email)
                 ->setBody(
-                    $this->renderView('UbidElectricityBundle:Emails:contact.html.twig', array(
+                    $this->renderView('LivnYouBundle:Emails:contact.html.twig', array(
                         'subject' => $subject,
                         'lastName' => $lastName,
                         'firstName' => $firstName,
@@ -762,21 +760,6 @@ class ApiV1RESTController extends FOSRestController
             $data['message'] = $this->get('translator')->trans('Password not changed.');
         }
     }
-
-    private function getDefaultPackage() {
-        $default_package_id = $this->getConfig('settings.default_package_id');
-        $em = $this->getDoctrine()->getManager();
-        $package = $em->getRepository('UbidElectricityBundle:Package')->find($default_package_id);
-        return $package;
-    }
-
-    private function getCode($length) {
-        $pool = array_merge(range(0,9), range('A', 'Z'));
-        $code = '';
-        for ($i=0; $i < $length; $i++) {
-            $code .= $pool[mt_rand(0, count($pool) - 1)];
-        }
-        return $code;
-    }
+    
 
 }

@@ -13,7 +13,6 @@ use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View as FOSView;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -59,7 +58,7 @@ class LogRESTController extends BaseRESTController
             $this->createSubDirectory($entity);
             return $entity;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -161,7 +160,7 @@ class LogRESTController extends BaseRESTController
             }
             return $data;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -179,15 +178,20 @@ class LogRESTController extends BaseRESTController
     {
         $em = $this->getDoctrine()->getManager();
         $entity = new Log();
-        $form = $this->createForm(new LogType(), $entity, array('method' => $request->getMethod()));
+        $form = $this->createForm(LogType::class, $entity, array('method' => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
+        $form->submit($request->request->all());
         if ($form->isValid()) {
             $entity->setCreatorUser($this->getUser());
             $em->persist($entity);
             $em->flush();
             return $entity;
         }
+        return FOSView::create(
+            ["status" => false, "message" => $this->getFormExactError($form->getErrors())],
+            Response::HTTP_INTERNAL_SERVER_ERROR
+        );
     }
 
     /**
@@ -206,16 +210,17 @@ class LogRESTController extends BaseRESTController
             $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Log')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
-            $form = $this->createForm(new LogType(), $entity, array('method' => $request->getMethod()));
+            $form = $this->createForm(LogType::class, $entity, array('method' => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
+            $form->submit($request->request->all());
             if ($form->isValid()) {
                 $em->flush();
                 return $entity;
             }
-            return FOSView::create(array('errors' => $form->getErrors()), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create(array('errors' => $form->getErrors()), Response::HTTP_INTERNAL_SERVER_ERROR);
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -253,7 +258,7 @@ class LogRESTController extends BaseRESTController
             $em->flush();
             return null;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
     

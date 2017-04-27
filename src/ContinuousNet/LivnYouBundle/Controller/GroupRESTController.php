@@ -13,7 +13,6 @@ use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View as FOSView;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -60,7 +59,7 @@ class GroupRESTController extends BaseRESTController
             $this->createSubDirectory($entity);
             return $entity;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -163,7 +162,7 @@ class GroupRESTController extends BaseRESTController
             }
             return $data;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -181,15 +180,21 @@ class GroupRESTController extends BaseRESTController
     {
         $em = $this->getDoctrine()->getManager();
         $entity = new Group();
-        $form = $this->createForm(new GroupType(), $entity, array('method' => $request->getMethod()));
+        $form = $this->createForm(GroupType::class, $entity, array('method' => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
+        $form->submit($request->request->all());
         if ($form->isValid()) {
             $entity->setCreatorUser($this->getUser());
             $em->persist($entity);
             $em->flush();
             return $entity;
         }
+
+        return FOSView::create(
+            ["status" => false, "message" => $this->getFormExactError($form->getErrors())],
+            Response::HTTP_OK
+        );
     }
 
     /**
@@ -209,17 +214,18 @@ class GroupRESTController extends BaseRESTController
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $entity->setRoles(array());
-            $form = $this->createForm(new GroupType(), $entity, array('method' => $request->getMethod()));
+            $form = $this->createForm(GroupType::class, $entity, array('method' => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
+            $form->submit($request->request->all());
             if ($form->isValid()) {
                 $entity->setModifierUser($this->getUser());
                 $em->flush();
                 return $entity;
             }
-            return FOSView::create(array('errors' => $form->getErrors()), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create(array('errors' => $form->getErrors()), Response::HTTP_INTERNAL_SERVER_ERROR);
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -257,7 +263,7 @@ class GroupRESTController extends BaseRESTController
             $em->flush();
             return null;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
     

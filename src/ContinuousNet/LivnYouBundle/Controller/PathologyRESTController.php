@@ -13,7 +13,6 @@ use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View as FOSView;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -60,7 +59,7 @@ class PathologyRESTController extends BaseRESTController
             $this->createSubDirectory($entity);
             return $entity;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -171,7 +170,7 @@ class PathologyRESTController extends BaseRESTController
             }
             return $data;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -189,15 +188,20 @@ class PathologyRESTController extends BaseRESTController
     {
         $em = $this->getDoctrine()->getManager();
         $entity = new Pathology();
-        $form = $this->createForm(new PathologyType(), $entity, array('method' => $request->getMethod()));
+        $form = $this->createForm(PathologyType::class, $entity, array('method' => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
+        $form->submit($request->request->all());
         if ($form->isValid()) {
             $entity->setCreatorUser($this->getUser());
             $em->persist($entity);
             $em->flush();
             return $entity;
         }
+        return FOSView::create(
+            ["status" => false, "message" => $this->getFormExactError($form->getErrors())],
+            Response::HTTP_INTERNAL_SERVER_ERROR
+        );
     }
 
     /**
@@ -221,22 +225,23 @@ class PathologyRESTController extends BaseRESTController
                 foreach ($roles as $role) {
                    if (substr_count($role, 'MAN') > 0) {
                        if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
-                           return FOSView::create('Not authorized', Codes::HTTP_FORBIDDEN);
+                           return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
                        }
                    }
                 }
             }
-            $form = $this->createForm(new PathologyType(), $entity, array('method' => $request->getMethod()));
+            $form = $this->createForm(PathologyType::class, $entity, array('method' => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
+            $form->submit($request->request->all());
             if ($form->isValid()) {
                 $entity->setModifierUser($this->getUser());
                 $em->flush();
                 return $entity;
             }
-            return FOSView::create(array('errors' => $form->getErrors()), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create(array('errors' => $form->getErrors()), Response::HTTP_INTERNAL_SERVER_ERROR);
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -274,7 +279,7 @@ class PathologyRESTController extends BaseRESTController
                 foreach ($roles as $role) {
                    if (substr_count($role, 'MAN') > 0) {
                        if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
-                           return FOSView::create('Not authorized', Codes::HTTP_FORBIDDEN);
+                           return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
                        }
                    }
                 }
@@ -284,7 +289,7 @@ class PathologyRESTController extends BaseRESTController
             $em->flush();
             return null;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
     

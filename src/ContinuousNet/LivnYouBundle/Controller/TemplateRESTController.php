@@ -13,7 +13,6 @@ use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View as FOSView;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -59,7 +58,7 @@ class TemplateRESTController extends BaseRESTController
             $this->createSubDirectory($entity);
             return $entity;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -177,7 +176,7 @@ class TemplateRESTController extends BaseRESTController
             }
             return $data;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -195,9 +194,10 @@ class TemplateRESTController extends BaseRESTController
     {
         $em = $this->getDoctrine()->getManager();
         $entity = new Template();
-        $form = $this->createForm(new TemplateType(), $entity, array('method' => $request->getMethod()));
+        $form = $this->createForm(TemplateType::class, $entity, array('method' => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
+        $form->submit($request->request->all());
         if ($form->isValid()) {
             $entity->setCreatorUser($this->getUser());
             $authorizedChangeShareLevel = false;
@@ -216,6 +216,10 @@ class TemplateRESTController extends BaseRESTController
             $em->flush();
             return $entity;
         }
+        return FOSView::create(
+            ["status" => false, "message" => $this->getFormExactError($form->getErrors())],
+            Response::HTTP_INTERNAL_SERVER_ERROR
+        );
     }
 
     /**
@@ -239,7 +243,7 @@ class TemplateRESTController extends BaseRESTController
                 foreach ($roles as $role) {
                    if (substr_count($role, 'MAN') > 0) {
                        if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
-                           return FOSView::create('Not authorized', Codes::HTTP_FORBIDDEN);
+                           return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
                        }
                    }
                 }
@@ -249,14 +253,15 @@ class TemplateRESTController extends BaseRESTController
                 foreach ($roles as $role) {
                    if (substr_count($role, 'MAN') > 0) {
                        if ($entity->getModifierUser()->getId() != $this->getUser()->getId()) {
-                           return FOSView::create('Not authorized', Codes::HTTP_FORBIDDEN);
+                           return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
                        }
                    }
                 }
             }
-            $form = $this->createForm(new TemplateType(), $entity, array('method' => $request->getMethod()));
+            $form = $this->createForm( TemplateType::class, $entity, array('method' => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
+            $form->submit($request->request->all());
             if ($form->isValid()) {
                 $entity->setModifierUser($this->getUser());
                 $authorizedChangeShareLevel = false;
@@ -271,9 +276,9 @@ class TemplateRESTController extends BaseRESTController
                 $em->flush();
                 return $entity;
             }
-            return FOSView::create(array('errors' => $form->getErrors()), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create(array('errors' => $form->getErrors()), Response::HTTP_INTERNAL_SERVER_ERROR);
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -311,7 +316,7 @@ class TemplateRESTController extends BaseRESTController
                 foreach ($roles as $role) {
                    if (substr_count($role, 'MAN') > 0) {
                        if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
-                           return FOSView::create('Not authorized', Codes::HTTP_FORBIDDEN);
+                           return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
                        }
                    }
                 }
@@ -321,7 +326,7 @@ class TemplateRESTController extends BaseRESTController
                 foreach ($roles as $role) {
                    if (substr_count($role, 'MAN') > 0) {
                        if ($entity->getModifierUser()->getId() != $this->getUser()->getId()) {
-                           return FOSView::create('Not authorized', Codes::HTTP_FORBIDDEN);
+                           return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
                        }
                    }
                 }
@@ -331,7 +336,7 @@ class TemplateRESTController extends BaseRESTController
             $em->flush();
             return null;
         } catch (\Exception $e) {
-            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+            return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
     

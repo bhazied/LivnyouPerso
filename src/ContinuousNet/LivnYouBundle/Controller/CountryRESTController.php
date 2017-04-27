@@ -1,7 +1,6 @@
 <?php
 
 namespace ContinuousNet\LivnYouBundle\Controller;
-
 use ContinuousNet\LivnYouBundle\Entity\Country;
 use ContinuousNet\LivnYouBundle\Form\CountryType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
@@ -13,7 +12,6 @@ use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-//use FOS\RestBundle\Util\Response;
 use FOS\RestBundle\View\View as FOSView;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -196,10 +194,10 @@ class CountryRESTController extends BaseRESTController
             $em->flush();
             return $entity;
         }
-            return FOSView::create(
-                ["status" => false, "message" => $this->getFormExactError($form->getErrors())],
-                Response::HTTP_OK
-            );
+        return FOSView::create(
+            ["status" => false, "message" => $this->getFormExactError($form->getErrors())],
+            Response::HTTP_INTERNAL_SERVER_ERROR
+        );
     }
 
     /**
