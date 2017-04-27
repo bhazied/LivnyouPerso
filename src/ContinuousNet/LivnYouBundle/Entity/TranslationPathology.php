@@ -31,7 +31,7 @@ use JMS\Serializer\Annotation\Groups;
  * @access     public
  * 
  * @ORM\Table(name="`translation_pathology`", indexes={@ORM\Index(name="pathology_id", columns={"pathology_id"}), @ORM\Index(name="creator_user_id", columns={"creator_user_id"}), @ORM\Index(name="modifier_user_id", columns={"modifier_user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ContinuousNet\LivnYouBundle\Repository\TranslationPathologyRepository")
  * @ORM\HasLifecycleCallbacks()
  * 
  * @ExclusionPolicy("none")

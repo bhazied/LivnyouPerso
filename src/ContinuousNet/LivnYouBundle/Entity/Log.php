@@ -31,7 +31,7 @@ use JMS\Serializer\Annotation\Groups;
  * @access     public
  * 
  * @ORM\Table(name="`log`", indexes={@ORM\Index(name="session_id", columns={"session_id"}), @ORM\Index(name="creator_user_id", columns={"creator_user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ContinuousNet\LivnYouBundle\Repository\LogRepository")
  * @ORM\HasLifecycleCallbacks()
  * 
  * @ExclusionPolicy("none")

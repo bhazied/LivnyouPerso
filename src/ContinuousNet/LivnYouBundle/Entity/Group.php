@@ -32,7 +32,7 @@ use FOS\UserBundle\Model\Group as BaseGroup;
  * @access     public
  * 
  * @ORM\Table(name="`group`", indexes={@ORM\Index(name="creator_user_id", columns={"creator_user_id"}), @ORM\Index(name="modifier_user_id", columns={"modifier_user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ContinuousNet\LivnYouBundle\Repository\GroupRepository")
  * @ORM\HasLifecycleCallbacks()
  * 
  * @ExclusionPolicy("none")

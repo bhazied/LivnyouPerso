@@ -33,7 +33,7 @@ use FOS\UserBundle\Model\GroupInterface;
  * @access     public
  * 
  * @ORM\Table(name="`user`", indexes={@ORM\Index(name="country_id", columns={"country_id"}), @ORM\Index(name="language_id", columns={"language_id"}), @ORM\Index(name="creator_user_id", columns={"creator_user_id"}), @ORM\Index(name="modifier_user_id", columns={"modifier_user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ContinuousNet\LivnYouBundle\Repository\UserRepository")
  * @UniqueEntity("username")
  * @UniqueEntity("phone")
  * @UniqueEntity("email")
