@@ -14,10 +14,10 @@ class GroupRepository extends EntityRepository implements IRepository{
 
     public function getAll($params = []){
 
-        $qb = $this->createQueryBuilder('group');
-        $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'group.creatorUser = creator_user.id');
-        $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'group.modifierUser = modifier_user.id');
-        $textFields = array('group.name', 'group.roles');
+        $qb = $this->createQueryBuilder('group_');
+        $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'group_.creatorUser = creator_user.id');
+        $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'group_.modifierUser = modifier_user.id');
+        $textFields = array('group_.name', 'group_.roles');
         $memberOfConditions = array();
         foreach ($params['filters'] as $field => $value) {
             if (substr_count($field, '.') > 1) {
@@ -52,14 +52,14 @@ class GroupRepository extends EntityRepository implements IRepository{
                 if ($memberOfCondition['operator'] == 'or') {
                     $orX = $qb->expr()->orX();
                     foreach ($memberOfCondition['items'] as $i => $item) {
-                        $orX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'group.'.$listName));
+                        $orX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'group_.'.$listName));
                         $qb->setParameter($listName.'_value_'.$i, $item);
                     }
                     $qb->andWhere($orX);
                 } else if ($memberOfCondition['operator'] == 'and') {
                     $andX = $qb->expr()->andX();
                     foreach ($memberOfCondition['items'] as $i => $item) {
-                        $andX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'group.'.$listName));
+                        $andX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'group_.'.$listName));
                         $qb->setParameter($listName.'_value_'.$i, $item);
                     }
                     $qb->andWhere($andX);
@@ -67,15 +67,15 @@ class GroupRepository extends EntityRepository implements IRepository{
             }
         }
         $qbList = clone $qb;
-        $qb->select('count(group.id)');
+        $qb->select('count(group_.id)');
         $data['inlineCount'] = $qb->getQuery()->getSingleScalarResult();
         foreach ($params['order_by'] as $field => $direction) {
             $qbList->addOrderBy($field, $direction);
         }
-        $qbList->select('group');
+        $qbList->select('group_');
         $qbList->setMaxResults($params['limit']);
         $qbList->setFirstResult($params['offset']);
-        $qbList->groupBy('group.id');
+        $qbList->groupBy('group_.id');
         $results = $qbList->getQuery()->getResult();
         $data['results'] = $results;
         return $data;

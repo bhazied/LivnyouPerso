@@ -15,7 +15,6 @@ class TranslationPathologyRepository extends EntityRepository implements IReposi
     public function getAll($params = []){
 
         $qb = $this->createQueryBuilder('translationPathology');
-        $qb->from('LivnYouBundle:TranslationPathology', 'translationPathology');
         $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\Pathology', 'pathology', \Doctrine\ORM\Query\Expr\Join::WITH, 'translationPathology.pathology = pathology.id');
         $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'translationPathology.creatorUser = creator_user.id');
         $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'translationPathology.modifierUser = modifier_user.id');

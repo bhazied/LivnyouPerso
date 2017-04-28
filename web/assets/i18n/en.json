@@ -151,8 +151,8 @@
       "adserving": {
         "MAIN": "Adserving"
       },
-      "marketplace": {
-        "MAIN": "Marketplace"
+      "measurement": {
+        "MAIN": "Measurements"
       },
       "statistics": {
         "MAIN": "Statistics"
@@ -625,6 +625,9 @@
       }
     },
     "list": {
+      "MEASUREMENTS":"Measurement",
+      "TRANSLATIONPATHOLOGIES": "Translation Pathologies",
+      "TRANSLATIONPHYSICALACTIVITIES": "Translation Physical Activities",
       "PHYSICALACTIVITIES": "Physical activities",
       "PATHOLOGIES": "Pathologies",
       "LOGIN": "Login",

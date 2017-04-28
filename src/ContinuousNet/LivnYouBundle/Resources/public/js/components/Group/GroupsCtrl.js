@@ -145,13 +145,13 @@ function($scope, $rootScope, $stateParams, $location, $sce, $timeout, $filter, n
 
     $scope.setCols = function() {
         $scope.cols = [
-            { field: 'id', title: $filter('translate')('content.list.fields.ID'), sortable: 'group.id', filter: { 'group.id': 'number' }, show: ($scope.getParamValue('id_show_filed', true) && true), displayInList: true, getValue: $scope.textValue },
-            { field: 'name', title: $filter('translate')('content.list.fields.NAME'), sortable: 'group.name', filter: { 'group.name': 'text' }, show: ($scope.getParamValue('name_show_filed', true) && true), displayInList: true, getValue: $scope.textValue },
-            { field: 'roles', title: $filter('translate')('content.list.fields.ROLES'), sortable: 'group.roles', filter: { 'group.roles': 'text' }, show: ($scope.getParamValue('roles_show_filed', false) && true), displayInList: true, getValue: $scope.textValue },
-            { field: 'creator_user', 'class': 'has_one', title: $filter('translate')('content.list.fields.CREATORUSER'), sortable: 'creator_user.username', filter: { 'group.creatorUser': 'select' }, getValue: $scope.linkValue, filterData: $scope.getUsers(), show: ($scope.getParamValue('creator_user_id_show_filed', true) && true), displayInList: true, displayField: 'username', state: 'app.accesscontrol.usersdetails' },
-            { field: 'created_at', title: $filter('translate')('content.list.fields.CREATEDAT'), sortable: 'group.createdAt', filter: { 'group.createdAt': 'text' }, show: ($scope.getParamValue('created_at_show_filed', true) && true), displayInList: true, getValue: $scope.evaluatedValue, valueFormatter: 'date:\''+$filter('translate')('formats.DATETIME')+'\''},
-            { field: 'modifier_user', 'class': 'has_one', title: $filter('translate')('content.list.fields.MODIFIERUSER'), sortable: 'modifier_user.username', filter: { 'group.modifierUser': 'select' }, getValue: $scope.linkValue, filterData: $scope.getUsers(), show: ($scope.getParamValue('modifier_user_id_show_filed', true) && true), displayInList: true, displayField: 'username', state: 'app.accesscontrol.usersdetails' },
-            { field: 'modified_at', title: $filter('translate')('content.list.fields.MODIFIEDAT'), sortable: 'group.modifiedAt', filter: { 'group.modifiedAt': 'text' }, show: ($scope.getParamValue('modified_at_show_filed', true) && true), displayInList: true, getValue: $scope.evaluatedValue, valueFormatter: 'date:\''+$filter('translate')('formats.DATETIME')+'\''},
+            { field: 'id', title: $filter('translate')('content.list.fields.ID'), sortable: 'group_.id', filter: { 'group_.id': 'number' }, show: ($scope.getParamValue('id_show_filed', true) && true), displayInList: true, getValue: $scope.textValue },
+            { field: 'name', title: $filter('translate')('content.list.fields.NAME'), sortable: 'group_.name', filter: { 'group_.name': 'text' }, show: ($scope.getParamValue('name_show_filed', true) && true), displayInList: true, getValue: $scope.textValue },
+            { field: 'roles', title: $filter('translate')('content.list.fields.ROLES'), sortable: 'group_.roles', filter: { 'group_.roles': 'text' }, show: ($scope.getParamValue('roles_show_filed', false) && true), displayInList: true, getValue: $scope.textValue },
+            { field: 'creator_user', 'class': 'has_one', title: $filter('translate')('content.list.fields.CREATORUSER'), sortable: 'creator_user.username', filter: { 'group_.creatorUser': 'select' }, getValue: $scope.linkValue, filterData: $scope.getUsers(), show: ($scope.getParamValue('creator_user_id_show_filed', true) && true), displayInList: true, displayField: 'username', state: 'app.accesscontrol.usersdetails' },
+            { field: 'created_at', title: $filter('translate')('content.list.fields.CREATEDAT'), sortable: 'group_.createdAt', filter: { 'group_.createdAt': 'text' }, show: ($scope.getParamValue('created_at_show_filed', true) && true), displayInList: true, getValue: $scope.evaluatedValue, valueFormatter: 'date:\''+$filter('translate')('formats.DATETIME')+'\''},
+            { field: 'modifier_user', 'class': 'has_one', title: $filter('translate')('content.list.fields.MODIFIERUSER'), sortable: 'modifier_user.username', filter: { 'group_.modifierUser': 'select' }, getValue: $scope.linkValue, filterData: $scope.getUsers(), show: ($scope.getParamValue('modifier_user_id_show_filed', true) && true), displayInList: true, displayField: 'username', state: 'app.accesscontrol.usersdetails' },
+            { field: 'modified_at', title: $filter('translate')('content.list.fields.MODIFIEDAT'), sortable: 'group_.modifiedAt', filter: { 'group_.modifiedAt': 'text' }, show: ($scope.getParamValue('modified_at_show_filed', true) && true), displayInList: true, getValue: $scope.evaluatedValue, valueFormatter: 'date:\''+$filter('translate')('formats.DATETIME')+'\''},
             { title: $filter('translate')('content.common.ACTIONS'), show: true, displayInList: true, getValue: $scope.interpolatedValue, interpolateExpr: $interpolate(''
             +'<div class="btn-group pull-right">'
             +'<button type="button" class="btn btn-success" tooltip-placement="top" uib-tooltip="'+$filter('translate')('content.common.EDIT')+'" ng-click="edit(row)"><i class="ti-pencil-alt"></i></button>'
@@ -178,7 +178,7 @@ function($scope, $rootScope, $stateParams, $location, $sce, $timeout, $filter, n
     $scope.page = $scope.getParamValue('groupsPage', $scope.page);
     $scope.count = 50; // count per page
     $scope.count = $scope.getParamValue('groupsCount', $scope.count);
-    $scope.sorting = {'group.name': 'asc'};
+    $scope.sorting = {'group_.name': 'asc'};
     $scope.sorting = $scope.getParamValue('groupsSorting', $scope.sorting);
     $scope.filter = {
         users: []

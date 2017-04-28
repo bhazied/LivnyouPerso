@@ -36,3 +36,9 @@ security:
         - { path: ^/(en|fr)/api/users, methods: [POST], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
         - { path: ^/(en|fr)/api/users, methods: [PUT, PATCH], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
         - { path: ^/(en|fr)/api/users, methods: [DELETE], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+
+    #Groups
+        - { path: ^/(en|fr)/api/groups, methods: [GET], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/groups, methods: [POST], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/groups, methods: [PUT, PATCH], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/groups, methods: [DELETE], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
