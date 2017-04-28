@@ -4,6 +4,7 @@ parameters:
     livn_you.event.jwt_created_listener.class: ContinuousNet\LivnYouBundle\EventListener\JWTCreatedListener
     livn_you.event.jwt_authentication_success_listener.class: ContinuousNet\LivnYouBundle\EventListener\AuthenticationSuccessListener
     livn_you.event.jwt_authentication_failure_listener.class: ContinuousNet\LivnYouBundle\EventListener\AuthenticationFailureListener
+    livn_you.event.jwt_expired_token_listener.class: ContinuousNet\LivnYouBundle\EventListener\JWTExpiredTokenListener
 
 services:
     livn_you.services.measurement_interpretation:
@@ -16,7 +17,7 @@ services:
 
     livn_you.event.jwt_created_listener:
         class: %livn_you.event.jwt_created_listener.class%
-        arguments: ['@request_stack']
+        arguments: ['@request_stack', "@=service('doctrine.orm.entity_manager').getRepository('LivnYouBundle:Session')", "@fos_user.user_manager"]
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
 
@@ -31,3 +32,9 @@ services:
         autowire: true
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_failure, method: onAuthenticationFailureResponse }
+
+    livn_you.event.jwt_expired_token.event:
+        class: %livn_you.event.jwt_expired_token_listener.class%
+        arguments: ['@request_stack', "@=service('doctrine.orm.entity_manager').getRepository('LivnYouBundle:Session')"]
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_expired, method: onJWTExpired }
