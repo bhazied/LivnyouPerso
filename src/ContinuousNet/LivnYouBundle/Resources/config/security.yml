@@ -1,5 +1,19 @@
 
 security:
     access_control:
-        - { path: ^/(en|fr|ar)/api/mesurements$, methods: [GET], roles: [ROLE_SUBSCRIBER] }
-        - { path: ^/(en|fr|ar)/api/mesurements$, methods: [POST], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/mesurements$, methods: [GET], roles: [ROLE_USER] }
+        - { path: ^/(en|fr)/api/mesurements$, methods: [POST], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/mesurements$, methods: [PUT, PATCH], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr|ar)/api/mesurements$, methods: [DELETE], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+    #Security for settings resource
+    #Languages
+        - { path: ^/(en|fr)/api/languages, methods: [GET], roles: [IS_AUTHENTICATED_ANONYMOUSLY] }
+        - { path: ^/(en|fr)/api/languages, methods: [POST], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/languages, methods: [PUT, PATCH], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/languages, methods: [DELETE], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+
+    #Countries
+        - { path: ^/(en|fr)/api/countries, methods: [GET], roles: [IS_AUTHENTICATED_ANONYMOUSLY] }
+        - { path: ^/(en|fr)/api/countries, methods: [POST], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/countries, methods: [PUT, PATCH], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/countries, methods: [DELETE], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }

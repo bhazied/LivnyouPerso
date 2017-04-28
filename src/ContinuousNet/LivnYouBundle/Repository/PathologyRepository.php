@@ -65,14 +65,7 @@ class PathologyRepository extends EntityRepository implements IRepository{
                 }
             }
         }
-        $roles = $this->getUser()->getRoles();
-        if (!empty($roles)) {
-            foreach ($roles as $role) {
-                if (substr_count($role, 'MAN') > 0) {
-                    $qb->andWhere('pathology.creatorUser = :creatorUser')->setParameter('creatorUser', $this->getUser()->getId());
-                }
-            }
-        }
+       
         $qbList = clone $qb;
         $qb->select('count(pathology.id)');
         $data['inlineCount'] = $qb->getQuery()->getSingleScalarResult();

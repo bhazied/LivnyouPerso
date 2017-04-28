@@ -3,6 +3,7 @@
 namespace ContinuousNet\LivnYouBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * Class UserRepository
@@ -102,9 +103,9 @@ class UserRepository extends EntityRepository implements IRepository{
      * @return User
      */
     public function store($entity, $params= []){
+        $accessor = PropertyAccess::createPropertyAccessor();
         foreach ($params as $attribut => $value){
-            $method = 'set'.lcfirst($attribut);
-            $entity->$method($value);
+            $accessor->setValue($entity, $attribut, $value);
         }
         $entity = $this->process($entity, true);
         $this->getEntityManager()->persist($entity);
@@ -118,9 +119,9 @@ class UserRepository extends EntityRepository implements IRepository{
      * @return User
      */
     public function update($entity, $params = []){
+        $accessor = PropertyAccess::createPropertyAccessor();
         foreach ($params as $attribut => $value){
-            $method = 'set'.lcfirst($attribut);
-            $entity->$method($value);
+            $accessor->setValue($entity, $attribut, $value);
         }
         $entity = $this->process($entity, false);
         $this->getEntityManager()->flush();

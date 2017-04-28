@@ -28,10 +28,10 @@ security:
           #  stateless: true
            # anonymous: true
 
-        languages:
-            pattern: ^/(en|fr)/api/languages
-            stateless: true
-            anonymous: true
+        #languages:
+         #   pattern: ^/(en|fr)/api/languages
+          #  stateless: true
+           # anonymous: true
 
         emailConfirm:
             pattern:  ^/(en|fr|ar)/api/v1/emailConfirm

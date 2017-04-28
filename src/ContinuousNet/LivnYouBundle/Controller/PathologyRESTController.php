@@ -87,6 +87,14 @@ class PathologyRESTController extends BaseRESTController
             $filter_operators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
             $order_by = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
+            $roles = $this->getUser()->getRoles();
+            if (!empty($roles)) {
+                foreach ($roles as $role) {
+                    if (substr_count($role, 'MAN') > 0) {
+                        $filters['pathology.creatorUser'] =  $this->getUser()->getId();
+                    }
+                }
+            }
             $params = compact('offset','limit','filter_operators','order_by','filters');
             $data = array(
                 'inlineCount' => 0,

@@ -3,6 +3,7 @@
 namespace ContinuousNet\LivnYouBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * Class CountryRepository
@@ -87,9 +88,9 @@ class CountryRepository extends EntityRepository implements IRepository{
     }
 
     public function store($entity, $params= []){
+        $accessor = PropertyAccess::createPropertyAccessor();
         foreach ($params as $attribut => $value){
-            $method = 'set'.lcfirst($attribut);
-            $entity->$method($value);
+            $accessor->setValue($entity, $attribut, $value);
         }
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
@@ -97,9 +98,9 @@ class CountryRepository extends EntityRepository implements IRepository{
     }
 
     public function update($entity, $params = []){
+        $accessor = PropertyAccess::createPropertyAccessor();
         foreach ($params as $attribut => $value){
-            $method = 'set'.lcfirst($attribut);
-            $entity->$method($value);
+            $accessor->setValue($entity, $attribut, $value);
         }
         $this->getEntityManager()->flush();
         return $entity;
