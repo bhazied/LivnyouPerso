@@ -76,9 +76,7 @@ class SessionRepository extends EntityRepository implements IRepository{
         $qbList->setFirstResult($params['offset']);
         $qbList->groupBy('session.id');
         $results = $qbList->getQuery()->getResult();
-        if ($results) {
-            $data['results'] = $results;
-        }
+        $data['results'] = $results;
         return $data;
     }
 

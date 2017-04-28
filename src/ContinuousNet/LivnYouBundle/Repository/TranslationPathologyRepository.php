@@ -79,9 +79,7 @@ class TranslationPathologyRepository extends EntityRepository implements IReposi
         $qbList->setFirstResult($params['offset']);
         $qbList->groupBy('translationPathology.id');
         $results = $qbList->getQuery()->getResult();
-        if ($results) {
-            $data['results'] = $results;
-        }
+        $data['results'] = $results;
         return $data;
     }
 

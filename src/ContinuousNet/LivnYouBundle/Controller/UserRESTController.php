@@ -91,6 +91,7 @@ class UserRESTController extends BaseRESTController
                 'inlineCount' => 0,
                 'results' => array()
             );
+            return $this->getDoctrine()->getRepository('LivnYouBundle:User')->getAll($params);
             list($inlineCount, $results) = array_values($this->getDoctrine()->getRepository('LivnYouBundle:User')->getAll($params));
             $data = array(
                 'inlineCount' => $inlineCount,

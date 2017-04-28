@@ -77,9 +77,7 @@ class LogRepository extends EntityRepository implements IRepository{
         $qbList->setFirstResult($params['offset']);
         $qbList->groupBy('log.id');
         $results = $qbList->getQuery()->getResult();
-        if ($results) {
-            $data['results'] = $results;
-        }
+        $data['results'] = $results;
         return $data;
     }
 

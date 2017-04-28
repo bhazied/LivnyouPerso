@@ -17,3 +17,22 @@ security:
         - { path: ^/(en|fr)/api/countries, methods: [POST], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
         - { path: ^/(en|fr)/api/countries, methods: [PUT, PATCH], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
         - { path: ^/(en|fr)/api/countries, methods: [DELETE], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+
+    #Pathologies
+        - { path: ^/(en|fr)/api/pathologies, methods: [GET], roles: [ROLE_API] }
+        - { path: ^/(en|fr)/api/pathologies, methods: [POST], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/pathologies, methods: [PUT, PATCH], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/pathologies, methods: [DELETE], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+
+    #PhysicalActivities
+        - { path: ^/(en|fr)/api/physicalactivities, methods: [GET], roles: [ROLE_API] }
+        - { path: ^/(en|fr)/api/physicalactivities, methods: [POST], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/physicalactivities, methods: [PUT, PATCH], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/physicalactivities, methods: [DELETE], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+
+    #Security for User resource
+    #Users
+        - { path: ^/(en|fr)/api/users, methods: [GET], roles: [ROLE_API] }
+        - { path: ^/(en|fr)/api/users, methods: [POST], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/users, methods: [PUT, PATCH], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/(en|fr)/api/users, methods: [DELETE], roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }

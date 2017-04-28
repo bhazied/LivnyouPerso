@@ -78,9 +78,7 @@ class TranslationCountryRepository extends EntityRepository implements IReposito
         $qbList->setFirstResult($params['offset']);
         $qbList->groupBy('translationCountry.id');
         $results = $qbList->getQuery()->getResult();
-        if ($results) {
-            $data['results'] = $results;
-        }
+        $data['results'] = $results;
         return $data;
     }
 

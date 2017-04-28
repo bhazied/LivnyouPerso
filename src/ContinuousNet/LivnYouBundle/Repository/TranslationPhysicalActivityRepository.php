@@ -78,9 +78,7 @@ class TranslationPhysicalActivityRepository extends EntityRepository implements 
         $qbList->setFirstResult($params['offset']);
         $qbList->groupBy('translationPhysicalActivity.id');
         $results = $qbList->getQuery()->getResult();
-        if ($results) {
-            $data['results'] = $results;
-        }
+        $data['results'] = $results;
         return $data;
     }
 
