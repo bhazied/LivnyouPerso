@@ -7,8 +7,8 @@ use FOS\UserBundle\Model\UserManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class AuthenticationSuccessListener {
-
+class AuthenticationSuccessListener
+{
     private $userManager;
 
     public function __construct(UserManagerInterface $_userManager)
@@ -16,11 +16,11 @@ class AuthenticationSuccessListener {
         $this->userManager = $_userManager;
     }
 
-    public function onAuthenticationSuccessResponse(AuthenticationSuccessEvent $event) {
-
+    public function onAuthenticationSuccessResponse(AuthenticationSuccessEvent $event)
+    {
         $data = $event->getData();
         $user = $event->getUser();
-        if(!$user instanceof UserInterface){
+        if (!$user instanceof UserInterface) {
             return;
         }
         $currentUser = $this->userManager->findUserByEmail($user->getUsername());
@@ -29,13 +29,15 @@ class AuthenticationSuccessListener {
         $event->setData($data);
     }
 
-    private function updateUser(\ContinuousNet\LivnYouBundle\Entity\User $user){
+    private function updateUser(\ContinuousNet\LivnYouBundle\Entity\User $user)
+    {
         $user->setLoginCount($user->getLoginCount() + 1);
         $user->setFailedLoginCount(0);
         $this->userManager->updateUser($user);
     }
 
-    private function parseUserResponse(\ContinuousNet\LivnYouBundle\Entity\User $user){
+    private function parseUserResponse(\ContinuousNet\LivnYouBundle\Entity\User $user)
+    {
         return  [
             'first_name' => $user->getFirstName(),
             'last_name' => $user->getLastName(),
@@ -53,6 +55,4 @@ class AuthenticationSuccessListener {
             'type' => $user->getType(),
         ];
     }
-
 }
-?>

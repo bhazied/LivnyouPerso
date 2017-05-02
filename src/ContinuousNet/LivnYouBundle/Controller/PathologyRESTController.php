@@ -19,16 +19,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Finder\Finder;;
+use Symfony\Component\Finder\Finder;
+
+;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Pathology REST Controller
- * 
- * Manage Pathologies 
- * 
+ *
+ * Manage Pathologies
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Symfony 2 REST Controller
  * @package  ContinuousNet\LivnYouBundle\Controller
  * @author    Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -95,7 +97,7 @@ class PathologyRESTController extends BaseRESTController
                     }
                 }
             }
-            $params = compact('offset','limit','filter_operators','order_by','filters');
+            $params = compact('offset', 'limit', 'filter_operators', 'order_by', 'filters');
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
@@ -106,7 +108,6 @@ class PathologyRESTController extends BaseRESTController
                 'results' => $this->translateEntities($results)
             );
             return $data;
-
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -156,11 +157,11 @@ class PathologyRESTController extends BaseRESTController
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {
-                   if (substr_count($role, 'MAN') > 0) {
-                       if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
-                           return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
-                       }
-                   }
+                    if (substr_count($role, 'MAN') > 0) {
+                        if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
+                            return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
+                        }
+                    }
                 }
             }
             $form = $this->createForm(PathologyType::class, $entity, array('method' => $request->getMethod()));
@@ -208,11 +209,11 @@ class PathologyRESTController extends BaseRESTController
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {
-                   if (substr_count($role, 'MAN') > 0) {
-                       if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
-                           return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
-                       }
-                   }
+                    if (substr_count($role, 'MAN') > 0) {
+                        if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
+                            return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
+                        }
+                    }
                 }
             }
             $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->delete($id);
@@ -221,6 +222,4 @@ class PathologyRESTController extends BaseRESTController
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
-
 }

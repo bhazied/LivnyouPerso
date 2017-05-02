@@ -8,7 +8,6 @@
 
 namespace ContinuousNet\LivnYouBundle\Repository;
 
-
 use Doctrine\ORM\EntityRepository;
 
 abstract class BaseRepository extends EntityRepository

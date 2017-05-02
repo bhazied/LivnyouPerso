@@ -1,6 +1,7 @@
 <?php
 
 namespace ContinuousNet\LivnYouBundle\Controller;
+
 use ContinuousNet\LivnYouBundle\Entity\Country;
 use ContinuousNet\LivnYouBundle\Form\CountryType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
@@ -24,11 +25,11 @@ use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Country REST Controller
- * 
- * Manage Countries 
- * 
+ *
+ * Manage Countries
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Symfony 2 REST Controller
  * @package  ContinuousNet\LivnYouBundle\Controller
  * @author    Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -89,7 +90,7 @@ class CountryRESTController extends BaseRESTController
             $filter_operators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
             $order_by = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
-            $params = compact('offset','limit','filter_operators','order_by','filters');
+            $params = compact('offset', 'limit', 'filter_operators', 'order_by', 'filters');
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
@@ -197,6 +198,4 @@ class CountryRESTController extends BaseRESTController
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
-
 }

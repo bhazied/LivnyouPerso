@@ -7,8 +7,8 @@ use GuzzleHttp\Psr7\Request;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTExpiredEvent;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class JWTExpiredTokenListener {
-
+class JWTExpiredTokenListener
+{
     private $requestStack;
 
     private $sessionRepository;
@@ -19,19 +19,17 @@ class JWTExpiredTokenListener {
         $this->requestStack = $_requestStack;
 
         $this->sessionRepository  = $_sessionrepository;
-        
     }
 
-    public function  onJWTExpired(JWTExpiredEvent $event){
-
+    public function onJWTExpired(JWTExpiredEvent $event)
+    {
         $user = $this->requestStack->getCurrentRequest()->getUser();
-        if($user){
+        if ($user) {
             $sessions = $this->sessionRepository->findBy(['creatorUser' => $user->getId(), 'isValid' => true]);
-            foreach ($sessions as $sess){
+            foreach ($sessions as $sess) {
                 $sess->setIsValid(false);
                 $this->sessionRepository->update($sess);
             }
         }
     }
 }
-?>

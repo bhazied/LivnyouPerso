@@ -13,21 +13,23 @@ use Symfony\Component\Translation\TranslatorInterface;
  *
  * @author Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
  */
-class MeasurementInterpretation {
-
+class MeasurementInterpretation
+{
     protected $em;
     protected $translator;
     protected $logger;
     protected $parameters;
 
-    function __construct(EntityManager $em, TranslatorInterface $translator, Logger $logger, $parameters) {
+    public function __construct(EntityManager $em, TranslatorInterface $translator, Logger $logger, $parameters)
+    {
         $this->em = $em;
         $this->translator = $translator;
         $this->logger = $logger;
         $this->parameters = $parameters;
     }
 
-    private function getParameter($parameterKey) {
+    private function getParameter($parameterKey)
+    {
         if (array_key_exists($parameterKey, $this->parameters)) {
             return $this->parameters[$parameterKey];
         }
@@ -37,8 +39,8 @@ class MeasurementInterpretation {
         );
     }
 
-    private function postData($url, $fields) {
-        
+    private function postData($url, $fields)
+    {
         $fields_string = http_build_query($fields);
 
         $ch = curl_init();
@@ -55,8 +57,8 @@ class MeasurementInterpretation {
         return $response;
     }
 
-    public function getToken() {
-
+    public function getToken()
+    {
         $url = $this->getParameter('base_url') . $this->getParameter('connection_action');
 
         $fields = array(
@@ -82,12 +84,10 @@ class MeasurementInterpretation {
         }
     }
 
-    public function getMeasurementInterpretation(Measurement $measurement) {
-
+    public function getMeasurementInterpretation(Measurement $measurement)
+    {
         try {
-            
         } catch (\Exception $ex) {
-            
         }
 
         $token = $this->getToken();
@@ -96,12 +96,12 @@ class MeasurementInterpretation {
 
         if ($measurement->getPatient()->getGender() == 'Male') {
             $sex = $this->getParameter('male_value');
-        } else if ($measurement->getPatient()->getGender() == 'Female') {
+        } elseif ($measurement->getPatient()->getGender() == 'Female') {
             $sex = $this->getParameter('female_value');
         }
 
         $birthday = $measurement->getPatient()->getBirthDate()->format($this->getParameter('birth_date_format'));
-        $physicalAct = NULL;
+        $physicalAct = null;
         if (!is_null($measurement->getPhysicalActivity())) {
             $physicalAct = $measurement->getPhysicalActivity()->getId();
         }
@@ -155,27 +155,22 @@ class MeasurementInterpretation {
         }
     }
 
-    public function updateMeasurementInterpretation($measurementId) {
-
+    public function updateMeasurementInterpretation($measurementId)
+    {
         $measurement = $this->em->getRepository('LivnYouBundle:Measurement')->find($measurementId);
         if (!is_null($measurement)) {
-
             if (!is_null($measurement->getPatient())) {
-
                 $interpretation = $this->getMeasurementInterpretation($measurement);
 
                 try {
-
                     $this->mapValues($measurement, $interpretation);
                     $measurement->setStatus('Analyzed');
                     $measurement->setInterpretationDate(new \DateTime());
                     $measurement->setModifierUser($measurement->getCreatorUser());
                     $this->em->flush();
-
                 } catch (\Exception $ex) {
                     throw $ex;
                 }
-
             } else {
                 throw new \Exception(sprintf(
                         'No Patient MeasurementInterpretation::updateMeasurementInterpretation Measurement : %s', $measurementId)
@@ -188,7 +183,8 @@ class MeasurementInterpretation {
         }
     }
 
-    function mapValues(Measurement $measurement, $interpretation) {
+    public function mapValues(Measurement $measurement, $interpretation)
+    {
         if (isset($interpretation->age)) {
             $measurement->setAge($interpretation->age);
         }
@@ -1941,5 +1937,4 @@ class MeasurementInterpretation {
             $measurement->setAsmtliColor($interpretation->asmtli_color);
         }
     }
-
 }

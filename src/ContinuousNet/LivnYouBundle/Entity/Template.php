@@ -5,7 +5,9 @@ namespace ContinuousNet\LivnYouBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Events;
 use Doctrine\Common\Collections\ArrayCollection as DoctrineCollection;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Exclude;
 use JMS\Serializer\Annotation\Expose;
@@ -14,11 +16,11 @@ use JMS\Serializer\Annotation\Groups;
 
 /**
  * Template Entity
- * 
+ *
  * Storing Templates data to the database using Doctrine
- * 
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Doctrine 2 Entity
  * @package    ContinuousNet\LivnYouBundle\Entity
  * @author     Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -29,15 +31,15 @@ use JMS\Serializer\Annotation\Groups;
  * @see        Template
  * @since      Class available since Release 1.0
  * @access     public
- * 
+ *
  * @ORM\Table(name="`template`", indexes={@ORM\Index(name="creator_user_id", columns={"creator_user_id"}), @ORM\Index(name="modifier_user_id", columns={"modifier_user_id"})})
  * @ORM\Entity(repositoryClass="ContinuousNet\LivnYouBundle\Repository\TemplateRepository")
  * @ORM\HasLifecycleCallbacks()
- * 
+ *
  * @ExclusionPolicy("none")
- * 
+ *
  */
-class Template 
+class Template
 {
     /**
      * @var integer
@@ -46,9 +48,9 @@ class Template
      * @ORM\Column(name="id", type="integer", nullable=false, unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $id;
 
@@ -57,9 +59,9 @@ class Template
      * @access private
      *
      * @ORM\Column(name="`name`", type="string", length=255, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $name;
 
@@ -68,9 +70,9 @@ class Template
      * @access private
      *
      * @ORM\Column(name="`activated`", type="boolean", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $activated;
 
@@ -79,9 +81,9 @@ class Template
      * @access private
      *
      * @ORM\Column(name="`priority`", type="integer", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $priority;
 
@@ -90,9 +92,9 @@ class Template
      * @access private
      *
      * @ORM\Column(name="`is_default`", type="boolean", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $isDefault;
 
@@ -101,9 +103,9 @@ class Template
      * @access private
      *
      * @ORM\Column(name="`share_level`", type="string", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $shareLevel;
 
@@ -112,9 +114,9 @@ class Template
      * @access private
      *
      * @ORM\Column(name="`created_at`", type="datetime", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $createdAt;
 
@@ -123,9 +125,9 @@ class Template
      * @access private
      *
      * @ORM\Column(name="`modified_at`", type="datetime", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $modifiedAt;
 
@@ -137,10 +139,10 @@ class Template
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="creator_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $creatorUser;
 
@@ -152,16 +154,16 @@ class Template
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="modifier_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $modifierUser;
 
     /**
      * Constructor
-     * 
+     *
      * @access public
      */
     public function __construct()
@@ -172,7 +174,7 @@ class Template
      * Get id
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -196,7 +198,7 @@ class Template
      * Get name
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -220,7 +222,7 @@ class Template
      * Get activated
      *
      * @access public
-     * @return boolean 
+     * @return boolean
      */
     public function getActivated()
     {
@@ -244,7 +246,7 @@ class Template
      * Get priority
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getPriority()
     {
@@ -268,7 +270,7 @@ class Template
      * Get isDefault
      *
      * @access public
-     * @return boolean 
+     * @return boolean
      */
     public function getIsDefault()
     {
@@ -292,7 +294,7 @@ class Template
      * Get shareLevel
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getShareLevel()
     {
@@ -316,7 +318,7 @@ class Template
      * Get createdAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -340,7 +342,7 @@ class Template
      * Get modifiedAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModifiedAt()
     {
@@ -364,7 +366,7 @@ class Template
      * Get creatorUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getCreatorUser()
     {
@@ -388,7 +390,7 @@ class Template
      * Get modifierUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getModifierUser()
     {
@@ -408,8 +410,7 @@ class Template
      */
     public function prePersist()
     {
-        if (is_null($this->getCreatedAt()))
-        {
+        if (is_null($this->getCreatedAt())) {
             $this->setCreatedAt(new \DateTime('now'));
         }
     }

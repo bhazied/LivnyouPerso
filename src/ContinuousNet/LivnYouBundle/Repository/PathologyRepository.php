@@ -8,11 +8,10 @@ use Doctrine\ORM\EntityRepository;
  * Class PathologyRepository
  * @package ContinuousNet\LivnYouBundle\Repository
  */
-class PathologyRepository extends EntityRepository implements IRepository{
-
-
-    public function getAll($params = []){
-
+class PathologyRepository extends EntityRepository implements IRepository
+{
+    public function getAll($params = [])
+    {
         $qb = $this->createQueryBuilder('pathology');
         $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'pathology.creatorUser = creator_user.id');
         $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'pathology.modifierUser = modifier_user.id');
@@ -21,7 +20,7 @@ class PathologyRepository extends EntityRepository implements IRepository{
         foreach ($params['filters'] as $field => $value) {
             if (substr_count($field, '.') > 1) {
                 if ($value == 'true' || $value == 'or' || $value == 'and') {
-                    list ($entityName, $listName, $listItem) = explode('.', $field);
+                    list($entityName, $listName, $listItem) = explode('.', $field);
                     if (!isset($memberOfConditions[$listName])) {
                         $memberOfConditions[$listName] = array('items' => array(), 'operator' => 'or');
                     }
@@ -55,7 +54,7 @@ class PathologyRepository extends EntityRepository implements IRepository{
                         $qb->setParameter($listName.'_value_'.$i, $item);
                     }
                     $qb->andWhere($orX);
-                } else if ($memberOfCondition['operator'] == 'and') {
+                } elseif ($memberOfCondition['operator'] == 'and') {
                     $andX = $qb->expr()->andX();
                     foreach ($memberOfCondition['items'] as $i => $item) {
                         $andX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'pathology.'.$listName));
@@ -81,12 +80,14 @@ class PathologyRepository extends EntityRepository implements IRepository{
         return $data;
     }
 
-    public function get($params = []){
+    public function get($params = [])
+    {
         return $this->findOneBy($params);
     }
 
-    public function store($entity, $params= []){
-        foreach ($params as $attribut => $value){
+    public function store($entity, $params= [])
+    {
+        foreach ($params as $attribut => $value) {
             $method = 'set'.lcfirst($attribut);
             $entity->$method($value);
         }
@@ -95,8 +96,9 @@ class PathologyRepository extends EntityRepository implements IRepository{
         return $entity;
     }
 
-    public function update($entity, $params = []){
-        foreach ($params as $attribut => $value){
+    public function update($entity, $params = [])
+    {
+        foreach ($params as $attribut => $value) {
             $method = 'set'.lcfirst($attribut);
             $entity->$method($value);
         }
@@ -104,10 +106,10 @@ class PathologyRepository extends EntityRepository implements IRepository{
         return $entity;
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $entity = $this->find($id);
         $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();
     }
 }
-?>

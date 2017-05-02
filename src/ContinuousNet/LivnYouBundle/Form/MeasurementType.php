@@ -19,11 +19,11 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
  * Measurement Type
- * 
- * Render Measurement Type 
- * 
+ *
+ * Render Measurement Type
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Symfony 2 Type
  * @package    ContinuousNet\LivnYouBundle\Form
  * @author     Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>

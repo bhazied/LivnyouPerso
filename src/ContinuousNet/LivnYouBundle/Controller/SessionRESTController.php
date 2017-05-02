@@ -19,16 +19,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Finder\Finder;;
+use Symfony\Component\Finder\Finder;
+
+;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Session REST Controller
- * 
- * Manage Sessions 
- * 
+ *
+ * Manage Sessions
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Symfony 2 REST Controller
  * @package  ContinuousNet\LivnYouBundle\Controller
  * @author    Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -90,7 +92,7 @@ class SessionRESTController extends BaseRESTController
                 'inlineCount' => 0,
                 'results' => array()
             );
-            $params = compact('offset','limit','filter_operators','order_by','filters');
+            $params = compact('offset', 'limit', 'filter_operators', 'order_by', 'filters');
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
@@ -101,7 +103,6 @@ class SessionRESTController extends BaseRESTController
                 'results' => $results
             );
             return $data;
-
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -121,7 +122,7 @@ class SessionRESTController extends BaseRESTController
     {
         $em = $this->getDoctrine()->getManager();
         $entity = new Session();
-        $form = $this->createForm( SessionType::class, $entity, array('method' => $request->getMethod()));
+        $form = $this->createForm(SessionType::class, $entity, array('method' => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
         $form->submit($request->request->all());
@@ -153,7 +154,7 @@ class SessionRESTController extends BaseRESTController
             $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Session')->findOneById($id);
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
-            $form = $this->createForm( SessionType::class, $entity, array('method' => $request->getMethod()));
+            $form = $this->createForm(SessionType::class, $entity, array('method' => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
             $form->submit($request->request->all());
@@ -205,6 +206,4 @@ class SessionRESTController extends BaseRESTController
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
-
 }

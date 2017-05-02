@@ -5,7 +5,9 @@ namespace ContinuousNet\LivnYouBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Events;
 use Doctrine\Common\Collections\ArrayCollection as DoctrineCollection;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Exclude;
 use JMS\Serializer\Annotation\Expose;
@@ -14,11 +16,11 @@ use JMS\Serializer\Annotation\Groups;
 
 /**
  * Translation Physical Activity Entity
- * 
+ *
  * Storing TranslationPhysicalActivities data to the database using Doctrine
- * 
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Doctrine 2 Entity
  * @package    ContinuousNet\LivnYouBundle\Entity
  * @author     Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -29,15 +31,15 @@ use JMS\Serializer\Annotation\Groups;
  * @see        TranslationPhysicalActivity
  * @since      Class available since Release 1.0
  * @access     public
- * 
+ *
  * @ORM\Table(name="`translation_physical_activity`", indexes={@ORM\Index(name="physical_activity_id", columns={"physical_activity_id"}), @ORM\Index(name="creator_user_id", columns={"creator_user_id"}), @ORM\Index(name="modifier_user_id", columns={"modifier_user_id"})})
  * @ORM\Entity(repositoryClass="ContinuousNet\LivnYouBundle\Repository\TranslationPhysicalActivityRepository")
  * @ORM\HasLifecycleCallbacks()
- * 
+ *
  * @ExclusionPolicy("none")
- * 
+ *
  */
-class TranslationPhysicalActivity 
+class TranslationPhysicalActivity
 {
     /**
      * @var integer
@@ -46,9 +48,9 @@ class TranslationPhysicalActivity
      * @ORM\Column(name="id", type="integer", nullable=false, unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $id;
 
@@ -57,9 +59,9 @@ class TranslationPhysicalActivity
      * @access private
      *
      * @ORM\Column(name="`locale`", type="string", length=5, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $locale;
 
@@ -68,9 +70,9 @@ class TranslationPhysicalActivity
      * @access private
      *
      * @ORM\Column(name="`name`", type="string", length=50, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $name;
 
@@ -79,9 +81,9 @@ class TranslationPhysicalActivity
      * @access private
      *
      * @ORM\Column(name="`athletic_name`", type="string", length=50, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $athleticName;
 
@@ -90,9 +92,9 @@ class TranslationPhysicalActivity
      * @access private
      *
      * @ORM\Column(name="`validated`", type="boolean", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $validated;
 
@@ -101,9 +103,9 @@ class TranslationPhysicalActivity
      * @access private
      *
      * @ORM\Column(name="`created_at`", type="datetime", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $createdAt;
 
@@ -112,9 +114,9 @@ class TranslationPhysicalActivity
      * @access private
      *
      * @ORM\Column(name="`modified_at`", type="datetime", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $modifiedAt;
 
@@ -126,10 +128,10 @@ class TranslationPhysicalActivity
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="physical_activity_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $physicalActivity;
 
@@ -141,10 +143,10 @@ class TranslationPhysicalActivity
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="creator_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $creatorUser;
 
@@ -156,16 +158,16 @@ class TranslationPhysicalActivity
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="modifier_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $modifierUser;
 
     /**
      * Constructor
-     * 
+     *
      * @access public
      */
     public function __construct()
@@ -176,7 +178,7 @@ class TranslationPhysicalActivity
      * Get id
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -200,7 +202,7 @@ class TranslationPhysicalActivity
      * Get locale
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getLocale()
     {
@@ -224,7 +226,7 @@ class TranslationPhysicalActivity
      * Get name
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -248,7 +250,7 @@ class TranslationPhysicalActivity
      * Get athleticName
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAthleticName()
     {
@@ -272,7 +274,7 @@ class TranslationPhysicalActivity
      * Get validated
      *
      * @access public
-     * @return boolean 
+     * @return boolean
      */
     public function getValidated()
     {
@@ -296,7 +298,7 @@ class TranslationPhysicalActivity
      * Get createdAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -320,7 +322,7 @@ class TranslationPhysicalActivity
      * Get modifiedAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModifiedAt()
     {
@@ -344,7 +346,7 @@ class TranslationPhysicalActivity
      * Get physicalActivity
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\PhysicalActivity 
+     * @return \ContinuousNet\LivnYouBundle\Entity\PhysicalActivity
      */
     public function getPhysicalActivity()
     {
@@ -368,7 +370,7 @@ class TranslationPhysicalActivity
      * Get creatorUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getCreatorUser()
     {
@@ -392,7 +394,7 @@ class TranslationPhysicalActivity
      * Get modifierUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getModifierUser()
     {
@@ -412,8 +414,7 @@ class TranslationPhysicalActivity
      */
     public function prePersist()
     {
-        if (is_null($this->getCreatedAt()))
-        {
+        if (is_null($this->getCreatedAt())) {
             $this->setCreatedAt(new \DateTime('now'));
         }
     }

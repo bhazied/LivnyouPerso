@@ -19,16 +19,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Finder\Finder;;
+use Symfony\Component\Finder\Finder;
+
+;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Measurement REST Controller
- * 
- * Manage Measurements 
- * 
+ *
+ * Manage Measurements
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Symfony 2 REST Controller
  * @package  ContinuousNet\LivnYouBundle\Controller
  * @author    Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -102,7 +104,7 @@ class MeasurementRESTController extends BaseRESTController
             foreach ($filters as $field => $value) {
                 if (substr_count($field, '.') > 1) {
                     if ($value == 'true' || $value == 'or' || $value == 'and') {
-                        list ($entityName, $listName, $listItem) = explode('.', $field);
+                        list($entityName, $listName, $listItem) = explode('.', $field);
                         if (!isset($memberOfConditions[$listName])) {
                             $memberOfConditions[$listName] = array('items' => array(), 'operator' => 'or');
                         }
@@ -116,15 +118,15 @@ class MeasurementRESTController extends BaseRESTController
                 }
                 $key = str_replace('.', '', $field);
                 if (!empty($value)) {
-                   if (in_array($field, $textFields)) {
-                       if (isset($filter_operators[$field]) && $filter_operators[$field] == 'eq') {
-                           $qb->andWhere($qb->expr()->eq($field, $qb->expr()->literal($value)));
-                       } else {
-                           $qb->andWhere($qb->expr()->like($field, $qb->expr()->literal('%' . $value . '%')));
-                       }
-                   } else {
-                       $qb->andWhere($field.' = :'.$key.'')->setParameter($key, $value);
-                   }
+                    if (in_array($field, $textFields)) {
+                        if (isset($filter_operators[$field]) && $filter_operators[$field] == 'eq') {
+                            $qb->andWhere($qb->expr()->eq($field, $qb->expr()->literal($value)));
+                        } else {
+                            $qb->andWhere($qb->expr()->like($field, $qb->expr()->literal('%' . $value . '%')));
+                        }
+                    } else {
+                        $qb->andWhere($field.' = :'.$key.'')->setParameter($key, $value);
+                    }
                 }
             }
             foreach ($memberOfConditions as $listName => $memberOfCondition) {
@@ -136,7 +138,7 @@ class MeasurementRESTController extends BaseRESTController
                             $qb->setParameter($listName.'_value_'.$i, $item);
                         }
                         $qb->andWhere($orX);
-                    } else if ($memberOfCondition['operator'] == 'and') {
+                    } elseif ($memberOfCondition['operator'] == 'and') {
                         $andX = $qb->expr()->andX();
                         foreach ($memberOfCondition['items'] as $i => $item) {
                             $andX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'measurement.'.$listName));
@@ -149,9 +151,9 @@ class MeasurementRESTController extends BaseRESTController
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {
-                   if (substr_count($role, 'ACC') > 0) {
-                       $qb->andWhere('measurement.creatorUser = :creatorUser')->setParameter('creatorUser', $this->getUser()->getId());
-                   }
+                    if (substr_count($role, 'ACC') > 0) {
+                        $qb->andWhere('measurement.creatorUser = :creatorUser')->setParameter('creatorUser', $this->getUser()->getId());
+                    }
                 }
             }
             $qbList = clone $qb;
@@ -7375,11 +7377,11 @@ class MeasurementRESTController extends BaseRESTController
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {
-                   if (substr_count($role, 'ACC') > 0) {
-                       if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
-                           return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
-                       }
-                   }
+                    if (substr_count($role, 'ACC') > 0) {
+                        if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
+                            return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
+                        }
+                    }
                 }
             }
             $form = $this->createForm(MeasurementType::class, $entity, array('method' => $request->getMethod()));
@@ -12793,11 +12795,11 @@ class MeasurementRESTController extends BaseRESTController
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {
-                   if (substr_count($role, 'ACC') > 0) {
-                       if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
-                           return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
-                       }
-                   }
+                    if (substr_count($role, 'ACC') > 0) {
+                        if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
+                            return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
+                        }
+                    }
                 }
             }
             $em = $this->getDoctrine()->getManager();
@@ -12808,6 +12810,4 @@ class MeasurementRESTController extends BaseRESTController
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
-
 }

@@ -19,16 +19,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Finder\Finder;;
+use Symfony\Component\Finder\Finder;
+
+;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Template REST Controller
- * 
- * Manage Templates 
- * 
+ *
+ * Manage Templates
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Symfony 2 REST Controller
  * @package  ContinuousNet\LivnYouBundle\Controller
  * @author    Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -86,7 +88,7 @@ class TemplateRESTController extends BaseRESTController
             $filter_operators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
             $order_by = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
-            $params = compact('offset','limit','filter_operators','order_by','filters');
+            $params = compact('offset', 'limit', 'filter_operators', 'order_by', 'filters');
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
@@ -97,7 +99,6 @@ class TemplateRESTController extends BaseRESTController
                 'results' => $results
             );
             return $data;
-            
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -161,14 +162,14 @@ class TemplateRESTController extends BaseRESTController
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {
-                   if (substr_count($role, 'MAN') > 0) {
-                       if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
-                           return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
-                       }
-                   }
+                    if (substr_count($role, 'MAN') > 0) {
+                        if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
+                            return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
+                        }
+                    }
                 }
             }
-            $form = $this->createForm( TemplateType::class, $entity, array('method' => $request->getMethod()));
+            $form = $this->createForm(TemplateType::class, $entity, array('method' => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
             $form->submit($request->request->all());
@@ -223,11 +224,11 @@ class TemplateRESTController extends BaseRESTController
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {
-                   if (substr_count($role, 'MAN') > 0) {
-                       if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
-                           return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
-                       }
-                   }
+                    if (substr_count($role, 'MAN') > 0) {
+                        if ($entity->getCreatorUser()->getId() != $this->getUser()->getId()) {
+                            return FOSView::create('Not authorized', Response::HTTP_FORBIDDEN);
+                        }
+                    }
                 }
             }
             $this->getDoctrine()->getRepository('LivnYouBundle:Template')->delete($id);
@@ -236,6 +237,4 @@ class TemplateRESTController extends BaseRESTController
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
-
 }

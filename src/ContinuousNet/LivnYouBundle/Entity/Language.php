@@ -5,7 +5,9 @@ namespace ContinuousNet\LivnYouBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Events;
 use Doctrine\Common\Collections\ArrayCollection as DoctrineCollection;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Exclude;
 use JMS\Serializer\Annotation\Expose;
@@ -14,11 +16,11 @@ use JMS\Serializer\Annotation\Groups;
 
 /**
  * Language Entity
- * 
+ *
  * Storing Languages data to the database using Doctrine
- * 
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Doctrine 2 Entity
  * @package    ContinuousNet\LivnYouBundle\Entity
  * @author     Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -29,15 +31,15 @@ use JMS\Serializer\Annotation\Groups;
  * @see        Language
  * @since      Class available since Release 1.0
  * @access     public
- * 
+ *
  * @ORM\Table(name="`language`", indexes={@ORM\Index(name="creator_user_id", columns={"creator_user_id"}), @ORM\Index(name="modifier_user_id", columns={"modifier_user_id"})})
  * @ORM\Entity(repositoryClass="ContinuousNet\LivnYouBundle\Repository\LanguageRepository")
  * @ORM\HasLifecycleCallbacks()
- * 
+ *
  * @ExclusionPolicy("none")
- * 
+ *
  */
-class Language 
+class Language
 {
     /**
      * @var integer
@@ -46,9 +48,9 @@ class Language
      * @ORM\Column(name="id", type="integer", nullable=false, unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $id;
 
@@ -57,9 +59,9 @@ class Language
      * @access private
      *
      * @ORM\Column(name="`name`", type="string", length=20, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $name;
 
@@ -68,9 +70,9 @@ class Language
      * @access private
      *
      * @ORM\Column(name="`locale`", type="string", length=5, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $locale;
 
@@ -79,9 +81,9 @@ class Language
      * @access private
      *
      * @ORM\Column(name="`code`", type="string", length=2, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $code;
 
@@ -90,9 +92,9 @@ class Language
      * @access private
      *
      * @ORM\Column(name="`preferred`", type="boolean", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $preferred;
 
@@ -101,9 +103,9 @@ class Language
      * @access private
      *
      * @ORM\Column(name="`created_at`", type="datetime", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $createdAt;
 
@@ -112,9 +114,9 @@ class Language
      * @access private
      *
      * @ORM\Column(name="`modified_at`", type="datetime", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $modifiedAt;
 
@@ -126,10 +128,10 @@ class Language
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="creator_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $creatorUser;
 
@@ -141,16 +143,16 @@ class Language
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="modifier_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $modifierUser;
 
     /**
      * Constructor
-     * 
+     *
      * @access public
      */
     public function __construct()
@@ -161,7 +163,7 @@ class Language
      * Get id
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -185,7 +187,7 @@ class Language
      * Get name
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -209,7 +211,7 @@ class Language
      * Get locale
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getLocale()
     {
@@ -233,7 +235,7 @@ class Language
      * Get code
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
@@ -257,7 +259,7 @@ class Language
      * Get preferred
      *
      * @access public
-     * @return boolean 
+     * @return boolean
      */
     public function getPreferred()
     {
@@ -281,7 +283,7 @@ class Language
      * Get createdAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -305,7 +307,7 @@ class Language
      * Get modifiedAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModifiedAt()
     {
@@ -329,7 +331,7 @@ class Language
      * Get creatorUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getCreatorUser()
     {
@@ -353,7 +355,7 @@ class Language
      * Get modifierUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getModifierUser()
     {
@@ -373,8 +375,7 @@ class Language
      */
     public function prePersist()
     {
-        if (is_null($this->getCreatedAt()))
-        {
+        if (is_null($this->getCreatedAt())) {
             $this->setCreatedAt(new \DateTime('now'));
         }
     }

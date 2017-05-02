@@ -5,7 +5,9 @@ namespace ContinuousNet\LivnYouBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Events;
 use Doctrine\Common\Collections\ArrayCollection as DoctrineCollection;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Exclude;
 use JMS\Serializer\Annotation\Expose;
@@ -14,11 +16,11 @@ use JMS\Serializer\Annotation\Groups;
 
 /**
  * Pathology Entity
- * 
+ *
  * Storing Pathologies data to the database using Doctrine
- * 
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Doctrine 2 Entity
  * @package    ContinuousNet\LivnYouBundle\Entity
  * @author     Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -29,15 +31,15 @@ use JMS\Serializer\Annotation\Groups;
  * @see        Pathology
  * @since      Class available since Release 1.0
  * @access     public
- * 
+ *
  * @ORM\Table(name="`pathology`", indexes={@ORM\Index(name="creator_user_id", columns={"creator_user_id"}), @ORM\Index(name="modifier_user_id", columns={"modifier_user_id"})})
  * @ORM\Entity(repositoryClass="ContinuousNet\LivnYouBundle\Repository\PathologyRepository")
  * @ORM\HasLifecycleCallbacks()
- * 
+ *
  * @ExclusionPolicy("none")
- * 
+ *
  */
-class Pathology 
+class Pathology
 {
     /**
      * @var integer
@@ -46,9 +48,9 @@ class Pathology
      * @ORM\Column(name="id", type="integer", nullable=false, unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $id;
 
@@ -57,9 +59,9 @@ class Pathology
      * @access private
      *
      * @ORM\Column(name="`name`", type="string", length=20, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $name;
 
@@ -68,9 +70,9 @@ class Pathology
      * @access private
      *
      * @ORM\Column(name="`color`", type="string", length=7, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $color;
 
@@ -79,9 +81,9 @@ class Pathology
      * @access private
      *
      * @ORM\Column(name="`activated`", type="boolean", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $activated;
 
@@ -90,9 +92,9 @@ class Pathology
      * @access private
      *
      * @ORM\Column(name="`created_at`", type="datetime", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $createdAt;
 
@@ -101,9 +103,9 @@ class Pathology
      * @access private
      *
      * @ORM\Column(name="`modified_at`", type="datetime", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $modifiedAt;
 
@@ -115,10 +117,10 @@ class Pathology
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="creator_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $creatorUser;
 
@@ -130,16 +132,16 @@ class Pathology
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="modifier_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $modifierUser;
 
     /**
      * Constructor
-     * 
+     *
      * @access public
      */
     public function __construct()
@@ -150,7 +152,7 @@ class Pathology
      * Get id
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -174,7 +176,7 @@ class Pathology
      * Get name
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -198,7 +200,7 @@ class Pathology
      * Get color
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getColor()
     {
@@ -222,7 +224,7 @@ class Pathology
      * Get activated
      *
      * @access public
-     * @return boolean 
+     * @return boolean
      */
     public function getActivated()
     {
@@ -246,7 +248,7 @@ class Pathology
      * Get createdAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -270,7 +272,7 @@ class Pathology
      * Get modifiedAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModifiedAt()
     {
@@ -294,7 +296,7 @@ class Pathology
      * Get creatorUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getCreatorUser()
     {
@@ -318,7 +320,7 @@ class Pathology
      * Get modifierUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getModifierUser()
     {
@@ -338,8 +340,7 @@ class Pathology
      */
     public function prePersist()
     {
-        if (is_null($this->getCreatedAt()))
-        {
+        if (is_null($this->getCreatedAt())) {
             $this->setCreatedAt(new \DateTime('now'));
         }
     }

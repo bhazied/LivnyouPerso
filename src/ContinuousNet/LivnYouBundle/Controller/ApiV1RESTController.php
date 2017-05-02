@@ -9,7 +9,7 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-use FOS\RestBundle\View\View AS FOSView;
+use FOS\RestBundle\View\View as FOSView;
 use FOS\UserBundle\Model\UserManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,11 +20,11 @@ use FOS\RestBundle\Controller\FOSRestController;
 
 /**
  * Public Api V1 REST Controller
- * 
- * Manage Api V1 
- * 
+ *
+ * Manage Api V1
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Symfony 2 REST Controller
  * @package  ContinuousNet\UbidElectricityBundle\Controller
  * @author    Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -38,7 +38,6 @@ use FOS\RestBundle\Controller\FOSRestController;
  */
 class ApiV1RESTController extends FOSRestController
 {
-
     const SESSION_EMAIL = 'fos_user_send_resetting_email/email';
 
     private $locales = array(
@@ -49,7 +48,8 @@ class ApiV1RESTController extends FOSRestController
         'it' => 'it_IT',
     );
 
-    private function setTranslator($code) {
+    private function setTranslator($code)
+    {
         $translator = new Translator($this->locales[$code]);
         $yamlLoader = new YamlFileLoader();
         $translator->addLoader('yaml', $yamlLoader);
@@ -114,7 +114,6 @@ class ApiV1RESTController extends FOSRestController
             }
         }
         return $entity;
-
     }
 
     public function translateEntities($entities)
@@ -125,7 +124,8 @@ class ApiV1RESTController extends FOSRestController
         return $entities;
     }
 
-    private function getConfig($path) {
+    private function getConfig($path)
+    {
         $config = $this->container->getParameter('livn_you');
         $paths = explode('.', $path);
         foreach ($paths as $index) {
@@ -134,7 +134,8 @@ class ApiV1RESTController extends FOSRestController
         return $config;
     }
 
-    private function getLanguageByCode($code) {
+    private function getLanguageByCode($code)
+    {
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
         $qb->from('LivnYouBundle:Language', 'l_');
@@ -143,7 +144,8 @@ class ApiV1RESTController extends FOSRestController
         return $qb->getQuery()->getOneOrNullResult();
     }
 
-    private function getGroupByName($name){
+    private function getGroupByName($name)
+    {
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
         $qb->from('LivnYouBundle:Group', 'g_');
@@ -243,7 +245,7 @@ class ApiV1RESTController extends FOSRestController
             $qb->select($select);
             if ($locale == 'ar') {
                 $qb->addOrderBy('c_.nameAr', 'ASC');
-            } else if ($locale == 'fr') {
+            } elseif ($locale == 'fr') {
                 $qb->addOrderBy('c_.nameFr', 'ASC');
             } else {
                 $qb->addOrderBy('c_.name', 'ASC');
@@ -263,7 +265,6 @@ class ApiV1RESTController extends FOSRestController
     public function registerAction(Request $request)
     {
         try {
-
             $data = array('status' => false, 'message' => null);
 
             $jsonData = json_decode($request->getContent(), true);
@@ -314,7 +315,6 @@ class ApiV1RESTController extends FOSRestController
             }
 
             if ($process) {
-
                 $user = $form->getData();
 
                 if ($confirmationEnabled) {
@@ -335,36 +335,29 @@ class ApiV1RESTController extends FOSRestController
                 $data['message'] = $this->get('translator')->trans('register.failure_inscription');
                 return $data;
             }
-
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-
     }
 
     /**
      * @Post("/emailConfirm")
      * @View(serializerEnableMaxDepthChecks=true)
      */
-    public function emailConfirmAction(Request $request) {
-
+    public function emailConfirmAction(Request $request)
+    {
         $data = array('status' => false, 'message' => null);
 
         try {
-
             $token = $request->request->get('token');
 
             if (!is_null($token) && !empty($token)) {
-
                 $user = $this->container->get('fos_user.user_manager')->findUserByConfirmationToken($token);
 
                 if (null === $user) {
-
                     $data['status'] = false;
                     $data['message'] = sprintf($this->get('translator')->trans('register.user_with_confirmation_token_does_not_exist'), $token);
-
                 } else {
-
                     $user->setConfirmationToken(null);
                     $user->setEnabled(true);
                     $user->setLastLogin(new \DateTime());
@@ -381,7 +374,6 @@ class ApiV1RESTController extends FOSRestController
                 $data['message'] = $this->get('translator')->trans('register.empty_token');
             }
             return $data;
-
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -410,12 +402,11 @@ class ApiV1RESTController extends FOSRestController
      * @Post("/requestResetPassword")
      * @View(serializerEnableMaxDepthChecks=true)
      */
-    public function requestResetPasswordAction(Request $request) {
-
+    public function requestResetPasswordAction(Request $request)
+    {
         $data = array('status' => false, 'message' => null);
 
         try {
-
             $email = $request->request->get('email');
             if (!is_null($email) && !empty($email)) {
                 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -423,9 +414,7 @@ class ApiV1RESTController extends FOSRestController
                     /** @var $user UserInterface */
                     $user = $this->container->get('fos_user.user_manager')->findUserByUsernameOrEmail($email);
                     if (!is_null($user)) {
-
                         if (!$user->isPasswordRequestNonExpired($this->container->getParameter('fos_user.resetting.token_ttl'))) {
-
                             if (null === $user->getConfirmationToken()) {
                                 /** @var $tokenGenerator \FOS\UserBundle\Util\TokenGeneratorInterface */
                                 $tokenGenerator = $this->container->get('fos_user.util.token_generator');
@@ -439,7 +428,6 @@ class ApiV1RESTController extends FOSRestController
 
                             $data['status'] = true;
                             $data['message'] = $this->get('translator')->trans('reset.reset_password_requested');
-
                         } else {
                             $data['status'] = false;
                             $data['message'] = $this->get('translator')->trans('reset.password_already_requested');
@@ -457,7 +445,6 @@ class ApiV1RESTController extends FOSRestController
                 $data['message'] = $this->get('translator')->trans('reset.empty_email');
             }
             return $data;
-
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -467,30 +454,23 @@ class ApiV1RESTController extends FOSRestController
      * @Post("/reset")
      * @View(serializerEnableMaxDepthChecks=true)
      */
-    public function resetAction(Request $request) {
-
+    public function resetAction(Request $request)
+    {
         $data = array('status' => false, 'message' => null);
 
         try {
-
             $token = $request->request->get('token');
 
             if (!is_null($token) && !empty($token)) {
-
                 $user = $this->container->get('fos_user.user_manager')->findUserByConfirmationToken($token);
 
                 if (null === $user) {
-
                     $data['status'] = false;
                     $data['message'] = sprintf($this->get('translator')->trans('reset.user_with_confirmation_token_does_not_exist'), $token);
-
-                } else if (!$user->isPasswordRequestNonExpired($this->container->getParameter('fos_user.resetting.token_ttl'))) {
-
+                } elseif (!$user->isPasswordRequestNonExpired($this->container->getParameter('fos_user.resetting.token_ttl'))) {
                     $data['status'] = false;
                     $data['message'] = sprintf($this->get('translator')->trans('reset.confirmation_token_is_expired'), $token);
-
                 } else {
-
                     $jsonData = json_decode($request->getContent(), true);
                     unset($jsonData['locale']);
                     unset($jsonData['token']);
@@ -502,7 +482,6 @@ class ApiV1RESTController extends FOSRestController
                     $process = $formHandler->process($user);
 
                     if ($process) {
-
                         $data['token'] = $this->get("lexik_jwt_authentication.jwt_manager")->create($user);
                         $data['user'] = array(
                             'email' => $user->getEmail(),
@@ -516,14 +495,11 @@ class ApiV1RESTController extends FOSRestController
                         );
                         $data['status'] = true;
                         $data['message'] = $this->get('translator')->trans('reset.password_changed');
-
                     } else {
                         $data['status'] = false;
                         $data['message'] = $this->get('translator')->trans('reset.password_not_changed');
                     }
-
                 }
-
             } else {
                 $data['status'] = false;
                 $data['message'] = $this->get('translator')->trans('Empty token.');
@@ -538,40 +514,31 @@ class ApiV1RESTController extends FOSRestController
      * @Post("/checkConfirmationToken")
      * @View(serializerEnableMaxDepthChecks=true)
      */
-    public function checkConfirmationTokenAction(Request $request) {
-
+    public function checkConfirmationTokenAction(Request $request)
+    {
         $data = array('status' => false, 'message' => null);
 
         try {
-
             $token = $request->request->get('token');
 
             if (!is_null($token) && !empty($token)) {
-
                 $user = $this->container->get('fos_user.user_manager')->findUserByConfirmationToken($token);
 
                 if (null === $user) {
-
                     $data['status'] = false;
                     $data['message'] = sprintf($this->get('translator')->trans('register.user_with_confirmation_token_does_not_exist'), $token);
-
-                } else if (!$user->isPasswordRequestNonExpired($this->container->getParameter('fos_user.resetting.token_ttl'))) {
-
+                } elseif (!$user->isPasswordRequestNonExpired($this->container->getParameter('fos_user.resetting.token_ttl'))) {
                     $data['status'] = false;
                     $data['message'] = sprintf($this->get('translator')->trans('register.confirmation_token_is_expired'), $token);
-
                 } else {
-
                     $data['status'] = true;
                     $data['message'] = $this->get('translator')->trans('register.correct_token');
-
                 }
             } else {
                 $data['status'] = false;
                 $data['message'] = $this->get('translator')->trans('register.empty_token');
             }
             return $data;
-
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -594,19 +561,17 @@ class ApiV1RESTController extends FOSRestController
                 $value =  !is_null($request->request->get($field))  ? $request->request->get($field) : null;
                 $method = 'set'.ucfirst($field);
                 if (!is_null($value) && !is_array($value)) {
-                    if ($field == 'country' ) {
+                    if ($field == 'country') {
                         $value = $em->getRepository('LivnYouBundle:Country')->findOneById($value);
-                    } else if ($field == 'language') {
+                    } elseif ($field == 'language') {
                         $value = $em->getRepository('LivnYouBundle:Language')->findOneByCode($value);
-                    } else if ($field == 'birthDate') {
+                    } elseif ($field == 'birthDate') {
                         $value = new \DateTime($value);
                     }
-
-                }
-                else{
+                } else {
                     $value = null;
                 }
-                if(method_exists($user, $method)){
+                if (method_exists($user, $method)) {
                     $user->$method($value);
                 }
             }
@@ -629,10 +594,10 @@ class ApiV1RESTController extends FOSRestController
      * @View(serializerEnableMaxDepthChecks=true)
      * @param Request $request
      */
-    public function contactAction(Request $request) {
+    public function contactAction(Request $request)
+    {
         $response = array();
-        try
-        {
+        try {
             $subject = $request->request->get('subject');
             $email = $request->request->get('email');
             $firstName = $request->request->get('firstName');
@@ -653,21 +618,19 @@ class ApiV1RESTController extends FOSRestController
                     'text/html'
                 );
             $sent = $this->get('mailer')->send($message);
-            if($sent){
+            if ($sent) {
                 $response =  array(
                     'status' => '0',
                     'message' => 'Message envoyé avec succée'
                 );
-            }
-            else{
+            } else {
                 $response =  array(
                     'status' => '1',
                     'message' => 'Message non envoyé'
                 );
             }
             return $response;
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -676,7 +639,8 @@ class ApiV1RESTController extends FOSRestController
      * @Get("/getProfile")
      * @View(serializerEnableMaxDepthChecks=true)
      */
-    public function getProfileAction() {
+    public function getProfileAction()
+    {
         try {
             $user = $this->getUser();
 
@@ -710,7 +674,8 @@ class ApiV1RESTController extends FOSRestController
      * @POST("/checkPassword")
      * @View(serializerEnableMaxDepthChecks=true)
      */
-    public function checkPasswordAction(Request $request){
+    public function checkPasswordAction(Request $request)
+    {
         $data = [];
         $user = $this->getUser();
         $password = $request->request->get('currentPassword');
@@ -718,13 +683,12 @@ class ApiV1RESTController extends FOSRestController
         $encoder = $encoder_service->getEncoder($user);
         $encoded_pass = $encoder->encodePassword($password, $user->getSalt());
         //return $encoded_pass." ".$password . " ".$user->getSalt();
-        if($encoded_pass == $user->getPassword()){
+        if ($encoded_pass == $user->getPassword()) {
             $data = [
                 'status' => true,
                 'message' => 'OK'
             ];
-        }
-        else{
+        } else {
             $data = [
                 'status' => false,
                 'message' => 'NOT OK'
@@ -737,8 +701,8 @@ class ApiV1RESTController extends FOSRestController
      * @Post("/changePassword")
      * @View(serializerEnableMaxDepthChecks=true)
      */
-    public function changePasswordAction(Request $request) {
-
+    public function changePasswordAction(Request $request)
+    {
         $data = array('status' => false, 'message' => null);
         try {
             $em = $this->getDoctrine()->getManager();
@@ -760,6 +724,4 @@ class ApiV1RESTController extends FOSRestController
             $data['message'] = $this->get('translator')->trans('Password not changed.');
         }
     }
-    
-
 }

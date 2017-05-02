@@ -20,7 +20,6 @@ use FOS\RestBundle\Controller\FOSRestController;
 
 class BaseRESTController extends FOSRestController
 {
-
     public $locales = array(
         'en' => 'en_US',
         'fr' => 'fr_FR'
@@ -93,7 +92,6 @@ class BaseRESTController extends FOSRestController
             }
         }
         return $entity;
-
     }
 
     public function translateEntities($entities)
@@ -132,7 +130,6 @@ class BaseRESTController extends FOSRestController
         $directory = '';
         if ($absolute) {
             $directory .= $this->get('kernel')->getRootDir() . '/../web/uploads/';
-
         }
         $entityName = $this->getEntityName($entity);
         if (in_array($entityName, $this->privateEntities)) {
@@ -145,7 +142,6 @@ class BaseRESTController extends FOSRestController
 
     public function createSubDirectory($entity)
     {
-
         $directory = $this->getSubDirectory($entity);
         if (!is_dir($directory)) {
             mkdir($directory, 0777, true);
@@ -174,7 +170,8 @@ class BaseRESTController extends FOSRestController
     }
 
 
-    protected  function getFormExactError( FormErrorIterator $errors){
+    protected function getFormExactError(FormErrorIterator $errors)
+    {
         $err_messages = [];
         foreach ($errors as $error) {
             $message = $this->get('translator')->trans($error->getMessage());

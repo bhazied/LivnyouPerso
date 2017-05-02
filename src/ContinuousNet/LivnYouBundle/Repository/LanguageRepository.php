@@ -9,11 +9,10 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  * Class LanguageRepository
  * @package ContinuousNet\LivnYouBundle\Repository
  */
-class LanguageRepository extends EntityRepository implements IRepository{
-
-
-    public function getAll($params = []){
-
+class LanguageRepository extends EntityRepository implements IRepository
+{
+    public function getAll($params = [])
+    {
         $qb = $this->createQueryBuilder('language');
         $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'language.creatorUser = creator_user.id');
         $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'language.modifierUser = modifier_user.id');
@@ -22,7 +21,7 @@ class LanguageRepository extends EntityRepository implements IRepository{
         foreach ($params['filters'] as $field => $value) {
             if (substr_count($field, '.') > 1) {
                 if ($value == 'true' || $value == 'or' || $value == 'and') {
-                    list ($entityName, $listName, $listItem) = explode('.', $field);
+                    list($entityName, $listName, $listItem) = explode('.', $field);
                     if (!isset($memberOfConditions[$listName])) {
                         $memberOfConditions[$listName] = array('items' => array(), 'operator' => 'or');
                     }
@@ -56,7 +55,7 @@ class LanguageRepository extends EntityRepository implements IRepository{
                         $qb->setParameter($listName.'_value_'.$i, $item);
                     }
                     $qb->andWhere($orX);
-                } else if ($memberOfCondition['operator'] == 'and') {
+                } elseif ($memberOfCondition['operator'] == 'and') {
                     $andX = $qb->expr()->andX();
                     foreach ($memberOfCondition['items'] as $i => $item) {
                         $andX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'language.'.$listName));
@@ -81,13 +80,15 @@ class LanguageRepository extends EntityRepository implements IRepository{
         return $data;
     }
 
-    public function get($params = []){
+    public function get($params = [])
+    {
         return $this->findOneBy($params);
     }
 
-    public function store($entity, $params= []){
+    public function store($entity, $params= [])
+    {
         $accessor = PropertyAccess::createPropertyAccessor();
-        foreach ($params as $attribut => $value){
+        foreach ($params as $attribut => $value) {
             $accessor->setValue($entity, $attribut, $value);
         }
         $this->getEntityManager()->persist($entity);
@@ -95,19 +96,20 @@ class LanguageRepository extends EntityRepository implements IRepository{
         return $entity;
     }
 
-    public function update($entity, $params = []){
+    public function update($entity, $params = [])
+    {
         $accessor = PropertyAccess::createPropertyAccessor();
-        foreach ($params as $attribut => $value){
+        foreach ($params as $attribut => $value) {
             $accessor->setValue($entity, $attribut, $value);
         }
         $this->getEntityManager()->flush();
         return $entity;
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $entity = $this->find($id);
         $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();
     }
 }
-?>

@@ -19,11 +19,11 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
  * Log Type
- * 
- * Render Log Type 
- * 
+ *
+ * Render Log Type
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Symfony 2 Type
  * @package    ContinuousNet\LivnYouBundle\Form
  * @author     Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>

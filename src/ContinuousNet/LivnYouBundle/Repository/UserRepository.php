@@ -9,15 +9,16 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  * Class UserRepository
  * @package ContinuousNet\LivnYouBundle\Repository
  */
-class UserRepository extends EntityRepository implements IRepository{
+class UserRepository extends EntityRepository implements IRepository
+{
 
 
     /**
      * @param array $params
      * @return mixed
      */
-    public function getAll($params = []){
-
+    public function getAll($params = [])
+    {
         $qb = $this->createQueryBuilder('user');
         $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\Country', 'country', \Doctrine\ORM\Query\Expr\Join::WITH, 'user.country = country.id');
         $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\Language', 'language', \Doctrine\ORM\Query\Expr\Join::WITH, 'user.language = language.id');
@@ -28,7 +29,7 @@ class UserRepository extends EntityRepository implements IRepository{
         foreach ($params['filters'] as $field => $value) {
             if (substr_count($field, '.') > 1) {
                 if ($value == 'true' || $value == 'or' || $value == 'and') {
-                    list ($entityName, $listName, $listItem) = explode('.', $field);
+                    list($entityName, $listName, $listItem) = explode('.', $field);
                     if (!isset($memberOfConditions[$listName])) {
                         $memberOfConditions[$listName] = array('items' => array(), 'operator' => 'or');
                     }
@@ -62,7 +63,7 @@ class UserRepository extends EntityRepository implements IRepository{
                         $qb->setParameter($listName.'_value_'.$i, $item);
                     }
                     $qb->andWhere($orX);
-                } else if ($memberOfCondition['operator'] == 'and') {
+                } elseif ($memberOfCondition['operator'] == 'and') {
                     $andX = $qb->expr()->andX();
                     foreach ($memberOfCondition['items'] as $i => $item) {
                         $andX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'user.'.$listName));
@@ -91,7 +92,8 @@ class UserRepository extends EntityRepository implements IRepository{
      * @param array $params
      * @return null|object
      */
-    public function get($params = []){
+    public function get($params = [])
+    {
         return $this->findOneBy($params);
     }
 
@@ -100,9 +102,10 @@ class UserRepository extends EntityRepository implements IRepository{
      * @param array $params
      * @return User
      */
-    public function store($entity, $params= []){
+    public function store($entity, $params= [])
+    {
         $accessor = PropertyAccess::createPropertyAccessor();
-        foreach ($params as $attribut => $value){
+        foreach ($params as $attribut => $value) {
             $accessor->setValue($entity, $attribut, $value);
         }
         $entity = $this->process($entity, true);
@@ -116,9 +119,10 @@ class UserRepository extends EntityRepository implements IRepository{
      * @param array $params
      * @return User
      */
-    public function update($entity, $params = []){
+    public function update($entity, $params = [])
+    {
         $accessor = PropertyAccess::createPropertyAccessor();
-        foreach ($params as $attribut => $value){
+        foreach ($params as $attribut => $value) {
             $accessor->setValue($entity, $attribut, $value);
         }
         $entity = $this->process($entity, false);
@@ -129,7 +133,8 @@ class UserRepository extends EntityRepository implements IRepository{
     /**
      * @param $id
      */
-    public function delete($id){
+    public function delete($id)
+    {
         $entity = $this->find($id);
         $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();
@@ -138,13 +143,14 @@ class UserRepository extends EntityRepository implements IRepository{
     public function count($params = [])
     {
         $qb = $this->createQueryBuilder('country');
-        if(array_key_exists('filters', $params)){
-            foreach ($params['filters'] as $fKey => $value){
+        if (array_key_exists('filters', $params)) {
+            foreach ($params['filters'] as $fKey => $value) {
                 $qb->andWhere('country.'.$fKey .'=:'.$fKey)->setParameter($fKey, $value);
             }
         }
         $qb->select('count(country.id)');
-        return $qb->getQuery()->getSingleScalarResult();;
+        return $qb->getQuery()->getSingleScalarResult();
+        ;
     }
 
     /**
@@ -168,6 +174,4 @@ class UserRepository extends EntityRepository implements IRepository{
         }
         return $entity;
     }
-
 }
-?>

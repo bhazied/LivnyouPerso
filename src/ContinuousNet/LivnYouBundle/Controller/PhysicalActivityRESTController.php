@@ -19,16 +19,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Finder\Finder;;
+use Symfony\Component\Finder\Finder;
+
+;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Physical Activity REST Controller
- * 
- * Manage PhysicalActivities 
- * 
+ *
+ * Manage PhysicalActivities
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Symfony 2 REST Controller
  * @package  ContinuousNet\LivnYouBundle\Controller
  * @author    Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -87,7 +89,7 @@ class PhysicalActivityRESTController extends BaseRESTController
             $filter_operators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
             $order_by = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
-            $params = compact('offset','limit','filter_operators','order_by','filters');
+            $params = compact('offset', 'limit', 'filter_operators', 'order_by', 'filters');
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
@@ -98,7 +100,6 @@ class PhysicalActivityRESTController extends BaseRESTController
                 'results' => $this->translateEntities($results)
             );
             return $data;
-
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -117,7 +118,7 @@ class PhysicalActivityRESTController extends BaseRESTController
     public function postAction(Request $request)
     {
         $entity = new PhysicalActivity();
-        $form = $this->createForm( PhysicalActivityType::class, $entity, array('method' => $request->getMethod()));
+        $form = $this->createForm(PhysicalActivityType::class, $entity, array('method' => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
         $form->submit($request->request->all());
@@ -192,6 +193,4 @@ class PhysicalActivityRESTController extends BaseRESTController
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
-
 }

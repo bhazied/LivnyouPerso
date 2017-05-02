@@ -5,7 +5,9 @@ namespace ContinuousNet\LivnYouBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Events;
 use Doctrine\Common\Collections\ArrayCollection as DoctrineCollection;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Exclude;
 use JMS\Serializer\Annotation\Expose;
@@ -16,11 +18,11 @@ use FOS\UserBundle\Model\GroupInterface;
 
 /**
  * User Entity
- * 
+ *
  * Storing Users data to the database using Doctrine
- * 
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Doctrine 2 Entity
  * @package    ContinuousNet\LivnYouBundle\Entity
  * @author     Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -31,18 +33,18 @@ use FOS\UserBundle\Model\GroupInterface;
  * @see        User
  * @since      Class available since Release 1.0
  * @access     public
- * 
+ *
  * @ORM\Table(name="`user`", indexes={@ORM\Index(name="country_id", columns={"country_id"}), @ORM\Index(name="language_id", columns={"language_id"}), @ORM\Index(name="creator_user_id", columns={"creator_user_id"}), @ORM\Index(name="modifier_user_id", columns={"modifier_user_id"})})
  * @ORM\Entity(repositoryClass="ContinuousNet\LivnYouBundle\Repository\UserRepository")
  * @UniqueEntity("username")
  * @UniqueEntity("phone")
  * @UniqueEntity("email")
  * @ORM\HasLifecycleCallbacks()
- * 
+ *
  * @ExclusionPolicy("none")
- * 
+ *
  */
-class User  extends BaseUser
+class User extends BaseUser
 {
     /**
      * @var integer
@@ -51,9 +53,9 @@ class User  extends BaseUser
      * @ORM\Column(name="id", type="integer", nullable=false, unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $id;
 
@@ -62,9 +64,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`type`", type="string", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $type;
 
@@ -91,9 +93,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`gender`", type="string", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $gender;
 
@@ -102,9 +104,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`first_name`", type="string", length=100, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $firstName;
 
@@ -113,9 +115,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`last_name`", type="string", length=100, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $lastName;
 
@@ -124,9 +126,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`birth_date`", type="date", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $birthDate;
 
@@ -135,9 +137,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`picture`", type="string", length=255, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $picture;
 
@@ -146,9 +148,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`address`", type="string", length=500, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $address;
 
@@ -157,9 +159,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`zip_code`", type="string", length=10, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $zipCode;
 
@@ -168,9 +170,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`company_name`", type="string", length=50, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $companyName;
 
@@ -179,9 +181,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`job`", type="string", length=255, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $job;
 
@@ -190,9 +192,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`city_name`", type="string", length=250, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $cityName;
 
@@ -201,9 +203,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`enable_oauth`", type="boolean", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $enableOauth;
 
@@ -212,9 +214,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`session_timeout`", type="integer", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $sessionTimeout;
 
@@ -223,9 +225,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`multiple_session`", type="boolean", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $multipleSession;
 
@@ -234,9 +236,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`phone_validated`", type="boolean", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $phoneValidated;
 
@@ -245,9 +247,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`phone_validation_code`", type="string", length=25, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $phoneValidationCode;
 
@@ -256,9 +258,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`email_validated`", type="boolean", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $emailValidated;
 
@@ -267,9 +269,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`email_validation_code`", type="string", length=500, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $emailValidationCode;
 
@@ -278,9 +280,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`authentication_mode`", type="string", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $authenticationMode;
 
@@ -294,9 +296,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`locked`", type="boolean", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $locked;
 
@@ -305,9 +307,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`expired`", type="boolean", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $expired;
 
@@ -316,9 +318,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`expires_at`", type="datetime", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $expiresAt;
 
@@ -327,9 +329,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`credentials_expired`", type="boolean", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $credentialsExpired;
 
@@ -338,9 +340,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`credentials_expire_at`", type="datetime", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $credentialsExpireAt;
 
@@ -351,9 +353,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`last_failed_login`", type="datetime", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $lastFailedLogin;
 
@@ -362,9 +364,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`login_count`", type="integer", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $loginCount;
 
@@ -373,9 +375,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`failed_login_count`", type="integer", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $failedLoginCount;
 
@@ -384,9 +386,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`last_failed_login_count`", type="integer", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $lastFailedLoginCount;
 
@@ -395,9 +397,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`created_at`", type="datetime", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $createdAt;
 
@@ -406,9 +408,9 @@ class User  extends BaseUser
      * @access protected
      *
      * @ORM\Column(name="`modified_at`", type="datetime", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     protected $modifiedAt;
 
@@ -420,10 +422,10 @@ class User  extends BaseUser
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     protected $country;
 
@@ -435,10 +437,10 @@ class User  extends BaseUser
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="language_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     protected $language;
 
@@ -450,10 +452,10 @@ class User  extends BaseUser
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="creator_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     protected $creatorUser;
 
@@ -465,10 +467,10 @@ class User  extends BaseUser
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="modifier_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     protected $modifierUser;
 
@@ -485,16 +487,16 @@ class User  extends BaseUser
      *         @ORM\JoinColumn(name="group_id", referencedColumnName="id")
      *     }
      * )
-     * 
+     *
      * @Expose
      * @MaxDepth(2)
-     * 
+     *
      */
     protected $groups;
 
     /**
      * Constructor
-     * 
+     *
      * @access public
      */
     public function __construct()
@@ -507,7 +509,7 @@ class User  extends BaseUser
      * Get id
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -531,7 +533,7 @@ class User  extends BaseUser
      * Get type
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -557,7 +559,7 @@ class User  extends BaseUser
      * Get phone
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -583,7 +585,7 @@ class User  extends BaseUser
      * Get gender
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getGender()
     {
@@ -607,7 +609,7 @@ class User  extends BaseUser
      * Get firstName
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -631,7 +633,7 @@ class User  extends BaseUser
      * Get lastName
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -655,7 +657,7 @@ class User  extends BaseUser
      * Get birthDate
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBirthDate()
     {
@@ -679,7 +681,7 @@ class User  extends BaseUser
      * Get picture
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getPicture()
     {
@@ -703,7 +705,7 @@ class User  extends BaseUser
      * Get address
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -727,7 +729,7 @@ class User  extends BaseUser
      * Get zipCode
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getZipCode()
     {
@@ -751,7 +753,7 @@ class User  extends BaseUser
      * Get companyName
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getCompanyName()
     {
@@ -775,7 +777,7 @@ class User  extends BaseUser
      * Get job
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getJob()
     {
@@ -799,7 +801,7 @@ class User  extends BaseUser
      * Get cityName
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getCityName()
     {
@@ -823,7 +825,7 @@ class User  extends BaseUser
      * Get enableOauth
      *
      * @access public
-     * @return boolean 
+     * @return boolean
      */
     public function getEnableOauth()
     {
@@ -847,7 +849,7 @@ class User  extends BaseUser
      * Get sessionTimeout
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getSessionTimeout()
     {
@@ -871,7 +873,7 @@ class User  extends BaseUser
      * Get multipleSession
      *
      * @access public
-     * @return boolean 
+     * @return boolean
      */
     public function getMultipleSession()
     {
@@ -895,7 +897,7 @@ class User  extends BaseUser
      * Get phoneValidated
      *
      * @access public
-     * @return boolean 
+     * @return boolean
      */
     public function getPhoneValidated()
     {
@@ -919,7 +921,7 @@ class User  extends BaseUser
      * Get phoneValidationCode
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getPhoneValidationCode()
     {
@@ -943,7 +945,7 @@ class User  extends BaseUser
      * Get emailValidated
      *
      * @access public
-     * @return boolean 
+     * @return boolean
      */
     public function getEmailValidated()
     {
@@ -967,7 +969,7 @@ class User  extends BaseUser
      * Get emailValidationCode
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getEmailValidationCode()
     {
@@ -991,7 +993,7 @@ class User  extends BaseUser
      * Get authenticationMode
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAuthenticationMode()
     {
@@ -1019,7 +1021,7 @@ class User  extends BaseUser
      * Get locked
      *
      * @access public
-     * @return boolean 
+     * @return boolean
      */
     public function getLocked()
     {
@@ -1043,7 +1045,7 @@ class User  extends BaseUser
      * Get expired
      *
      * @access public
-     * @return boolean 
+     * @return boolean
      */
     public function getExpired()
     {
@@ -1067,7 +1069,7 @@ class User  extends BaseUser
      * Get expiresAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getExpiresAt()
     {
@@ -1091,7 +1093,7 @@ class User  extends BaseUser
      * Get credentialsExpired
      *
      * @access public
-     * @return boolean 
+     * @return boolean
      */
     public function getCredentialsExpired()
     {
@@ -1115,7 +1117,7 @@ class User  extends BaseUser
      * Get credentialsExpireAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCredentialsExpireAt()
     {
@@ -1141,7 +1143,7 @@ class User  extends BaseUser
      * Get lastFailedLogin
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastFailedLogin()
     {
@@ -1165,7 +1167,7 @@ class User  extends BaseUser
      * Get loginCount
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getLoginCount()
     {
@@ -1189,7 +1191,7 @@ class User  extends BaseUser
      * Get failedLoginCount
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getFailedLoginCount()
     {
@@ -1213,7 +1215,7 @@ class User  extends BaseUser
      * Get lastFailedLoginCount
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getLastFailedLoginCount()
     {
@@ -1237,7 +1239,7 @@ class User  extends BaseUser
      * Get createdAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -1261,7 +1263,7 @@ class User  extends BaseUser
      * Get modifiedAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModifiedAt()
     {
@@ -1285,7 +1287,7 @@ class User  extends BaseUser
      * Get country
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\Country 
+     * @return \ContinuousNet\LivnYouBundle\Entity\Country
      */
     public function getCountry()
     {
@@ -1309,7 +1311,7 @@ class User  extends BaseUser
      * Get language
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\Language 
+     * @return \ContinuousNet\LivnYouBundle\Entity\Language
      */
     public function getLanguage()
     {
@@ -1333,7 +1335,7 @@ class User  extends BaseUser
      * Get creatorUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getCreatorUser()
     {
@@ -1357,7 +1359,7 @@ class User  extends BaseUser
      * Get modifierUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getModifierUser()
     {
@@ -1373,8 +1375,7 @@ class User  extends BaseUser
      */
     public function addGroup(GroupInterface $group)
     {
-        if (!$this->groups->contains($group))
-        {
+        if (!$this->groups->contains($group)) {
             $this->groups->add($group);
         }
         return $this;
@@ -1389,8 +1390,7 @@ class User  extends BaseUser
      */
     public function removeGroup(GroupInterface $group)
     {
-        if ($this->groups->contains($group))
-        {
+        if ($this->groups->contains($group)) {
             $this->groups->removeElement($group);
         }
         return $this;
@@ -1413,7 +1413,7 @@ class User  extends BaseUser
      * Get group
      *
      * @access public
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGroups()
     {
@@ -1433,8 +1433,7 @@ class User  extends BaseUser
      */
     public function prePersist()
     {
-        if (is_null($this->getCreatedAt()))
-        {
+        if (is_null($this->getCreatedAt())) {
             $this->setCreatedAt(new \DateTime('now'));
         }
     }

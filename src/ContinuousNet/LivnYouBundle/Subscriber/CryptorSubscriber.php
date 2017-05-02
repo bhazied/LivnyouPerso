@@ -31,8 +31,7 @@ class CryptorSubscriber implements EventSubscriber
     {
         $entity = $args->getEntity();
         if ($entity instanceof Measurement) {
-            if (is_null($entity->getCreatedAt()))
-            {
+            if (is_null($entity->getCreatedAt())) {
                 $entity->setCreatedAt(new \DateTime('now'));
             }
             $entity->setFirstName($this->encryt($entity->getFirstName()));
@@ -96,30 +95,23 @@ class CryptorSubscriber implements EventSubscriber
 
     public function encryt($data)
     {
-        if (substr($data, 0, strlen(self::BASE64_URI)) !== self::BASE64_URI)
-        {
+        if (substr($data, 0, strlen(self::BASE64_URI)) !== self::BASE64_URI) {
             //$encrypted = Cryptor::Encrypt($data, $this->getKey());
             //return self::BASE64_URI . $encrypted;
             return $data;
-        }
-        else
-        {
+        } else {
             return $data;
         }
     }
 
     public function decryt($data)
     {
-        if (substr($data, 0, strlen(self::BASE64_URI)) === self::BASE64_URI)
-        {
+        if (substr($data, 0, strlen(self::BASE64_URI)) === self::BASE64_URI) {
             $data = substr($data, strlen(self::BASE64_URI));
             $decrypted = Cryptor::Decrypt($data, $this->getKey());
             return $decrypted;
-        }
-        else
-        {
+        } else {
             return $data;
         }
     }
-
 }

@@ -5,7 +5,9 @@ namespace ContinuousNet\LivnYouBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Events;
 use Doctrine\Common\Collections\ArrayCollection as DoctrineCollection;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Exclude;
 use JMS\Serializer\Annotation\Expose;
@@ -14,11 +16,11 @@ use JMS\Serializer\Annotation\Groups;
 
 /**
  * Log Entity
- * 
+ *
  * Storing Logs data to the database using Doctrine
- * 
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Doctrine 2 Entity
  * @package    ContinuousNet\LivnYouBundle\Entity
  * @author     Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -29,15 +31,15 @@ use JMS\Serializer\Annotation\Groups;
  * @see        Log
  * @since      Class available since Release 1.0
  * @access     public
- * 
+ *
  * @ORM\Table(name="`log`", indexes={@ORM\Index(name="session_id", columns={"session_id"}), @ORM\Index(name="creator_user_id", columns={"creator_user_id"})})
  * @ORM\Entity(repositoryClass="ContinuousNet\LivnYouBundle\Repository\LogRepository")
  * @ORM\HasLifecycleCallbacks()
- * 
+ *
  * @ExclusionPolicy("none")
- * 
+ *
  */
-class Log 
+class Log
 {
     /**
      * @var integer
@@ -46,9 +48,9 @@ class Log
      * @ORM\Column(name="id", type="integer", nullable=false, unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $id;
 
@@ -57,9 +59,9 @@ class Log
      * @access private
      *
      * @ORM\Column(name="`url`", type="string", length=100, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $url;
 
@@ -68,9 +70,9 @@ class Log
      * @access private
      *
      * @ORM\Column(name="`method`", type="string", length=10, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $method;
 
@@ -79,9 +81,9 @@ class Log
      * @access private
      *
      * @ORM\Column(name="`details_before`", type="text", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $detailsBefore;
 
@@ -90,9 +92,9 @@ class Log
      * @access private
      *
      * @ORM\Column(name="`details_after`", type="text", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $detailsAfter;
 
@@ -101,9 +103,9 @@ class Log
      * @access private
      *
      * @ORM\Column(name="`note`", type="text", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $note;
 
@@ -112,9 +114,9 @@ class Log
      * @access private
      *
      * @ORM\Column(name="`ip_address`", type="string", length=15, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ipAddress;
 
@@ -123,9 +125,9 @@ class Log
      * @access private
      *
      * @ORM\Column(name="`user_agent`", type="string", length=511, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $userAgent;
 
@@ -134,9 +136,9 @@ class Log
      * @access private
      *
      * @ORM\Column(name="`application`", type="string", length=20, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $application;
 
@@ -145,9 +147,9 @@ class Log
      * @access private
      *
      * @ORM\Column(name="`created_at`", type="datetime", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $createdAt;
 
@@ -159,10 +161,10 @@ class Log
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="session_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $session;
 
@@ -174,16 +176,16 @@ class Log
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="creator_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $creatorUser;
 
     /**
      * Constructor
-     * 
+     *
      * @access public
      */
     public function __construct()
@@ -194,7 +196,7 @@ class Log
      * Get id
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -218,7 +220,7 @@ class Log
      * Get url
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -242,7 +244,7 @@ class Log
      * Get method
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getMethod()
     {
@@ -266,7 +268,7 @@ class Log
      * Get detailsBefore
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getDetailsBefore()
     {
@@ -290,7 +292,7 @@ class Log
      * Get detailsAfter
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getDetailsAfter()
     {
@@ -314,7 +316,7 @@ class Log
      * Get note
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getNote()
     {
@@ -338,7 +340,7 @@ class Log
      * Get ipAddress
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getIpAddress()
     {
@@ -362,7 +364,7 @@ class Log
      * Get userAgent
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getUserAgent()
     {
@@ -386,7 +388,7 @@ class Log
      * Get application
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getApplication()
     {
@@ -410,7 +412,7 @@ class Log
      * Get createdAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -434,7 +436,7 @@ class Log
      * Get session
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\Session 
+     * @return \ContinuousNet\LivnYouBundle\Entity\Session
      */
     public function getSession()
     {
@@ -458,7 +460,7 @@ class Log
      * Get creatorUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getCreatorUser()
     {
@@ -477,8 +479,7 @@ class Log
      */
     public function prePersist()
     {
-        if (is_null($this->getCreatedAt()))
-        {
+        if (is_null($this->getCreatedAt())) {
             $this->setCreatedAt(new \DateTime('now'));
         }
     }

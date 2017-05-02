@@ -5,7 +5,9 @@ namespace ContinuousNet\LivnYouBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Events;
 use Doctrine\Common\Collections\ArrayCollection as DoctrineCollection;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Exclude;
 use JMS\Serializer\Annotation\Expose;
@@ -14,11 +16,11 @@ use JMS\Serializer\Annotation\Groups;
 
 /**
  * Measurement Entity
- * 
+ *
  * Storing Measurements data to the database using Doctrine
- * 
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Doctrine 2 Entity
  * @package    ContinuousNet\LivnYouBundle\Entity
  * @author     Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -29,15 +31,15 @@ use JMS\Serializer\Annotation\Groups;
  * @see        Measurement
  * @since      Class available since Release 1.0
  * @access     public
- * 
+ *
  * @ORM\Table(name="`measurement`", indexes={@ORM\Index(name="country_id", columns={"country_id"}), @ORM\Index(name="physical_activity_id", columns={"physical_activity_id"}), @ORM\Index(name="creator_user_id", columns={"creator_user_id"}), @ORM\Index(name="modifier_user_id", columns={"modifier_user_id"})})
  * @ORM\Entity(repositoryClass="ContinuousNet\LivnYouBundle\Repository\MeasurementRepository")
  * @ORM\HasLifecycleCallbacks()
- * 
+ *
  * @ExclusionPolicy("none")
- * 
+ *
  */
-class Measurement 
+class Measurement
 {
     /**
      * @var integer
@@ -46,9 +48,9 @@ class Measurement
      * @ORM\Column(name="id", type="integer", nullable=false, unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $id;
 
@@ -57,9 +59,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`first_name`", type="string", length=1024, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $firstName;
 
@@ -68,9 +70,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`last_name`", type="string", length=1024, nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $lastName;
 
@@ -79,9 +81,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`group_name`", type="string", length=1024, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $groupName;
 
@@ -90,9 +92,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`birth_date`", type="date", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $birthDate;
 
@@ -101,9 +103,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`gender`", type="string", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $gender;
 
@@ -112,9 +114,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`address`", type="string", length=1024, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $address;
 
@@ -123,9 +125,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`city`", type="string", length=1024, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $city;
 
@@ -134,9 +136,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`zip_code`", type="string", length=1024, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $zipCode;
 
@@ -145,9 +147,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`state`", type="string", length=1024, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $state;
 
@@ -156,9 +158,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mobile_number`", type="string", length=1024, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mobileNumber;
 
@@ -167,9 +169,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`email`", type="string", length=1024, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $email;
 
@@ -178,9 +180,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`phone`", type="string", length=1024, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $phone;
 
@@ -189,9 +191,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`weight`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $weight;
 
@@ -200,9 +202,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`height`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $height;
 
@@ -211,9 +213,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cup_size`", type="string", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cupSize;
 
@@ -222,9 +224,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`status`", type="string", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $status;
 
@@ -233,9 +235,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`app_name`", type="string", length=50, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $appName;
 
@@ -244,9 +246,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`app_version`", type="string", length=5, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $appVersion;
 
@@ -255,9 +257,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`device_date`", type="datetime", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $deviceDate;
 
@@ -266,9 +268,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`battery_level`", type="integer", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $batteryLevel;
 
@@ -277,9 +279,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`data_received`", type="string", length=300, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dataReceived;
 
@@ -288,9 +290,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`a5`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $a5;
 
@@ -299,9 +301,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`a20`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $a20;
 
@@ -310,9 +312,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`a50`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $a50;
 
@@ -321,9 +323,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`a100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $a100;
 
@@ -332,9 +334,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`a200`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $a200;
 
@@ -343,9 +345,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`z5`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $z5;
 
@@ -354,9 +356,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`z20`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $z20;
 
@@ -365,9 +367,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`z50`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $z50;
 
@@ -376,9 +378,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`z100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $z100;
 
@@ -387,9 +389,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`z200`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $z200;
 
@@ -398,9 +400,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`z350`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $z350;
 
@@ -409,9 +411,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`phase_angle`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $phaseAngle;
 
@@ -420,9 +422,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`act`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $act;
 
@@ -431,9 +433,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`k`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $k;
 
@@ -442,9 +444,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcRef;
 
@@ -453,9 +455,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcRef;
 
@@ -464,9 +466,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`smi_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $smiRef;
 
@@ -475,9 +477,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmir_cc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmirCcRef;
 
@@ -486,9 +488,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmir_muh_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmirMuhRef;
 
@@ -497,9 +499,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmslmir_muh_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmslmirMuhRef;
 
@@ -508,9 +510,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmslmir_cc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmslmirCcRef;
 
@@ -519,9 +521,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slmir_muh_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slmirMuhRef;
 
@@ -530,9 +532,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slmir_cc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slmirCcRef;
 
@@ -541,9 +543,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whr_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whrRef;
 
@@ -552,9 +554,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`hac`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $hac;
 
@@ -563,9 +565,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`wac`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $wac;
 
@@ -574,9 +576,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`a50_radian`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $a50Radian;
 
@@ -585,9 +587,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`x50`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $x50;
 
@@ -596,9 +598,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`r50`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $r50;
 
@@ -607,9 +609,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmr_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmrRef;
 
@@ -618,9 +620,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imc;
 
@@ -629,9 +631,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcRef;
 
@@ -640,9 +642,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_ref_inf`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcRefInf;
 
@@ -651,9 +653,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_ref_sup`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcRefSup;
 
@@ -662,9 +664,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcRef;
 
@@ -673,9 +675,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbw`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbw;
 
@@ -684,9 +686,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecw;
 
@@ -695,9 +697,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmci`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmci;
 
@@ -706,9 +708,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_ref_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcRefKg;
 
@@ -717,9 +719,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_ref_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmRefKg;
 
@@ -728,9 +730,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffm_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffmKg;
 
@@ -739,9 +741,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmKg;
 
@@ -750,9 +752,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffm_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffmPc;
 
@@ -761,9 +763,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffm_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmKg;
 
@@ -772,9 +774,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffm_ref_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmRefKg;
 
@@ -783,9 +785,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffm_et_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmEtKg;
 
@@ -794,9 +796,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmm_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmKg;
 
@@ -805,9 +807,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmm_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmRef;
 
@@ -816,9 +818,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmm_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmEt;
 
@@ -827,9 +829,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmffmr`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmffmr;
 
@@ -838,9 +840,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbw_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwPc;
 
@@ -849,9 +851,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPc;
 
@@ -860,9 +862,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcRef;
 
@@ -871,9 +873,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcEt;
 
@@ -882,9 +884,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_hc_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmHcKg;
 
@@ -893,9 +895,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_kg_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmKgRef;
 
@@ -904,9 +906,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`idffm_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $idffmKg;
 
@@ -915,9 +917,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPc;
 
@@ -926,9 +928,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffw;
 
@@ -937,9 +939,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcRef;
 
@@ -948,9 +950,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwRef;
 
@@ -959,9 +961,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwEt;
 
@@ -970,9 +972,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_spec`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwSpec;
 
@@ -981,9 +983,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPc;
 
@@ -992,9 +994,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecwffm_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwffmPc;
 
@@ -1003,9 +1005,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icw;
 
@@ -1014,9 +1016,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPc;
 
@@ -1025,9 +1027,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcRef;
 
@@ -1036,9 +1038,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwRef;
 
@@ -1047,9 +1049,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwRef;
 
@@ -1058,9 +1060,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcRef;
 
@@ -1069,9 +1071,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecwicw_pc_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwicwPcEt;
 
@@ -1080,9 +1082,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cmo`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cmo;
 
@@ -1091,9 +1093,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slm`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slm;
 
@@ -1102,9 +1104,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mo`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mo;
 
@@ -1113,9 +1115,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecs`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecs;
 
@@ -1124,9 +1126,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ms`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ms;
 
@@ -1135,9 +1137,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ms_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $msRef;
 
@@ -1146,9 +1148,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`smi`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $smi;
 
@@ -1157,9 +1159,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmi_indice_comp`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmiIndiceComp;
 
@@ -1168,9 +1170,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slmir`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slmir;
 
@@ -1179,9 +1181,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dasmm_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dasmmKg;
 
@@ -1190,9 +1192,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffeir_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffeirRef;
 
@@ -1201,9 +1203,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmr_ref_kjoules`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmrRefKjoules;
 
@@ -1212,9 +1214,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mms_pc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmsPcRef;
 
@@ -1223,9 +1225,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbw_fm`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwFm;
 
@@ -1234,9 +1236,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`z200z5r`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $z200z5r;
 
@@ -1245,9 +1247,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whr`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whr;
 
@@ -1256,9 +1258,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whtr`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whtr;
 
@@ -1267,9 +1269,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whtr_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whtrRef;
 
@@ -1278,9 +1280,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmr`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmr;
 
@@ -1289,9 +1291,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmr_kjoules`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmrKjoules;
 
@@ -1300,9 +1302,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcr;
 
@@ -1311,9 +1313,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_kjoules`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrKjoules;
 
@@ -1322,9 +1324,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPc;
 
@@ -1333,9 +1335,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcKg;
 
@@ -1344,9 +1346,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcRef;
 
@@ -1355,9 +1357,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_et_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcEtKg;
 
@@ -1366,9 +1368,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_et_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmEtKg;
 
@@ -1377,9 +1379,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPc;
 
@@ -1388,9 +1390,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mms_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmsKg;
 
@@ -1399,9 +1401,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mms_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmsPc;
 
@@ -1410,9 +1412,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mms_ref_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmsRefKg;
 
@@ -1421,9 +1423,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mms_et_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmsEtKg;
 
@@ -1432,9 +1434,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcm`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcm;
 
@@ -1443,9 +1445,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_meta_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaKg;
 
@@ -1454,9 +1456,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_meta_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaPc;
 
@@ -1465,9 +1467,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbw_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwRef;
 
@@ -1476,9 +1478,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icwfm`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwfm;
 
@@ -1487,9 +1489,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecwfm`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwfm;
 
@@ -1498,9 +1500,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficw;
 
@@ -1509,9 +1511,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecw;
 
@@ -1520,9 +1522,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPc;
 
@@ -1531,9 +1533,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPc;
 
@@ -1542,9 +1544,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwEt;
 
@@ -1553,9 +1555,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwEt;
 
@@ -1564,9 +1566,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecwicw_pc_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwicwPcEt;
 
@@ -1575,9 +1577,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffeir`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffeir;
 
@@ -1586,9 +1588,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mp;
 
@@ -1597,9 +1599,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhi;
 
@@ -1608,9 +1610,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhi;
 
@@ -1619,9 +1621,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmli`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmli;
 
@@ -1630,9 +1632,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmffmr`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmffmr;
 
@@ -1641,9 +1643,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmir`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmir;
 
@@ -1652,9 +1654,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmslmir`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmslmir;
 
@@ -1663,9 +1665,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcEt;
 
@@ -1674,9 +1676,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcEt;
 
@@ -1685,9 +1687,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmi`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmi;
 
@@ -1696,9 +1698,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_ref_div_ffecw`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwRefDivFfecw;
 
@@ -1707,9 +1709,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_ref_div_fficw`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwRefDivFficw;
 
@@ -1718,9 +1720,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwEt;
 
@@ -1729,9 +1731,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmr_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmrEt;
 
@@ -1740,9 +1742,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mms_pc_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmsPcEt;
 
@@ -1751,9 +1753,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbe`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbe;
 
@@ -1762,9 +1764,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwRef;
 
@@ -1773,9 +1775,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icwi`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwi;
 
@@ -1784,9 +1786,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cmo_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cmoRef;
 
@@ -1795,9 +1797,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cmo_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cmoEt;
 
@@ -1806,9 +1808,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slm_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slmRef;
 
@@ -1817,9 +1819,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slm_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slmEt;
 
@@ -1828,9 +1830,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmtli`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmtli;
 
@@ -1839,9 +1841,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecs_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecsRef;
 
@@ -1850,9 +1852,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecs_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecsEt;
 
@@ -1861,9 +1863,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_meta_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaRef;
 
@@ -1872,9 +1874,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcm_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmRef;
 
@@ -1883,9 +1885,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcm_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmEt;
 
@@ -1894,9 +1896,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpRef;
 
@@ -1905,9 +1907,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_et`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpEt;
 
@@ -1916,9 +1918,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_meta_et_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaEtKg;
 
@@ -1927,9 +1929,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPc100;
 
@@ -1938,9 +1940,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcStdA;
 
@@ -1949,9 +1951,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcStdB;
 
@@ -1960,9 +1962,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcStdC;
 
@@ -1971,9 +1973,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcStdD;
 
@@ -1982,9 +1984,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcStdE;
 
@@ -1993,9 +1995,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_std_f`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcStdF;
 
@@ -2004,9 +2006,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZaMax;
 
@@ -2015,9 +2017,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZaMaxColor;
 
@@ -2026,9 +2028,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZbMax;
 
@@ -2037,9 +2039,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZbMaxColor;
 
@@ -2048,9 +2050,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZcMax;
 
@@ -2059,9 +2061,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZcMaxColor;
 
@@ -2070,9 +2072,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZdMax;
 
@@ -2081,9 +2083,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZdMaxColor;
 
@@ -2092,9 +2094,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_ze_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZeMax;
 
@@ -2103,9 +2105,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_ze_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZeMaxColor;
 
@@ -2114,9 +2116,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_zf_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZfMax;
 
@@ -2125,9 +2127,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_zf_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZfMaxColor;
 
@@ -2136,9 +2138,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcZone;
 
@@ -2147,9 +2149,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPc100;
 
@@ -2158,9 +2160,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcStdA;
 
@@ -2169,9 +2171,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcStdB;
 
@@ -2180,9 +2182,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcStdC;
 
@@ -2191,9 +2193,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcStdD;
 
@@ -2202,9 +2204,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcStdE;
 
@@ -2213,9 +2215,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_std_f`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcStdF;
 
@@ -2224,9 +2226,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_std_g`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcStdG;
 
@@ -2235,9 +2237,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZaMax;
 
@@ -2246,9 +2248,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZaMaxColor;
 
@@ -2257,9 +2259,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZbMax;
 
@@ -2268,9 +2270,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZbMaxColor;
 
@@ -2279,9 +2281,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZcMax;
 
@@ -2290,9 +2292,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZcMaxColor;
 
@@ -2301,9 +2303,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZdMax;
 
@@ -2312,9 +2314,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZdMaxColor;
 
@@ -2323,9 +2325,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_ze_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZeMax;
 
@@ -2334,9 +2336,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_ze_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZeMaxColor;
 
@@ -2345,9 +2347,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_zf_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZfMax;
 
@@ -2356,9 +2358,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_zf_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZfMaxColor;
 
@@ -2367,9 +2369,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_zg_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZgMax;
 
@@ -2378,9 +2380,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_zg_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZgMaxColor;
 
@@ -2389,9 +2391,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcZone;
 
@@ -2400,9 +2402,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiStdA;
 
@@ -2411,9 +2413,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiStdB;
 
@@ -2422,9 +2424,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiStdC;
 
@@ -2433,9 +2435,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiStdD;
 
@@ -2444,9 +2446,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiZaMax;
 
@@ -2455,9 +2457,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiZaMaxColor;
 
@@ -2466,9 +2468,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiZbMax;
 
@@ -2477,9 +2479,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiZbMaxColor;
 
@@ -2488,9 +2490,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiZcMax;
 
@@ -2499,9 +2501,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiZcMaxColor;
 
@@ -2510,9 +2512,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiZdMax;
 
@@ -2521,9 +2523,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiZdMaxColor;
 
@@ -2532,9 +2534,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiZone;
 
@@ -2543,9 +2545,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_inf`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcInf;
 
@@ -2554,9 +2556,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrZaMax;
 
@@ -2565,9 +2567,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrZaMaxColor;
 
@@ -2576,9 +2578,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrZbMax;
 
@@ -2587,9 +2589,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrZbMaxColor;
 
@@ -2598,9 +2600,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrZcMax;
 
@@ -2609,9 +2611,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrZcMaxColor;
 
@@ -2620,9 +2622,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrZdMax;
 
@@ -2631,9 +2633,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrZdMaxColor;
 
@@ -2642,9 +2644,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_ze_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrZeMax;
 
@@ -2653,9 +2655,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_ze_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrZeMaxColor;
 
@@ -2664,9 +2666,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrZone;
 
@@ -2675,9 +2677,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_ref_100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcRef100;
 
@@ -2686,9 +2688,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmi;
 
@@ -2697,9 +2699,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiStdA;
 
@@ -2708,9 +2710,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiStdB;
 
@@ -2719,9 +2721,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiStdC;
 
@@ -2730,9 +2732,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiStdD;
 
@@ -2741,9 +2743,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiZaMax;
 
@@ -2752,9 +2754,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiZaMaxColor;
 
@@ -2763,9 +2765,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiZbMax;
 
@@ -2774,9 +2776,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiZbMaxColor;
 
@@ -2785,9 +2787,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiZcMax;
 
@@ -2796,9 +2798,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiZcMaxColor;
 
@@ -2807,9 +2809,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiZdMax;
 
@@ -2818,9 +2820,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiZdMaxColor;
 
@@ -2829,9 +2831,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiZone;
 
@@ -2840,9 +2842,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPc100;
 
@@ -2851,9 +2853,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_ref_100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcRef100;
 
@@ -2862,9 +2864,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcStdA;
 
@@ -2873,9 +2875,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcStdB;
 
@@ -2884,9 +2886,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcStdC;
 
@@ -2895,9 +2897,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcStdD;
 
@@ -2906,9 +2908,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcStdE;
 
@@ -2917,9 +2919,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_std_f`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcStdF;
 
@@ -2928,9 +2930,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_std_g`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcStdG;
 
@@ -2939,9 +2941,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZaMax;
 
@@ -2950,9 +2952,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZaMaxColor;
 
@@ -2961,9 +2963,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZbMax;
 
@@ -2972,9 +2974,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZbMaxColor;
 
@@ -2983,9 +2985,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZcMax;
 
@@ -2994,9 +2996,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZcMaxColor;
 
@@ -3005,9 +3007,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZdMax;
 
@@ -3016,9 +3018,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZdMaxColor;
 
@@ -3027,9 +3029,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_ze_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZeMax;
 
@@ -3038,9 +3040,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_ze_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZeMaxColor;
 
@@ -3049,9 +3051,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_zf_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZfMax;
 
@@ -3060,9 +3062,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_zf_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZfMaxColor;
 
@@ -3071,9 +3073,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_zg_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZgMax;
 
@@ -3082,9 +3084,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_zg_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZgMaxColor;
 
@@ -3093,9 +3095,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcZone;
 
@@ -3104,9 +3106,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPc100;
 
@@ -3115,9 +3117,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_ref_100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcRef100;
 
@@ -3126,9 +3128,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcStdA;
 
@@ -3137,9 +3139,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcStdB;
 
@@ -3148,9 +3150,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcStdC;
 
@@ -3159,9 +3161,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcStdD;
 
@@ -3170,9 +3172,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcStdE;
 
@@ -3181,9 +3183,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_std_f`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcStdF;
 
@@ -3192,9 +3194,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_std_g`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcStdG;
 
@@ -3203,9 +3205,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZaMax;
 
@@ -3214,9 +3216,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZaMaxColor;
 
@@ -3225,9 +3227,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZbMax;
 
@@ -3236,9 +3238,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZbMaxColor;
 
@@ -3247,9 +3249,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZcMax;
 
@@ -3258,9 +3260,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZcMaxColor;
 
@@ -3269,9 +3271,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZdMax;
 
@@ -3280,9 +3282,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZdMaxColor;
 
@@ -3291,9 +3293,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_ze_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZeMax;
 
@@ -3302,9 +3304,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_ze_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZeMaxColor;
 
@@ -3313,9 +3315,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_zf_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZfMax;
 
@@ -3324,9 +3326,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_zf_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZfMaxColor;
 
@@ -3335,9 +3337,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_zg_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZgMax;
 
@@ -3346,9 +3348,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_zg_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZgMaxColor;
 
@@ -3357,9 +3359,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcZone;
 
@@ -3368,9 +3370,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPc100;
 
@@ -3379,9 +3381,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcStdA;
 
@@ -3390,9 +3392,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcStdB;
 
@@ -3401,9 +3403,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcStdC;
 
@@ -3412,9 +3414,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcStdD;
 
@@ -3423,9 +3425,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcStdE;
 
@@ -3434,9 +3436,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_std_f`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcStdF;
 
@@ -3445,9 +3447,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZaMax;
 
@@ -3456,9 +3458,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZaMaxColor;
 
@@ -3467,9 +3469,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZbMax;
 
@@ -3478,9 +3480,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZbMaxColor;
 
@@ -3489,9 +3491,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZcMax;
 
@@ -3500,9 +3502,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZcMaxColor;
 
@@ -3511,9 +3513,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZdMax;
 
@@ -3522,9 +3524,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZdMaxColor;
 
@@ -3533,9 +3535,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_ze_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZeMax;
 
@@ -3544,9 +3546,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_ze_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZeMaxColor;
 
@@ -3555,9 +3557,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_zf_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZfMax;
 
@@ -3566,9 +3568,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_zf_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZfMaxColor;
 
@@ -3577,9 +3579,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcZone;
 
@@ -3588,9 +3590,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPc100;
 
@@ -3599,9 +3601,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcStdA;
 
@@ -3610,9 +3612,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcStdB;
 
@@ -3621,9 +3623,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcStdC;
 
@@ -3632,9 +3634,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcStdD;
 
@@ -3643,9 +3645,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcStdE;
 
@@ -3654,9 +3656,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_std_f`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcStdF;
 
@@ -3665,9 +3667,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_std_g`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcStdG;
 
@@ -3676,9 +3678,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZaMax;
 
@@ -3687,9 +3689,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZaMaxColor;
 
@@ -3698,9 +3700,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZbMax;
 
@@ -3709,9 +3711,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZbMaxColor;
 
@@ -3720,9 +3722,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZcMax;
 
@@ -3731,9 +3733,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZcMaxColor;
 
@@ -3742,9 +3744,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZdMax;
 
@@ -3753,9 +3755,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZdMaxColor;
 
@@ -3764,9 +3766,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_ze_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZeMax;
 
@@ -3775,9 +3777,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_ze_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZeMaxColor;
 
@@ -3786,9 +3788,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_zf_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZfMax;
 
@@ -3797,9 +3799,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_zf_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZfMaxColor;
 
@@ -3808,9 +3810,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_zg_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZgMax;
 
@@ -3819,9 +3821,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_zg_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZgMaxColor;
 
@@ -3830,9 +3832,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcZone;
 
@@ -3841,9 +3843,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmi;
 
@@ -3852,9 +3854,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiStdA;
 
@@ -3863,9 +3865,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiStdB;
 
@@ -3874,9 +3876,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiStdC;
 
@@ -3885,9 +3887,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiStdD;
 
@@ -3896,9 +3898,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiZaMax;
 
@@ -3907,9 +3909,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiZaMaxColor;
 
@@ -3918,9 +3920,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiZbMax;
 
@@ -3929,9 +3931,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiZbMaxColor;
 
@@ -3940,9 +3942,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiZcMax;
 
@@ -3951,9 +3953,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiZcMaxColor;
 
@@ -3962,9 +3964,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiZdMax;
 
@@ -3973,9 +3975,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiZdMaxColor;
 
@@ -3984,9 +3986,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiZone;
 
@@ -3995,9 +3997,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetai;
 
@@ -4006,9 +4008,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiStdA;
 
@@ -4017,9 +4019,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiStdB;
 
@@ -4028,9 +4030,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiStdC;
 
@@ -4039,9 +4041,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiStdD;
 
@@ -4050,9 +4052,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiZaMax;
 
@@ -4061,9 +4063,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiZaMaxColor;
 
@@ -4072,9 +4074,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiZbMax;
 
@@ -4083,9 +4085,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiZbMaxColor;
 
@@ -4094,9 +4096,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiZcMax;
 
@@ -4105,9 +4107,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiZcMaxColor;
 
@@ -4116,9 +4118,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiZdMax;
 
@@ -4127,9 +4129,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiZdMaxColor;
 
@@ -4138,9 +4140,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiZone;
 
@@ -4149,9 +4151,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffmi`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffmi;
 
@@ -4160,9 +4162,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffmi_ref`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffmiRef;
 
@@ -4171,9 +4173,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffm_ref_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffmRefKg;
 
@@ -4182,9 +4184,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffm_et_kg`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffmEtKg;
 
@@ -4193,9 +4195,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmi;
 
@@ -4204,9 +4206,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiStdA;
 
@@ -4215,9 +4217,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiStdB;
 
@@ -4226,9 +4228,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiStdC;
 
@@ -4237,9 +4239,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiStdD;
 
@@ -4248,9 +4250,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiZaMax;
 
@@ -4259,9 +4261,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiZaMaxColor;
 
@@ -4270,9 +4272,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiZbMax;
 
@@ -4281,9 +4283,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiZbMaxColor;
 
@@ -4292,9 +4294,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiZcMax;
 
@@ -4303,9 +4305,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiZcMaxColor;
 
@@ -4314,9 +4316,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiZdMax;
 
@@ -4325,9 +4327,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiZdMaxColor;
 
@@ -4336,9 +4338,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiZone;
 
@@ -4347,9 +4349,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmri;
 
@@ -4358,9 +4360,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriStdA;
 
@@ -4369,9 +4371,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriStdB;
 
@@ -4380,9 +4382,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriStdC;
 
@@ -4391,9 +4393,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriStdD;
 
@@ -4402,9 +4404,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriZaMax;
 
@@ -4413,9 +4415,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriZaMaxColor;
 
@@ -4424,9 +4426,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriZbMax;
 
@@ -4435,9 +4437,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriZbMaxColor;
 
@@ -4446,9 +4448,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriZcMax;
 
@@ -4457,9 +4459,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriZcMaxColor;
 
@@ -4468,9 +4470,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriZdMax;
 
@@ -4479,9 +4481,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriZdMaxColor;
 
@@ -4490,9 +4492,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriZone;
 
@@ -4501,9 +4503,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPc100;
 
@@ -4512,9 +4514,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecwi`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwi;
 
@@ -4523,9 +4525,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcStdA;
 
@@ -4534,9 +4536,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcStdB;
 
@@ -4545,9 +4547,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcStdC;
 
@@ -4556,9 +4558,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcStdD;
 
@@ -4567,9 +4569,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcStdE;
 
@@ -4578,9 +4580,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_std_f`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcStdF;
 
@@ -4589,9 +4591,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_std_g`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcStdG;
 
@@ -4600,9 +4602,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecwi_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwiStdA;
 
@@ -4611,9 +4613,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecwi_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwiStdB;
 
@@ -4622,9 +4624,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecwi_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwiStdC;
 
@@ -4633,9 +4635,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecwi_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwiStdD;
 
@@ -4644,9 +4646,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecwi_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwiStdE;
 
@@ -4655,9 +4657,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecwi_std_f`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwiStdF;
 
@@ -4666,9 +4668,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecwi_std_g`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwiStdG;
 
@@ -4677,9 +4679,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZaMax;
 
@@ -4688,9 +4690,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZaMaxColor;
 
@@ -4699,9 +4701,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZbMax;
 
@@ -4710,9 +4712,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZbMaxColor;
 
@@ -4721,9 +4723,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZcMax;
 
@@ -4732,9 +4734,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZcMaxColor;
 
@@ -4743,9 +4745,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZdMax;
 
@@ -4754,9 +4756,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZdMaxColor;
 
@@ -4765,9 +4767,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_ze_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZeMax;
 
@@ -4776,9 +4778,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_ze_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZeMaxColor;
 
@@ -4787,9 +4789,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_zf_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZfMax;
 
@@ -4798,9 +4800,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_zf_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZfMaxColor;
 
@@ -4809,9 +4811,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_zg_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZgMax;
 
@@ -4820,9 +4822,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_zg_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZgMaxColor;
 
@@ -4831,9 +4833,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcZone;
 
@@ -4842,9 +4844,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_100`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPc100;
 
@@ -4853,9 +4855,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficwi`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwi;
 
@@ -4864,9 +4866,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcStdA;
 
@@ -4875,9 +4877,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcStdB;
 
@@ -4886,9 +4888,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcStdC;
 
@@ -4897,9 +4899,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcStdD;
 
@@ -4908,9 +4910,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcStdE;
 
@@ -4919,9 +4921,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_std_f`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcStdF;
 
@@ -4930,9 +4932,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_std_g`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcStdG;
 
@@ -4941,9 +4943,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficwi_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwiStdA;
 
@@ -4952,9 +4954,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficwi_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwiStdB;
 
@@ -4963,9 +4965,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficwi_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwiStdC;
 
@@ -4974,9 +4976,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficwi_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwiStdD;
 
@@ -4985,9 +4987,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficwi_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwiStdE;
 
@@ -4996,9 +4998,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficwi_std_f`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwiStdF;
 
@@ -5007,9 +5009,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficwi_std_g`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwiStdG;
 
@@ -5018,9 +5020,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZaMax;
 
@@ -5029,9 +5031,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZaMaxColor;
 
@@ -5040,9 +5042,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZbMax;
 
@@ -5051,9 +5053,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZbMaxColor;
 
@@ -5062,9 +5064,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZcMax;
 
@@ -5073,9 +5075,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZcMaxColor;
 
@@ -5084,9 +5086,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZdMax;
 
@@ -5095,9 +5097,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZdMaxColor;
 
@@ -5106,9 +5108,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_ze_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZeMax;
 
@@ -5117,9 +5119,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_ze_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZeMaxColor;
 
@@ -5128,9 +5130,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_zf_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZfMax;
 
@@ -5139,9 +5141,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_zf_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZfMaxColor;
 
@@ -5150,9 +5152,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_zg_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZgMax;
 
@@ -5161,9 +5163,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_zg_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZgMaxColor;
 
@@ -5172,9 +5174,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcZone;
 
@@ -5183,9 +5185,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiStdA;
 
@@ -5194,9 +5196,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiStdB;
 
@@ -5205,9 +5207,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiStdC;
 
@@ -5216,9 +5218,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiStdD;
 
@@ -5227,9 +5229,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiZaMax;
 
@@ -5238,9 +5240,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiZaMaxColor;
 
@@ -5249,9 +5251,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiZbMax;
 
@@ -5260,9 +5262,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiZbMaxColor;
 
@@ -5271,9 +5273,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiZcMax;
 
@@ -5282,9 +5284,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiZcMaxColor;
 
@@ -5293,9 +5295,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiZdMax;
 
@@ -5304,9 +5306,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiZdMaxColor;
 
@@ -5315,9 +5317,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiZone;
 
@@ -5326,9 +5328,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmi;
 
@@ -5337,9 +5339,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiStdA;
 
@@ -5348,9 +5350,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiStdB;
 
@@ -5359,9 +5361,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiStdC;
 
@@ -5370,9 +5372,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiStdD;
 
@@ -5381,9 +5383,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiZaMax;
 
@@ -5392,9 +5394,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiZaMaxColor;
 
@@ -5403,9 +5405,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiZbMax;
 
@@ -5414,9 +5416,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiZbMaxColor;
 
@@ -5425,9 +5427,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiZcMax;
 
@@ -5436,9 +5438,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiZcMaxColor;
 
@@ -5447,9 +5449,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiZdMax;
 
@@ -5458,9 +5460,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiZdMaxColor;
 
@@ -5469,9 +5471,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiZone;
 
@@ -5480,9 +5482,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_norms`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcNorms;
 
@@ -5491,9 +5493,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcStdA;
 
@@ -5502,9 +5504,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcStdB;
 
@@ -5513,9 +5515,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcStdC;
 
@@ -5524,9 +5526,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcStdD;
 
@@ -5535,9 +5537,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcStdE;
 
@@ -5546,9 +5548,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_std_f`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcStdF;
 
@@ -5557,9 +5559,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_std_g`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcStdG;
 
@@ -5568,9 +5570,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZaMax;
 
@@ -5579,9 +5581,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZaMaxColor;
 
@@ -5590,9 +5592,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZbMax;
 
@@ -5601,9 +5603,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZbMaxColor;
 
@@ -5612,9 +5614,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZcMax;
 
@@ -5623,9 +5625,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZcMaxColor;
 
@@ -5634,9 +5636,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_zd_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZdMax;
 
@@ -5645,9 +5647,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_zd_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZdMaxColor;
 
@@ -5656,9 +5658,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_ze_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZeMax;
 
@@ -5667,9 +5669,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_ze_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZeMaxColor;
 
@@ -5678,9 +5680,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_zf_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZfMax;
 
@@ -5689,9 +5691,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_zf_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZfMaxColor;
 
@@ -5700,9 +5702,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_zg_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZgMax;
 
@@ -5711,9 +5713,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_zg_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZgMaxColor;
 
@@ -5722,9 +5724,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcZone;
 
@@ -5733,9 +5735,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmslmir_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmslmirZaMax;
 
@@ -5744,9 +5746,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmslmir_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmslmirZaMaxColor;
 
@@ -5755,9 +5757,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmslmir_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmslmirZbMax;
 
@@ -5766,9 +5768,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmslmir_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmslmirZbMaxColor;
 
@@ -5777,9 +5779,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmslmir_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmslmirZone;
 
@@ -5788,9 +5790,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmir_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmirZaMax;
 
@@ -5799,9 +5801,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmir_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmirZaMaxColor;
 
@@ -5810,9 +5812,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmir_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmirZbMax;
 
@@ -5821,9 +5823,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmir_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmirZbMaxColor;
 
@@ -5832,9 +5834,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmir_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmirZone;
 
@@ -5843,9 +5845,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slmir_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slmirZaMax;
 
@@ -5854,9 +5856,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slmir_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slmirZaMaxColor;
 
@@ -5865,9 +5867,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slmir_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slmirZbMax;
 
@@ -5876,9 +5878,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slmir_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slmirZbMaxColor;
 
@@ -5887,9 +5889,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slmir_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slmirZone;
 
@@ -5898,9 +5900,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whr_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whrZaMax;
 
@@ -5909,9 +5911,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whr_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whrZaMaxColor;
 
@@ -5920,9 +5922,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whr_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whrZbMax;
 
@@ -5931,9 +5933,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whr_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whrZbMaxColor;
 
@@ -5942,9 +5944,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whr_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whrZone;
 
@@ -5953,9 +5955,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whtr_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whtrZaMax;
 
@@ -5964,9 +5966,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whtr_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whtrZaMaxColor;
 
@@ -5975,9 +5977,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whtr_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whtrZbMax;
 
@@ -5986,9 +5988,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whtr_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whtrZbMaxColor;
 
@@ -5997,9 +5999,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whtr_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whtrZone;
 
@@ -6008,9 +6010,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_cc_sc_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalCcScZaMax;
 
@@ -6019,9 +6021,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_cc_sc_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalCcScZaMaxColor;
 
@@ -6030,9 +6032,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_cc_sc_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalCcScZbMax;
 
@@ -6041,9 +6043,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_cc_sc_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalCcScZbMaxColor;
 
@@ -6052,9 +6054,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_cc_sc_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalCcScZcMax;
 
@@ -6063,9 +6065,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_cc_sc_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalCcScZcMaxColor;
 
@@ -6074,9 +6076,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_cc_sc_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalCcScZone;
 
@@ -6085,9 +6087,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_muh_sc_za_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalMuhScZaMax;
 
@@ -6096,9 +6098,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_muh_sc_za_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalMuhScZaMaxColor;
 
@@ -6107,9 +6109,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_muh_sc_zb_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalMuhScZbMax;
 
@@ -6118,9 +6120,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_muh_sc_zb_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalMuhScZbMaxColor;
 
@@ -6129,9 +6131,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_muh_sc_zc_max`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalMuhScZcMax;
 
@@ -6140,9 +6142,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_muh_sc_zc_max_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalMuhScZcMaxColor;
 
@@ -6151,9 +6153,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_muh_sc_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalMuhScZone;
 
@@ -6162,9 +6164,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_za_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleZaColor;
 
@@ -6173,9 +6175,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_zb_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleZbColor;
 
@@ -6184,9 +6186,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_zc_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleZcColor;
 
@@ -6195,9 +6197,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_zd_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleZdColor;
 
@@ -6206,9 +6208,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_ze_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleZeColor;
 
@@ -6217,9 +6219,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_zf_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleZfColor;
 
@@ -6228,9 +6230,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_zone`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleZone;
 
@@ -6239,9 +6241,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_point`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ciblePoint;
 
@@ -6250,9 +6252,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_icw_pc_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleIcwPcStdB;
 
@@ -6261,9 +6263,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_icw_pc_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleIcwPcStdC;
 
@@ -6272,9 +6274,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_icw_pc_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleIcwPcStdD;
 
@@ -6283,9 +6285,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_icw_pc_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleIcwPcStdE;
 
@@ -6294,9 +6296,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_fm_hc_pc_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleFmHcPcStdA;
 
@@ -6305,9 +6307,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_fm_hc_pc_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleFmHcPcStdB;
 
@@ -6316,9 +6318,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_fm_hc_pc_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleFmHcPcStdC;
 
@@ -6327,9 +6329,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_fm_hc_pc_std_e`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleFmHcPcStdE;
 
@@ -6338,9 +6340,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_ffw_std_a`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleFfwStdA;
 
@@ -6349,9 +6351,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_ffw_std_b`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleFfwStdB;
 
@@ -6360,9 +6362,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_ffw_std_c`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleFfwStdC;
 
@@ -6371,9 +6373,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_ffw_std_d`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleFfwStdD;
 
@@ -6382,9 +6384,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_hc_pc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmHcPcPos;
 
@@ -6393,9 +6395,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffw_pc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffwPcPos;
 
@@ -6404,9 +6406,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mmhi_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mmhiPos;
 
@@ -6415,9 +6417,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrPos;
 
@@ -6426,9 +6428,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_cons_inf`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrConsInf;
 
@@ -6437,9 +6439,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`adcr_cons_sup`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $adcrConsSup;
 
@@ -6448,9 +6450,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmmi_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmmiPos;
 
@@ -6459,9 +6461,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ecw_pc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ecwPcPos;
 
@@ -6470,9 +6472,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`icw_pc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $icwPcPos;
 
@@ -6481,9 +6483,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fm_pc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmPcPos;
 
@@ -6492,9 +6494,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`tbwffm_pc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $tbwffmPcPos;
 
@@ -6503,9 +6505,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`dffmi_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $dffmiPos;
 
@@ -6514,9 +6516,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`mp_metai_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $mpMetaiPos;
 
@@ -6525,9 +6527,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`iffmi_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $iffmiPos;
 
@@ -6536,9 +6538,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bmri_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bmriPos;
 
@@ -6547,9 +6549,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecw_pc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwPcPos;
 
@@ -6558,9 +6560,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`ffecwi_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $ffecwiPos;
 
@@ -6569,9 +6571,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficw_pc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwPcPos;
 
@@ -6580,9 +6582,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fficwi_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fficwiPos;
 
@@ -6591,9 +6593,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmhi_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmhiPos;
 
@@ -6602,9 +6604,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`bcmi_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bcmiPos;
 
@@ -6613,9 +6615,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`imc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $imcPos;
 
@@ -6624,9 +6626,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmslmir_cc_sc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmslmirCcSc;
 
@@ -6635,9 +6637,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmir_cc_sc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmirCcSc;
 
@@ -6646,9 +6648,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slmir_cc_sc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slmirCcSc;
 
@@ -6657,9 +6659,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whr_cc_sc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whrCcSc;
 
@@ -6668,9 +6670,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`whtr_cc_sc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $whtrCcSc;
 
@@ -6679,9 +6681,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_cc_sc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalCcSc;
 
@@ -6690,9 +6692,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_cc_sc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalCcScPos;
 
@@ -6701,9 +6703,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmslmir_muh_sc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmslmirMuhSc;
 
@@ -6712,9 +6714,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`fmir_muh_sc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $fmirMuhSc;
 
@@ -6723,9 +6725,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`slmir_muh_sc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $slmirMuhSc;
 
@@ -6734,9 +6736,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_muh_sc`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalMuhSc;
 
@@ -6745,9 +6747,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`total_muh_sc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $totalMuhScPos;
 
@@ -6756,9 +6758,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_icw_pc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleIcwPcPos;
 
@@ -6767,9 +6769,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_imc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleImcPos;
 
@@ -6778,9 +6780,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_fm_hc_pc_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleFmHcPcPos;
 
@@ -6789,9 +6791,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_mmhi_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleMmhiPos;
 
@@ -6800,9 +6802,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_asmhi_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleAsmhiPos;
 
@@ -6811,9 +6813,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`cible_ffw_pos`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $cibleFfwPos;
 
@@ -6822,9 +6824,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmli_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmliColor;
 
@@ -6833,9 +6835,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`asmtli_color`", type="string", length=20, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $asmtliColor;
 
@@ -6844,9 +6846,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`request`", type="text", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $request;
 
@@ -6855,9 +6857,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`response`", type="text", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $response;
 
@@ -6866,9 +6868,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`interpretation_date`", type="datetime", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $interpretationDate;
 
@@ -6877,9 +6879,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`created_at`", type="datetime", nullable=false, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $createdAt;
 
@@ -6888,9 +6890,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`modified_at`", type="datetime", nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $modifiedAt;
 
@@ -6899,9 +6901,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`thighs_size`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $thighsSize;
 
@@ -6910,9 +6912,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`hips_size`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $hipsSize;
 
@@ -6921,9 +6923,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`waist_size`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $waistSize;
 
@@ -6932,9 +6934,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`chest_size`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $chestSize;
 
@@ -6943,9 +6945,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`biceps_size`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $bicepsSize;
 
@@ -6954,9 +6956,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`age`", type="float", precision=10, scale=0, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $age;
 
@@ -6965,9 +6967,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`biody_bluetooth_mac_address`", type="string", length=18, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $biodyBluetoothMacAddress;
 
@@ -6976,9 +6978,9 @@ class Measurement
      * @access private
      *
      * @ORM\Column(name="`machine_bluetooth_mac_address`", type="string", length=18, nullable=true, unique=false)
-     * 
+     *
      * @Expose
-     * 
+     *
      */
     private $machineBluetoothMacAddress;
 
@@ -6990,10 +6992,10 @@ class Measurement
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $country;
 
@@ -7005,10 +7007,10 @@ class Measurement
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="physical_activity_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $physicalActivity;
 
@@ -7020,10 +7022,10 @@ class Measurement
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="creator_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $creatorUser;
 
@@ -7035,16 +7037,16 @@ class Measurement
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="modifier_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
-     * 
+     *
      */
     private $modifierUser;
 
     /**
      * Constructor
-     * 
+     *
      * @access public
      */
     public function __construct()
@@ -7055,7 +7057,7 @@ class Measurement
      * Get id
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -7079,7 +7081,7 @@ class Measurement
      * Get firstName
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -7103,7 +7105,7 @@ class Measurement
      * Get lastName
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -7127,7 +7129,7 @@ class Measurement
      * Get groupName
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getGroupName()
     {
@@ -7151,7 +7153,7 @@ class Measurement
      * Get birthDate
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBirthDate()
     {
@@ -7175,7 +7177,7 @@ class Measurement
      * Get gender
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getGender()
     {
@@ -7199,7 +7201,7 @@ class Measurement
      * Get address
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -7223,7 +7225,7 @@ class Measurement
      * Get city
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -7247,7 +7249,7 @@ class Measurement
      * Get zipCode
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getZipCode()
     {
@@ -7271,7 +7273,7 @@ class Measurement
      * Get state
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getState()
     {
@@ -7295,7 +7297,7 @@ class Measurement
      * Get mobileNumber
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getMobileNumber()
     {
@@ -7319,7 +7321,7 @@ class Measurement
      * Get email
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -7343,7 +7345,7 @@ class Measurement
      * Get phone
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -7367,7 +7369,7 @@ class Measurement
      * Get weight
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWeight()
     {
@@ -7391,7 +7393,7 @@ class Measurement
      * Get height
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getHeight()
     {
@@ -7415,7 +7417,7 @@ class Measurement
      * Get cupSize
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getCupSize()
     {
@@ -7439,7 +7441,7 @@ class Measurement
      * Get status
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getStatus()
     {
@@ -7463,7 +7465,7 @@ class Measurement
      * Get appName
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAppName()
     {
@@ -7487,7 +7489,7 @@ class Measurement
      * Get appVersion
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAppVersion()
     {
@@ -7511,7 +7513,7 @@ class Measurement
      * Get deviceDate
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDeviceDate()
     {
@@ -7535,7 +7537,7 @@ class Measurement
      * Get batteryLevel
      *
      * @access public
-     * @return integer 
+     * @return integer
      */
     public function getBatteryLevel()
     {
@@ -7559,7 +7561,7 @@ class Measurement
      * Get dataReceived
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getDataReceived()
     {
@@ -7583,7 +7585,7 @@ class Measurement
      * Get a5
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getA5()
     {
@@ -7607,7 +7609,7 @@ class Measurement
      * Get a20
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getA20()
     {
@@ -7631,7 +7633,7 @@ class Measurement
      * Get a50
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getA50()
     {
@@ -7655,7 +7657,7 @@ class Measurement
      * Get a100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getA100()
     {
@@ -7679,7 +7681,7 @@ class Measurement
      * Get a200
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getA200()
     {
@@ -7703,7 +7705,7 @@ class Measurement
      * Get z5
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getZ5()
     {
@@ -7727,7 +7729,7 @@ class Measurement
      * Get z20
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getZ20()
     {
@@ -7751,7 +7753,7 @@ class Measurement
      * Get z50
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getZ50()
     {
@@ -7775,7 +7777,7 @@ class Measurement
      * Get z100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getZ100()
     {
@@ -7799,7 +7801,7 @@ class Measurement
      * Get z200
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getZ200()
     {
@@ -7823,7 +7825,7 @@ class Measurement
      * Get z350
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getZ350()
     {
@@ -7847,7 +7849,7 @@ class Measurement
      * Get phaseAngle
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getPhaseAngle()
     {
@@ -7871,7 +7873,7 @@ class Measurement
      * Get act
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAct()
     {
@@ -7895,7 +7897,7 @@ class Measurement
      * Get k
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getK()
     {
@@ -7919,7 +7921,7 @@ class Measurement
      * Get ecwPcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcRef()
     {
@@ -7943,7 +7945,7 @@ class Measurement
      * Get icwPcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcRef()
     {
@@ -7967,7 +7969,7 @@ class Measurement
      * Get smiRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSmiRef()
     {
@@ -7991,7 +7993,7 @@ class Measurement
      * Get fmirCcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmirCcRef()
     {
@@ -8015,7 +8017,7 @@ class Measurement
      * Get fmirMuhRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmirMuhRef()
     {
@@ -8039,7 +8041,7 @@ class Measurement
      * Get fmslmirMuhRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmslmirMuhRef()
     {
@@ -8063,7 +8065,7 @@ class Measurement
      * Get fmslmirCcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmslmirCcRef()
     {
@@ -8087,7 +8089,7 @@ class Measurement
      * Get slmirMuhRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSlmirMuhRef()
     {
@@ -8111,7 +8113,7 @@ class Measurement
      * Get slmirCcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSlmirCcRef()
     {
@@ -8135,7 +8137,7 @@ class Measurement
      * Get whrRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWhrRef()
     {
@@ -8159,7 +8161,7 @@ class Measurement
      * Get hac
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getHac()
     {
@@ -8183,7 +8185,7 @@ class Measurement
      * Get wac
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWac()
     {
@@ -8207,7 +8209,7 @@ class Measurement
      * Get a50Radian
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getA50Radian()
     {
@@ -8231,7 +8233,7 @@ class Measurement
      * Get x50
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getX50()
     {
@@ -8255,7 +8257,7 @@ class Measurement
      * Get r50
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getR50()
     {
@@ -8279,7 +8281,7 @@ class Measurement
      * Get bmrRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmrRef()
     {
@@ -8303,7 +8305,7 @@ class Measurement
      * Get imc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImc()
     {
@@ -8327,7 +8329,7 @@ class Measurement
      * Get imcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcRef()
     {
@@ -8351,7 +8353,7 @@ class Measurement
      * Get imcRefInf
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcRefInf()
     {
@@ -8375,7 +8377,7 @@ class Measurement
      * Get imcRefSup
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcRefSup()
     {
@@ -8399,7 +8401,7 @@ class Measurement
      * Get fmPcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcRef()
     {
@@ -8423,7 +8425,7 @@ class Measurement
      * Get tbw
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbw()
     {
@@ -8447,7 +8449,7 @@ class Measurement
      * Get ecw
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcw()
     {
@@ -8471,7 +8473,7 @@ class Measurement
      * Get bmci
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmci()
     {
@@ -8495,7 +8497,7 @@ class Measurement
      * Get fmHcRefKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcRefKg()
     {
@@ -8519,7 +8521,7 @@ class Measurement
      * Get fmRefKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmRefKg()
     {
@@ -8543,7 +8545,7 @@ class Measurement
      * Get ffmKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfmKg()
     {
@@ -8567,7 +8569,7 @@ class Measurement
      * Get fmKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmKg()
     {
@@ -8591,7 +8593,7 @@ class Measurement
      * Get ffmPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfmPc()
     {
@@ -8615,7 +8617,7 @@ class Measurement
      * Get dffmKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmKg()
     {
@@ -8639,7 +8641,7 @@ class Measurement
      * Get dffmRefKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmRefKg()
     {
@@ -8663,7 +8665,7 @@ class Measurement
      * Get dffmEtKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmEtKg()
     {
@@ -8687,7 +8689,7 @@ class Measurement
      * Get asmmKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmKg()
     {
@@ -8711,7 +8713,7 @@ class Measurement
      * Get asmmRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmRef()
     {
@@ -8735,7 +8737,7 @@ class Measurement
      * Get asmmEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmEt()
     {
@@ -8759,7 +8761,7 @@ class Measurement
      * Get asmmffmr
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmffmr()
     {
@@ -8783,7 +8785,7 @@ class Measurement
      * Get tbwPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwPc()
     {
@@ -8807,7 +8809,7 @@ class Measurement
      * Get tbwffmPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPc()
     {
@@ -8831,7 +8833,7 @@ class Measurement
      * Get tbwffmPcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcRef()
     {
@@ -8855,7 +8857,7 @@ class Measurement
      * Get tbwffmPcEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcEt()
     {
@@ -8879,7 +8881,7 @@ class Measurement
      * Get tbwffmHcKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmHcKg()
     {
@@ -8903,7 +8905,7 @@ class Measurement
      * Get tbwffmKgRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmKgRef()
     {
@@ -8927,7 +8929,7 @@ class Measurement
      * Get idffmKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIdffmKg()
     {
@@ -8951,7 +8953,7 @@ class Measurement
      * Get ffwPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPc()
     {
@@ -8975,7 +8977,7 @@ class Measurement
      * Get ffw
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfw()
     {
@@ -8999,7 +9001,7 @@ class Measurement
      * Get ffwPcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcRef()
     {
@@ -9023,7 +9025,7 @@ class Measurement
      * Get ffwRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwRef()
     {
@@ -9047,7 +9049,7 @@ class Measurement
      * Get ffwEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwEt()
     {
@@ -9071,7 +9073,7 @@ class Measurement
      * Get ecwSpec
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwSpec()
     {
@@ -9095,7 +9097,7 @@ class Measurement
      * Get ecwPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPc()
     {
@@ -9119,7 +9121,7 @@ class Measurement
      * Get ecwffmPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwffmPc()
     {
@@ -9143,7 +9145,7 @@ class Measurement
      * Get icw
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcw()
     {
@@ -9167,7 +9169,7 @@ class Measurement
      * Get icwPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPc()
     {
@@ -9191,7 +9193,7 @@ class Measurement
      * Get fficwPcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcRef()
     {
@@ -9215,7 +9217,7 @@ class Measurement
      * Get fficwRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwRef()
     {
@@ -9239,7 +9241,7 @@ class Measurement
      * Get ffecwRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwRef()
     {
@@ -9263,7 +9265,7 @@ class Measurement
      * Get ffecwPcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcRef()
     {
@@ -9287,7 +9289,7 @@ class Measurement
      * Get ecwicwPcEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwicwPcEt()
     {
@@ -9311,7 +9313,7 @@ class Measurement
      * Get cmo
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCmo()
     {
@@ -9335,7 +9337,7 @@ class Measurement
      * Get slm
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSlm()
     {
@@ -9359,7 +9361,7 @@ class Measurement
      * Get mo
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMo()
     {
@@ -9383,7 +9385,7 @@ class Measurement
      * Get ecs
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcs()
     {
@@ -9407,7 +9409,7 @@ class Measurement
      * Get ms
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMs()
     {
@@ -9431,7 +9433,7 @@ class Measurement
      * Get msRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMsRef()
     {
@@ -9455,7 +9457,7 @@ class Measurement
      * Get smi
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSmi()
     {
@@ -9479,7 +9481,7 @@ class Measurement
      * Get fmiIndiceComp
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmiIndiceComp()
     {
@@ -9503,7 +9505,7 @@ class Measurement
      * Get slmir
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSlmir()
     {
@@ -9527,7 +9529,7 @@ class Measurement
      * Get dasmmKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDasmmKg()
     {
@@ -9551,7 +9553,7 @@ class Measurement
      * Get ffeirRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfeirRef()
     {
@@ -9575,7 +9577,7 @@ class Measurement
      * Get bmrRefKjoules
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmrRefKjoules()
     {
@@ -9599,7 +9601,7 @@ class Measurement
      * Get mmsPcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmsPcRef()
     {
@@ -9623,7 +9625,7 @@ class Measurement
      * Get tbwFm
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwFm()
     {
@@ -9647,7 +9649,7 @@ class Measurement
      * Get z200z5r
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getZ200z5r()
     {
@@ -9671,7 +9673,7 @@ class Measurement
      * Get whr
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWhr()
     {
@@ -9695,7 +9697,7 @@ class Measurement
      * Get whtr
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWhtr()
     {
@@ -9719,7 +9721,7 @@ class Measurement
      * Get whtrRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWhtrRef()
     {
@@ -9743,7 +9745,7 @@ class Measurement
      * Get bmr
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmr()
     {
@@ -9767,7 +9769,7 @@ class Measurement
      * Get bmrKjoules
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmrKjoules()
     {
@@ -9791,7 +9793,7 @@ class Measurement
      * Get adcr
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAdcr()
     {
@@ -9815,7 +9817,7 @@ class Measurement
      * Get adcrKjoules
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAdcrKjoules()
     {
@@ -9839,7 +9841,7 @@ class Measurement
      * Get fmHcPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPc()
     {
@@ -9863,7 +9865,7 @@ class Measurement
      * Get fmHcKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcKg()
     {
@@ -9887,7 +9889,7 @@ class Measurement
      * Get fmHcPcRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcRef()
     {
@@ -9911,7 +9913,7 @@ class Measurement
      * Get fmHcEtKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcEtKg()
     {
@@ -9935,7 +9937,7 @@ class Measurement
      * Get fmEtKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmEtKg()
     {
@@ -9959,7 +9961,7 @@ class Measurement
      * Get fmPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPc()
     {
@@ -9983,7 +9985,7 @@ class Measurement
      * Get mmsKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmsKg()
     {
@@ -10007,7 +10009,7 @@ class Measurement
      * Get mmsPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmsPc()
     {
@@ -10031,7 +10033,7 @@ class Measurement
      * Get mmsRefKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmsRefKg()
     {
@@ -10055,7 +10057,7 @@ class Measurement
      * Get mmsEtKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmsEtKg()
     {
@@ -10079,7 +10081,7 @@ class Measurement
      * Get bcm
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcm()
     {
@@ -10103,7 +10105,7 @@ class Measurement
      * Get mpMetaKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaKg()
     {
@@ -10127,7 +10129,7 @@ class Measurement
      * Get mpMetaPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaPc()
     {
@@ -10151,7 +10153,7 @@ class Measurement
      * Get tbwRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwRef()
     {
@@ -10175,7 +10177,7 @@ class Measurement
      * Get icwfm
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwfm()
     {
@@ -10199,7 +10201,7 @@ class Measurement
      * Get ecwfm
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwfm()
     {
@@ -10223,7 +10225,7 @@ class Measurement
      * Get fficw
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficw()
     {
@@ -10247,7 +10249,7 @@ class Measurement
      * Get ffecw
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecw()
     {
@@ -10271,7 +10273,7 @@ class Measurement
      * Get ffecwPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPc()
     {
@@ -10295,7 +10297,7 @@ class Measurement
      * Get fficwPc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPc()
     {
@@ -10319,7 +10321,7 @@ class Measurement
      * Get fficwEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwEt()
     {
@@ -10343,7 +10345,7 @@ class Measurement
      * Get ffecwEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwEt()
     {
@@ -10367,7 +10369,7 @@ class Measurement
      * Get ffecwicwPcEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwicwPcEt()
     {
@@ -10391,7 +10393,7 @@ class Measurement
      * Get ffeir
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfeir()
     {
@@ -10415,7 +10417,7 @@ class Measurement
      * Get mp
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMp()
     {
@@ -10439,7 +10441,7 @@ class Measurement
      * Get mmhi
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmhi()
     {
@@ -10463,7 +10465,7 @@ class Measurement
      * Get asmhi
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmhi()
     {
@@ -10487,7 +10489,7 @@ class Measurement
      * Get asmli
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmli()
     {
@@ -10511,7 +10513,7 @@ class Measurement
      * Get bcmffmr
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmffmr()
     {
@@ -10535,7 +10537,7 @@ class Measurement
      * Get fmir
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmir()
     {
@@ -10559,7 +10561,7 @@ class Measurement
      * Get fmslmir
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmslmir()
     {
@@ -10583,7 +10585,7 @@ class Measurement
      * Get fmHcPcEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcEt()
     {
@@ -10607,7 +10609,7 @@ class Measurement
      * Get fmPcEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcEt()
     {
@@ -10631,7 +10633,7 @@ class Measurement
      * Get fmi
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmi()
     {
@@ -10655,7 +10657,7 @@ class Measurement
      * Get ffecwRefDivFfecw
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwRefDivFfecw()
     {
@@ -10679,7 +10681,7 @@ class Measurement
      * Get fficwRefDivFficw
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwRefDivFficw()
     {
@@ -10703,7 +10705,7 @@ class Measurement
      * Get icwEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwEt()
     {
@@ -10727,7 +10729,7 @@ class Measurement
      * Get bmrEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmrEt()
     {
@@ -10751,7 +10753,7 @@ class Measurement
      * Get mmsPcEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmsPcEt()
     {
@@ -10775,7 +10777,7 @@ class Measurement
      * Get tbe
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbe()
     {
@@ -10799,7 +10801,7 @@ class Measurement
      * Get icwRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwRef()
     {
@@ -10823,7 +10825,7 @@ class Measurement
      * Get icwi
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwi()
     {
@@ -10847,7 +10849,7 @@ class Measurement
      * Get cmoRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCmoRef()
     {
@@ -10871,7 +10873,7 @@ class Measurement
      * Get cmoEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCmoEt()
     {
@@ -10895,7 +10897,7 @@ class Measurement
      * Get slmRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSlmRef()
     {
@@ -10919,7 +10921,7 @@ class Measurement
      * Get slmEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSlmEt()
     {
@@ -10943,7 +10945,7 @@ class Measurement
      * Get asmtli
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmtli()
     {
@@ -10967,7 +10969,7 @@ class Measurement
      * Get ecsRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcsRef()
     {
@@ -10991,7 +10993,7 @@ class Measurement
      * Get ecsEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcsEt()
     {
@@ -11015,7 +11017,7 @@ class Measurement
      * Get mpMetaRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaRef()
     {
@@ -11039,7 +11041,7 @@ class Measurement
      * Get bcmRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmRef()
     {
@@ -11063,7 +11065,7 @@ class Measurement
      * Get bcmEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmEt()
     {
@@ -11087,7 +11089,7 @@ class Measurement
      * Get mpRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpRef()
     {
@@ -11111,7 +11113,7 @@ class Measurement
      * Get mpEt
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpEt()
     {
@@ -11135,7 +11137,7 @@ class Measurement
      * Get mpMetaEtKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaEtKg()
     {
@@ -11159,7 +11161,7 @@ class Measurement
      * Get fmHcPc100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPc100()
     {
@@ -11183,7 +11185,7 @@ class Measurement
      * Get fmHcPcStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcStdA()
     {
@@ -11207,7 +11209,7 @@ class Measurement
      * Get fmHcPcStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcStdB()
     {
@@ -11231,7 +11233,7 @@ class Measurement
      * Get fmHcPcStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcStdC()
     {
@@ -11255,7 +11257,7 @@ class Measurement
      * Get fmHcPcStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcStdD()
     {
@@ -11279,7 +11281,7 @@ class Measurement
      * Get fmHcPcStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcStdE()
     {
@@ -11303,7 +11305,7 @@ class Measurement
      * Get fmHcPcStdF
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcStdF()
     {
@@ -11327,7 +11329,7 @@ class Measurement
      * Get fmHcPcZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcZaMax()
     {
@@ -11351,7 +11353,7 @@ class Measurement
      * Get fmHcPcZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmHcPcZaMaxColor()
     {
@@ -11375,7 +11377,7 @@ class Measurement
      * Get fmHcPcZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcZbMax()
     {
@@ -11399,7 +11401,7 @@ class Measurement
      * Get fmHcPcZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmHcPcZbMaxColor()
     {
@@ -11423,7 +11425,7 @@ class Measurement
      * Get fmHcPcZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcZcMax()
     {
@@ -11447,7 +11449,7 @@ class Measurement
      * Get fmHcPcZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmHcPcZcMaxColor()
     {
@@ -11471,7 +11473,7 @@ class Measurement
      * Get fmHcPcZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcZdMax()
     {
@@ -11495,7 +11497,7 @@ class Measurement
      * Get fmHcPcZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmHcPcZdMaxColor()
     {
@@ -11519,7 +11521,7 @@ class Measurement
      * Get fmHcPcZeMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcZeMax()
     {
@@ -11543,7 +11545,7 @@ class Measurement
      * Get fmHcPcZeMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmHcPcZeMaxColor()
     {
@@ -11567,7 +11569,7 @@ class Measurement
      * Get fmHcPcZfMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcZfMax()
     {
@@ -11591,7 +11593,7 @@ class Measurement
      * Get fmHcPcZfMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmHcPcZfMaxColor()
     {
@@ -11615,7 +11617,7 @@ class Measurement
      * Get fmHcPcZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcZone()
     {
@@ -11639,7 +11641,7 @@ class Measurement
      * Get ffwPc100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPc100()
     {
@@ -11663,7 +11665,7 @@ class Measurement
      * Get ffwPcStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcStdA()
     {
@@ -11687,7 +11689,7 @@ class Measurement
      * Get ffwPcStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcStdB()
     {
@@ -11711,7 +11713,7 @@ class Measurement
      * Get ffwPcStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcStdC()
     {
@@ -11735,7 +11737,7 @@ class Measurement
      * Get ffwPcStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcStdD()
     {
@@ -11759,7 +11761,7 @@ class Measurement
      * Get ffwPcStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcStdE()
     {
@@ -11783,7 +11785,7 @@ class Measurement
      * Get ffwPcStdF
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcStdF()
     {
@@ -11807,7 +11809,7 @@ class Measurement
      * Get ffwPcStdG
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcStdG()
     {
@@ -11831,7 +11833,7 @@ class Measurement
      * Get ffwPcZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcZaMax()
     {
@@ -11855,7 +11857,7 @@ class Measurement
      * Get ffwPcZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfwPcZaMaxColor()
     {
@@ -11879,7 +11881,7 @@ class Measurement
      * Get ffwPcZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcZbMax()
     {
@@ -11903,7 +11905,7 @@ class Measurement
      * Get ffwPcZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfwPcZbMaxColor()
     {
@@ -11927,7 +11929,7 @@ class Measurement
      * Get ffwPcZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcZcMax()
     {
@@ -11951,7 +11953,7 @@ class Measurement
      * Get ffwPcZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfwPcZcMaxColor()
     {
@@ -11975,7 +11977,7 @@ class Measurement
      * Get ffwPcZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcZdMax()
     {
@@ -11999,7 +12001,7 @@ class Measurement
      * Get ffwPcZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfwPcZdMaxColor()
     {
@@ -12023,7 +12025,7 @@ class Measurement
      * Get ffwPcZeMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcZeMax()
     {
@@ -12047,7 +12049,7 @@ class Measurement
      * Get ffwPcZeMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfwPcZeMaxColor()
     {
@@ -12071,7 +12073,7 @@ class Measurement
      * Get ffwPcZfMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcZfMax()
     {
@@ -12095,7 +12097,7 @@ class Measurement
      * Get ffwPcZfMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfwPcZfMaxColor()
     {
@@ -12119,7 +12121,7 @@ class Measurement
      * Get ffwPcZgMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcZgMax()
     {
@@ -12143,7 +12145,7 @@ class Measurement
      * Get ffwPcZgMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfwPcZgMaxColor()
     {
@@ -12167,7 +12169,7 @@ class Measurement
      * Get ffwPcZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcZone()
     {
@@ -12191,7 +12193,7 @@ class Measurement
      * Get mmhiStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmhiStdA()
     {
@@ -12215,7 +12217,7 @@ class Measurement
      * Get mmhiStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmhiStdB()
     {
@@ -12239,7 +12241,7 @@ class Measurement
      * Get mmhiStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmhiStdC()
     {
@@ -12263,7 +12265,7 @@ class Measurement
      * Get mmhiStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmhiStdD()
     {
@@ -12287,7 +12289,7 @@ class Measurement
      * Get mmhiZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmhiZaMax()
     {
@@ -12311,7 +12313,7 @@ class Measurement
      * Get mmhiZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getMmhiZaMaxColor()
     {
@@ -12335,7 +12337,7 @@ class Measurement
      * Get mmhiZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmhiZbMax()
     {
@@ -12359,7 +12361,7 @@ class Measurement
      * Get mmhiZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getMmhiZbMaxColor()
     {
@@ -12383,7 +12385,7 @@ class Measurement
      * Get mmhiZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmhiZcMax()
     {
@@ -12407,7 +12409,7 @@ class Measurement
      * Get mmhiZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getMmhiZcMaxColor()
     {
@@ -12431,7 +12433,7 @@ class Measurement
      * Get mmhiZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmhiZdMax()
     {
@@ -12455,7 +12457,7 @@ class Measurement
      * Get mmhiZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getMmhiZdMaxColor()
     {
@@ -12479,7 +12481,7 @@ class Measurement
      * Get mmhiZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmhiZone()
     {
@@ -12503,7 +12505,7 @@ class Measurement
      * Get fmHcPcInf
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcInf()
     {
@@ -12527,7 +12529,7 @@ class Measurement
      * Get adcrZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAdcrZaMax()
     {
@@ -12551,7 +12553,7 @@ class Measurement
      * Get adcrZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAdcrZaMaxColor()
     {
@@ -12575,7 +12577,7 @@ class Measurement
      * Get adcrZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAdcrZbMax()
     {
@@ -12599,7 +12601,7 @@ class Measurement
      * Get adcrZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAdcrZbMaxColor()
     {
@@ -12623,7 +12625,7 @@ class Measurement
      * Get adcrZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAdcrZcMax()
     {
@@ -12647,7 +12649,7 @@ class Measurement
      * Get adcrZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAdcrZcMaxColor()
     {
@@ -12671,7 +12673,7 @@ class Measurement
      * Get adcrZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAdcrZdMax()
     {
@@ -12695,7 +12697,7 @@ class Measurement
      * Get adcrZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAdcrZdMaxColor()
     {
@@ -12719,7 +12721,7 @@ class Measurement
      * Get adcrZeMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAdcrZeMax()
     {
@@ -12743,7 +12745,7 @@ class Measurement
      * Get adcrZeMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAdcrZeMaxColor()
     {
@@ -12767,7 +12769,7 @@ class Measurement
      * Get adcrZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAdcrZone()
     {
@@ -12791,7 +12793,7 @@ class Measurement
      * Get fmHcPcRef100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcRef100()
     {
@@ -12815,7 +12817,7 @@ class Measurement
      * Get asmmi
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmi()
     {
@@ -12839,7 +12841,7 @@ class Measurement
      * Get asmmiStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmiStdA()
     {
@@ -12863,7 +12865,7 @@ class Measurement
      * Get asmmiStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmiStdB()
     {
@@ -12887,7 +12889,7 @@ class Measurement
      * Get asmmiStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmiStdC()
     {
@@ -12911,7 +12913,7 @@ class Measurement
      * Get asmmiStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmiStdD()
     {
@@ -12935,7 +12937,7 @@ class Measurement
      * Get asmmiZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmiZaMax()
     {
@@ -12959,7 +12961,7 @@ class Measurement
      * Get asmmiZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAsmmiZaMaxColor()
     {
@@ -12983,7 +12985,7 @@ class Measurement
      * Get asmmiZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmiZbMax()
     {
@@ -13007,7 +13009,7 @@ class Measurement
      * Get asmmiZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAsmmiZbMaxColor()
     {
@@ -13031,7 +13033,7 @@ class Measurement
      * Get asmmiZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmiZcMax()
     {
@@ -13055,7 +13057,7 @@ class Measurement
      * Get asmmiZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAsmmiZcMaxColor()
     {
@@ -13079,7 +13081,7 @@ class Measurement
      * Get asmmiZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmiZdMax()
     {
@@ -13103,7 +13105,7 @@ class Measurement
      * Get asmmiZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAsmmiZdMaxColor()
     {
@@ -13127,7 +13129,7 @@ class Measurement
      * Get asmmiZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmiZone()
     {
@@ -13151,7 +13153,7 @@ class Measurement
      * Get ecwPc100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPc100()
     {
@@ -13175,7 +13177,7 @@ class Measurement
      * Get ecwPcRef100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcRef100()
     {
@@ -13199,7 +13201,7 @@ class Measurement
      * Get ecwPcStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcStdA()
     {
@@ -13223,7 +13225,7 @@ class Measurement
      * Get ecwPcStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcStdB()
     {
@@ -13247,7 +13249,7 @@ class Measurement
      * Get ecwPcStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcStdC()
     {
@@ -13271,7 +13273,7 @@ class Measurement
      * Get ecwPcStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcStdD()
     {
@@ -13295,7 +13297,7 @@ class Measurement
      * Get ecwPcStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcStdE()
     {
@@ -13319,7 +13321,7 @@ class Measurement
      * Get ecwPcStdF
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcStdF()
     {
@@ -13343,7 +13345,7 @@ class Measurement
      * Get ecwPcStdG
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcStdG()
     {
@@ -13367,7 +13369,7 @@ class Measurement
      * Get ecwPcZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcZaMax()
     {
@@ -13391,7 +13393,7 @@ class Measurement
      * Get ecwPcZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getEcwPcZaMaxColor()
     {
@@ -13415,7 +13417,7 @@ class Measurement
      * Get ecwPcZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcZbMax()
     {
@@ -13439,7 +13441,7 @@ class Measurement
      * Get ecwPcZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getEcwPcZbMaxColor()
     {
@@ -13463,7 +13465,7 @@ class Measurement
      * Get ecwPcZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcZcMax()
     {
@@ -13487,7 +13489,7 @@ class Measurement
      * Get ecwPcZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getEcwPcZcMaxColor()
     {
@@ -13511,7 +13513,7 @@ class Measurement
      * Get ecwPcZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcZdMax()
     {
@@ -13535,7 +13537,7 @@ class Measurement
      * Get ecwPcZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getEcwPcZdMaxColor()
     {
@@ -13559,7 +13561,7 @@ class Measurement
      * Get ecwPcZeMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcZeMax()
     {
@@ -13583,7 +13585,7 @@ class Measurement
      * Get ecwPcZeMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getEcwPcZeMaxColor()
     {
@@ -13607,7 +13609,7 @@ class Measurement
      * Get ecwPcZfMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcZfMax()
     {
@@ -13631,7 +13633,7 @@ class Measurement
      * Get ecwPcZfMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getEcwPcZfMaxColor()
     {
@@ -13655,7 +13657,7 @@ class Measurement
      * Get ecwPcZgMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcZgMax()
     {
@@ -13679,7 +13681,7 @@ class Measurement
      * Get ecwPcZgMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getEcwPcZgMaxColor()
     {
@@ -13703,7 +13705,7 @@ class Measurement
      * Get ecwPcZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcZone()
     {
@@ -13727,7 +13729,7 @@ class Measurement
      * Get icwPc100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPc100()
     {
@@ -13751,7 +13753,7 @@ class Measurement
      * Get icwPcRef100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcRef100()
     {
@@ -13775,7 +13777,7 @@ class Measurement
      * Get icwPcStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcStdA()
     {
@@ -13799,7 +13801,7 @@ class Measurement
      * Get icwPcStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcStdB()
     {
@@ -13823,7 +13825,7 @@ class Measurement
      * Get icwPcStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcStdC()
     {
@@ -13847,7 +13849,7 @@ class Measurement
      * Get icwPcStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcStdD()
     {
@@ -13871,7 +13873,7 @@ class Measurement
      * Get icwPcStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcStdE()
     {
@@ -13895,7 +13897,7 @@ class Measurement
      * Get icwPcStdF
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcStdF()
     {
@@ -13919,7 +13921,7 @@ class Measurement
      * Get icwPcStdG
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcStdG()
     {
@@ -13943,7 +13945,7 @@ class Measurement
      * Get icwPcZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcZaMax()
     {
@@ -13967,7 +13969,7 @@ class Measurement
      * Get icwPcZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getIcwPcZaMaxColor()
     {
@@ -13991,7 +13993,7 @@ class Measurement
      * Get icwPcZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcZbMax()
     {
@@ -14015,7 +14017,7 @@ class Measurement
      * Get icwPcZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getIcwPcZbMaxColor()
     {
@@ -14039,7 +14041,7 @@ class Measurement
      * Get icwPcZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcZcMax()
     {
@@ -14063,7 +14065,7 @@ class Measurement
      * Get icwPcZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getIcwPcZcMaxColor()
     {
@@ -14087,7 +14089,7 @@ class Measurement
      * Get icwPcZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcZdMax()
     {
@@ -14111,7 +14113,7 @@ class Measurement
      * Get icwPcZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getIcwPcZdMaxColor()
     {
@@ -14135,7 +14137,7 @@ class Measurement
      * Get icwPcZeMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcZeMax()
     {
@@ -14159,7 +14161,7 @@ class Measurement
      * Get icwPcZeMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getIcwPcZeMaxColor()
     {
@@ -14183,7 +14185,7 @@ class Measurement
      * Get icwPcZfMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcZfMax()
     {
@@ -14207,7 +14209,7 @@ class Measurement
      * Get icwPcZfMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getIcwPcZfMaxColor()
     {
@@ -14231,7 +14233,7 @@ class Measurement
      * Get icwPcZgMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcZgMax()
     {
@@ -14255,7 +14257,7 @@ class Measurement
      * Get icwPcZgMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getIcwPcZgMaxColor()
     {
@@ -14279,7 +14281,7 @@ class Measurement
      * Get icwPcZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcZone()
     {
@@ -14303,7 +14305,7 @@ class Measurement
      * Get fmPc100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPc100()
     {
@@ -14327,7 +14329,7 @@ class Measurement
      * Get fmPcStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcStdA()
     {
@@ -14351,7 +14353,7 @@ class Measurement
      * Get fmPcStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcStdB()
     {
@@ -14375,7 +14377,7 @@ class Measurement
      * Get fmPcStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcStdC()
     {
@@ -14399,7 +14401,7 @@ class Measurement
      * Get fmPcStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcStdD()
     {
@@ -14423,7 +14425,7 @@ class Measurement
      * Get fmPcStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcStdE()
     {
@@ -14447,7 +14449,7 @@ class Measurement
      * Get fmPcStdF
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcStdF()
     {
@@ -14471,7 +14473,7 @@ class Measurement
      * Get fmPcZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcZaMax()
     {
@@ -14495,7 +14497,7 @@ class Measurement
      * Get fmPcZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmPcZaMaxColor()
     {
@@ -14519,7 +14521,7 @@ class Measurement
      * Get fmPcZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcZbMax()
     {
@@ -14543,7 +14545,7 @@ class Measurement
      * Get fmPcZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmPcZbMaxColor()
     {
@@ -14567,7 +14569,7 @@ class Measurement
      * Get fmPcZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcZcMax()
     {
@@ -14591,7 +14593,7 @@ class Measurement
      * Get fmPcZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmPcZcMaxColor()
     {
@@ -14615,7 +14617,7 @@ class Measurement
      * Get fmPcZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcZdMax()
     {
@@ -14639,7 +14641,7 @@ class Measurement
      * Get fmPcZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmPcZdMaxColor()
     {
@@ -14663,7 +14665,7 @@ class Measurement
      * Get fmPcZeMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcZeMax()
     {
@@ -14687,7 +14689,7 @@ class Measurement
      * Get fmPcZeMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmPcZeMaxColor()
     {
@@ -14711,7 +14713,7 @@ class Measurement
      * Get fmPcZfMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcZfMax()
     {
@@ -14735,7 +14737,7 @@ class Measurement
      * Get fmPcZfMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmPcZfMaxColor()
     {
@@ -14759,7 +14761,7 @@ class Measurement
      * Get fmPcZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcZone()
     {
@@ -14783,7 +14785,7 @@ class Measurement
      * Get tbwffmPc100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPc100()
     {
@@ -14807,7 +14809,7 @@ class Measurement
      * Get tbwffmPcStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcStdA()
     {
@@ -14831,7 +14833,7 @@ class Measurement
      * Get tbwffmPcStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcStdB()
     {
@@ -14855,7 +14857,7 @@ class Measurement
      * Get tbwffmPcStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcStdC()
     {
@@ -14879,7 +14881,7 @@ class Measurement
      * Get tbwffmPcStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcStdD()
     {
@@ -14903,7 +14905,7 @@ class Measurement
      * Get tbwffmPcStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcStdE()
     {
@@ -14927,7 +14929,7 @@ class Measurement
      * Get tbwffmPcStdF
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcStdF()
     {
@@ -14951,7 +14953,7 @@ class Measurement
      * Get tbwffmPcStdG
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcStdG()
     {
@@ -14975,7 +14977,7 @@ class Measurement
      * Get tbwffmPcZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcZaMax()
     {
@@ -14999,7 +15001,7 @@ class Measurement
      * Get tbwffmPcZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTbwffmPcZaMaxColor()
     {
@@ -15023,7 +15025,7 @@ class Measurement
      * Get tbwffmPcZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcZbMax()
     {
@@ -15047,7 +15049,7 @@ class Measurement
      * Get tbwffmPcZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTbwffmPcZbMaxColor()
     {
@@ -15071,7 +15073,7 @@ class Measurement
      * Get tbwffmPcZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcZcMax()
     {
@@ -15095,7 +15097,7 @@ class Measurement
      * Get tbwffmPcZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTbwffmPcZcMaxColor()
     {
@@ -15119,7 +15121,7 @@ class Measurement
      * Get tbwffmPcZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcZdMax()
     {
@@ -15143,7 +15145,7 @@ class Measurement
      * Get tbwffmPcZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTbwffmPcZdMaxColor()
     {
@@ -15167,7 +15169,7 @@ class Measurement
      * Get tbwffmPcZeMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcZeMax()
     {
@@ -15191,7 +15193,7 @@ class Measurement
      * Get tbwffmPcZeMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTbwffmPcZeMaxColor()
     {
@@ -15215,7 +15217,7 @@ class Measurement
      * Get tbwffmPcZfMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcZfMax()
     {
@@ -15239,7 +15241,7 @@ class Measurement
      * Get tbwffmPcZfMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTbwffmPcZfMaxColor()
     {
@@ -15263,7 +15265,7 @@ class Measurement
      * Get tbwffmPcZgMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcZgMax()
     {
@@ -15287,7 +15289,7 @@ class Measurement
      * Get tbwffmPcZgMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTbwffmPcZgMaxColor()
     {
@@ -15311,7 +15313,7 @@ class Measurement
      * Get tbwffmPcZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcZone()
     {
@@ -15335,7 +15337,7 @@ class Measurement
      * Get dffmi
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmi()
     {
@@ -15359,7 +15361,7 @@ class Measurement
      * Get dffmiStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmiStdA()
     {
@@ -15383,7 +15385,7 @@ class Measurement
      * Get dffmiStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmiStdB()
     {
@@ -15407,7 +15409,7 @@ class Measurement
      * Get dffmiStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmiStdC()
     {
@@ -15431,7 +15433,7 @@ class Measurement
      * Get dffmiStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmiStdD()
     {
@@ -15455,7 +15457,7 @@ class Measurement
      * Get dffmiZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmiZaMax()
     {
@@ -15479,7 +15481,7 @@ class Measurement
      * Get dffmiZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getDffmiZaMaxColor()
     {
@@ -15503,7 +15505,7 @@ class Measurement
      * Get dffmiZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmiZbMax()
     {
@@ -15527,7 +15529,7 @@ class Measurement
      * Get dffmiZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getDffmiZbMaxColor()
     {
@@ -15551,7 +15553,7 @@ class Measurement
      * Get dffmiZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmiZcMax()
     {
@@ -15575,7 +15577,7 @@ class Measurement
      * Get dffmiZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getDffmiZcMaxColor()
     {
@@ -15599,7 +15601,7 @@ class Measurement
      * Get dffmiZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmiZdMax()
     {
@@ -15623,7 +15625,7 @@ class Measurement
      * Get dffmiZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getDffmiZdMaxColor()
     {
@@ -15647,7 +15649,7 @@ class Measurement
      * Get dffmiZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmiZone()
     {
@@ -15671,7 +15673,7 @@ class Measurement
      * Get mpMetai
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetai()
     {
@@ -15695,7 +15697,7 @@ class Measurement
      * Get mpMetaiStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaiStdA()
     {
@@ -15719,7 +15721,7 @@ class Measurement
      * Get mpMetaiStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaiStdB()
     {
@@ -15743,7 +15745,7 @@ class Measurement
      * Get mpMetaiStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaiStdC()
     {
@@ -15767,7 +15769,7 @@ class Measurement
      * Get mpMetaiStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaiStdD()
     {
@@ -15791,7 +15793,7 @@ class Measurement
      * Get mpMetaiZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaiZaMax()
     {
@@ -15815,7 +15817,7 @@ class Measurement
      * Get mpMetaiZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getMpMetaiZaMaxColor()
     {
@@ -15839,7 +15841,7 @@ class Measurement
      * Get mpMetaiZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaiZbMax()
     {
@@ -15863,7 +15865,7 @@ class Measurement
      * Get mpMetaiZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getMpMetaiZbMaxColor()
     {
@@ -15887,7 +15889,7 @@ class Measurement
      * Get mpMetaiZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaiZcMax()
     {
@@ -15911,7 +15913,7 @@ class Measurement
      * Get mpMetaiZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getMpMetaiZcMaxColor()
     {
@@ -15935,7 +15937,7 @@ class Measurement
      * Get mpMetaiZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaiZdMax()
     {
@@ -15959,7 +15961,7 @@ class Measurement
      * Get mpMetaiZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getMpMetaiZdMaxColor()
     {
@@ -15983,7 +15985,7 @@ class Measurement
      * Get mpMetaiZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaiZone()
     {
@@ -16007,7 +16009,7 @@ class Measurement
      * Get ffmi
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfmi()
     {
@@ -16031,7 +16033,7 @@ class Measurement
      * Get ffmiRef
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfmiRef()
     {
@@ -16055,7 +16057,7 @@ class Measurement
      * Get ffmRefKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfmRefKg()
     {
@@ -16079,7 +16081,7 @@ class Measurement
      * Get ffmEtKg
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfmEtKg()
     {
@@ -16103,7 +16105,7 @@ class Measurement
      * Get iffmi
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIffmi()
     {
@@ -16127,7 +16129,7 @@ class Measurement
      * Get iffmiStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIffmiStdA()
     {
@@ -16151,7 +16153,7 @@ class Measurement
      * Get iffmiStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIffmiStdB()
     {
@@ -16175,7 +16177,7 @@ class Measurement
      * Get iffmiStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIffmiStdC()
     {
@@ -16199,7 +16201,7 @@ class Measurement
      * Get iffmiStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIffmiStdD()
     {
@@ -16223,7 +16225,7 @@ class Measurement
      * Get iffmiZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIffmiZaMax()
     {
@@ -16247,7 +16249,7 @@ class Measurement
      * Get iffmiZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getIffmiZaMaxColor()
     {
@@ -16271,7 +16273,7 @@ class Measurement
      * Get iffmiZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIffmiZbMax()
     {
@@ -16295,7 +16297,7 @@ class Measurement
      * Get iffmiZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getIffmiZbMaxColor()
     {
@@ -16319,7 +16321,7 @@ class Measurement
      * Get iffmiZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIffmiZcMax()
     {
@@ -16343,7 +16345,7 @@ class Measurement
      * Get iffmiZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getIffmiZcMaxColor()
     {
@@ -16367,7 +16369,7 @@ class Measurement
      * Get iffmiZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIffmiZdMax()
     {
@@ -16391,7 +16393,7 @@ class Measurement
      * Get iffmiZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getIffmiZdMaxColor()
     {
@@ -16415,7 +16417,7 @@ class Measurement
      * Get iffmiZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIffmiZone()
     {
@@ -16439,7 +16441,7 @@ class Measurement
      * Get bmri
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmri()
     {
@@ -16463,7 +16465,7 @@ class Measurement
      * Get bmriStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmriStdA()
     {
@@ -16487,7 +16489,7 @@ class Measurement
      * Get bmriStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmriStdB()
     {
@@ -16511,7 +16513,7 @@ class Measurement
      * Get bmriStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmriStdC()
     {
@@ -16535,7 +16537,7 @@ class Measurement
      * Get bmriStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmriStdD()
     {
@@ -16559,7 +16561,7 @@ class Measurement
      * Get bmriZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmriZaMax()
     {
@@ -16583,7 +16585,7 @@ class Measurement
      * Get bmriZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getBmriZaMaxColor()
     {
@@ -16607,7 +16609,7 @@ class Measurement
      * Get bmriZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmriZbMax()
     {
@@ -16631,7 +16633,7 @@ class Measurement
      * Get bmriZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getBmriZbMaxColor()
     {
@@ -16655,7 +16657,7 @@ class Measurement
      * Get bmriZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmriZcMax()
     {
@@ -16679,7 +16681,7 @@ class Measurement
      * Get bmriZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getBmriZcMaxColor()
     {
@@ -16703,7 +16705,7 @@ class Measurement
      * Get bmriZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmriZdMax()
     {
@@ -16727,7 +16729,7 @@ class Measurement
      * Get bmriZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getBmriZdMaxColor()
     {
@@ -16751,7 +16753,7 @@ class Measurement
      * Get bmriZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmriZone()
     {
@@ -16775,7 +16777,7 @@ class Measurement
      * Get ffecwPc100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPc100()
     {
@@ -16799,7 +16801,7 @@ class Measurement
      * Get ffecwi
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwi()
     {
@@ -16823,7 +16825,7 @@ class Measurement
      * Get ffecwPcStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcStdA()
     {
@@ -16847,7 +16849,7 @@ class Measurement
      * Get ffecwPcStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcStdB()
     {
@@ -16871,7 +16873,7 @@ class Measurement
      * Get ffecwPcStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcStdC()
     {
@@ -16895,7 +16897,7 @@ class Measurement
      * Get ffecwPcStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcStdD()
     {
@@ -16919,7 +16921,7 @@ class Measurement
      * Get ffecwPcStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcStdE()
     {
@@ -16943,7 +16945,7 @@ class Measurement
      * Get ffecwPcStdF
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcStdF()
     {
@@ -16967,7 +16969,7 @@ class Measurement
      * Get ffecwPcStdG
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcStdG()
     {
@@ -16991,7 +16993,7 @@ class Measurement
      * Get ffecwiStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwiStdA()
     {
@@ -17015,7 +17017,7 @@ class Measurement
      * Get ffecwiStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwiStdB()
     {
@@ -17039,7 +17041,7 @@ class Measurement
      * Get ffecwiStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwiStdC()
     {
@@ -17063,7 +17065,7 @@ class Measurement
      * Get ffecwiStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwiStdD()
     {
@@ -17087,7 +17089,7 @@ class Measurement
      * Get ffecwiStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwiStdE()
     {
@@ -17111,7 +17113,7 @@ class Measurement
      * Get ffecwiStdF
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwiStdF()
     {
@@ -17135,7 +17137,7 @@ class Measurement
      * Get ffecwiStdG
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwiStdG()
     {
@@ -17159,7 +17161,7 @@ class Measurement
      * Get ffecwPcZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcZaMax()
     {
@@ -17183,7 +17185,7 @@ class Measurement
      * Get ffecwPcZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfecwPcZaMaxColor()
     {
@@ -17207,7 +17209,7 @@ class Measurement
      * Get ffecwPcZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcZbMax()
     {
@@ -17231,7 +17233,7 @@ class Measurement
      * Get ffecwPcZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfecwPcZbMaxColor()
     {
@@ -17255,7 +17257,7 @@ class Measurement
      * Get ffecwPcZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcZcMax()
     {
@@ -17279,7 +17281,7 @@ class Measurement
      * Get ffecwPcZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfecwPcZcMaxColor()
     {
@@ -17303,7 +17305,7 @@ class Measurement
      * Get ffecwPcZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcZdMax()
     {
@@ -17327,7 +17329,7 @@ class Measurement
      * Get ffecwPcZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfecwPcZdMaxColor()
     {
@@ -17351,7 +17353,7 @@ class Measurement
      * Get ffecwPcZeMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcZeMax()
     {
@@ -17375,7 +17377,7 @@ class Measurement
      * Get ffecwPcZeMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfecwPcZeMaxColor()
     {
@@ -17399,7 +17401,7 @@ class Measurement
      * Get ffecwPcZfMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcZfMax()
     {
@@ -17423,7 +17425,7 @@ class Measurement
      * Get ffecwPcZfMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfecwPcZfMaxColor()
     {
@@ -17447,7 +17449,7 @@ class Measurement
      * Get ffecwPcZgMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcZgMax()
     {
@@ -17471,7 +17473,7 @@ class Measurement
      * Get ffecwPcZgMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFfecwPcZgMaxColor()
     {
@@ -17495,7 +17497,7 @@ class Measurement
      * Get ffecwPcZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcZone()
     {
@@ -17519,7 +17521,7 @@ class Measurement
      * Get fficwPc100
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPc100()
     {
@@ -17543,7 +17545,7 @@ class Measurement
      * Get fficwi
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwi()
     {
@@ -17567,7 +17569,7 @@ class Measurement
      * Get fficwPcStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcStdA()
     {
@@ -17591,7 +17593,7 @@ class Measurement
      * Get fficwPcStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcStdB()
     {
@@ -17615,7 +17617,7 @@ class Measurement
      * Get fficwPcStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcStdC()
     {
@@ -17639,7 +17641,7 @@ class Measurement
      * Get fficwPcStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcStdD()
     {
@@ -17663,7 +17665,7 @@ class Measurement
      * Get fficwPcStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcStdE()
     {
@@ -17687,7 +17689,7 @@ class Measurement
      * Get fficwPcStdF
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcStdF()
     {
@@ -17711,7 +17713,7 @@ class Measurement
      * Get fficwPcStdG
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcStdG()
     {
@@ -17735,7 +17737,7 @@ class Measurement
      * Get fficwiStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwiStdA()
     {
@@ -17759,7 +17761,7 @@ class Measurement
      * Get fficwiStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwiStdB()
     {
@@ -17783,7 +17785,7 @@ class Measurement
      * Get fficwiStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwiStdC()
     {
@@ -17807,7 +17809,7 @@ class Measurement
      * Get fficwiStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwiStdD()
     {
@@ -17831,7 +17833,7 @@ class Measurement
      * Get fficwiStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwiStdE()
     {
@@ -17855,7 +17857,7 @@ class Measurement
      * Get fficwiStdF
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwiStdF()
     {
@@ -17879,7 +17881,7 @@ class Measurement
      * Get fficwiStdG
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwiStdG()
     {
@@ -17903,7 +17905,7 @@ class Measurement
      * Get fficwPcZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcZaMax()
     {
@@ -17927,7 +17929,7 @@ class Measurement
      * Get fficwPcZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFficwPcZaMaxColor()
     {
@@ -17951,7 +17953,7 @@ class Measurement
      * Get fficwPcZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcZbMax()
     {
@@ -17975,7 +17977,7 @@ class Measurement
      * Get fficwPcZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFficwPcZbMaxColor()
     {
@@ -17999,7 +18001,7 @@ class Measurement
      * Get fficwPcZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcZcMax()
     {
@@ -18023,7 +18025,7 @@ class Measurement
      * Get fficwPcZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFficwPcZcMaxColor()
     {
@@ -18047,7 +18049,7 @@ class Measurement
      * Get fficwPcZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcZdMax()
     {
@@ -18071,7 +18073,7 @@ class Measurement
      * Get fficwPcZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFficwPcZdMaxColor()
     {
@@ -18095,7 +18097,7 @@ class Measurement
      * Get fficwPcZeMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcZeMax()
     {
@@ -18119,7 +18121,7 @@ class Measurement
      * Get fficwPcZeMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFficwPcZeMaxColor()
     {
@@ -18143,7 +18145,7 @@ class Measurement
      * Get fficwPcZfMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcZfMax()
     {
@@ -18167,7 +18169,7 @@ class Measurement
      * Get fficwPcZfMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFficwPcZfMaxColor()
     {
@@ -18191,7 +18193,7 @@ class Measurement
      * Get fficwPcZgMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcZgMax()
     {
@@ -18215,7 +18217,7 @@ class Measurement
      * Get fficwPcZgMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFficwPcZgMaxColor()
     {
@@ -18239,7 +18241,7 @@ class Measurement
      * Get fficwPcZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcZone()
     {
@@ -18263,7 +18265,7 @@ class Measurement
      * Get asmhiStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmhiStdA()
     {
@@ -18287,7 +18289,7 @@ class Measurement
      * Get asmhiStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmhiStdB()
     {
@@ -18311,7 +18313,7 @@ class Measurement
      * Get asmhiStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmhiStdC()
     {
@@ -18335,7 +18337,7 @@ class Measurement
      * Get asmhiStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmhiStdD()
     {
@@ -18359,7 +18361,7 @@ class Measurement
      * Get asmhiZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmhiZaMax()
     {
@@ -18383,7 +18385,7 @@ class Measurement
      * Get asmhiZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAsmhiZaMaxColor()
     {
@@ -18407,7 +18409,7 @@ class Measurement
      * Get asmhiZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmhiZbMax()
     {
@@ -18431,7 +18433,7 @@ class Measurement
      * Get asmhiZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAsmhiZbMaxColor()
     {
@@ -18455,7 +18457,7 @@ class Measurement
      * Get asmhiZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmhiZcMax()
     {
@@ -18479,7 +18481,7 @@ class Measurement
      * Get asmhiZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAsmhiZcMaxColor()
     {
@@ -18503,7 +18505,7 @@ class Measurement
      * Get asmhiZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmhiZdMax()
     {
@@ -18527,7 +18529,7 @@ class Measurement
      * Get asmhiZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAsmhiZdMaxColor()
     {
@@ -18551,7 +18553,7 @@ class Measurement
      * Get asmhiZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmhiZone()
     {
@@ -18575,7 +18577,7 @@ class Measurement
      * Get bcmi
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmi()
     {
@@ -18599,7 +18601,7 @@ class Measurement
      * Get bcmiStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmiStdA()
     {
@@ -18623,7 +18625,7 @@ class Measurement
      * Get bcmiStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmiStdB()
     {
@@ -18647,7 +18649,7 @@ class Measurement
      * Get bcmiStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmiStdC()
     {
@@ -18671,7 +18673,7 @@ class Measurement
      * Get bcmiStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmiStdD()
     {
@@ -18695,7 +18697,7 @@ class Measurement
      * Get bcmiZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmiZaMax()
     {
@@ -18719,7 +18721,7 @@ class Measurement
      * Get bcmiZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getBcmiZaMaxColor()
     {
@@ -18743,7 +18745,7 @@ class Measurement
      * Get bcmiZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmiZbMax()
     {
@@ -18767,7 +18769,7 @@ class Measurement
      * Get bcmiZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getBcmiZbMaxColor()
     {
@@ -18791,7 +18793,7 @@ class Measurement
      * Get bcmiZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmiZcMax()
     {
@@ -18815,7 +18817,7 @@ class Measurement
      * Get bcmiZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getBcmiZcMaxColor()
     {
@@ -18839,7 +18841,7 @@ class Measurement
      * Get bcmiZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmiZdMax()
     {
@@ -18863,7 +18865,7 @@ class Measurement
      * Get bcmiZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getBcmiZdMaxColor()
     {
@@ -18887,7 +18889,7 @@ class Measurement
      * Get bcmiZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmiZone()
     {
@@ -18911,7 +18913,7 @@ class Measurement
      * Get imcNorms
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcNorms()
     {
@@ -18935,7 +18937,7 @@ class Measurement
      * Get imcStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcStdA()
     {
@@ -18959,7 +18961,7 @@ class Measurement
      * Get imcStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcStdB()
     {
@@ -18983,7 +18985,7 @@ class Measurement
      * Get imcStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcStdC()
     {
@@ -19007,7 +19009,7 @@ class Measurement
      * Get imcStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcStdD()
     {
@@ -19031,7 +19033,7 @@ class Measurement
      * Get imcStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcStdE()
     {
@@ -19055,7 +19057,7 @@ class Measurement
      * Get imcStdF
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcStdF()
     {
@@ -19079,7 +19081,7 @@ class Measurement
      * Get imcStdG
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcStdG()
     {
@@ -19103,7 +19105,7 @@ class Measurement
      * Get imcZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcZaMax()
     {
@@ -19127,7 +19129,7 @@ class Measurement
      * Get imcZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getImcZaMaxColor()
     {
@@ -19151,7 +19153,7 @@ class Measurement
      * Get imcZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcZbMax()
     {
@@ -19175,7 +19177,7 @@ class Measurement
      * Get imcZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getImcZbMaxColor()
     {
@@ -19199,7 +19201,7 @@ class Measurement
      * Get imcZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcZcMax()
     {
@@ -19223,7 +19225,7 @@ class Measurement
      * Get imcZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getImcZcMaxColor()
     {
@@ -19247,7 +19249,7 @@ class Measurement
      * Get imcZdMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcZdMax()
     {
@@ -19271,7 +19273,7 @@ class Measurement
      * Get imcZdMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getImcZdMaxColor()
     {
@@ -19295,7 +19297,7 @@ class Measurement
      * Get imcZeMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcZeMax()
     {
@@ -19319,7 +19321,7 @@ class Measurement
      * Get imcZeMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getImcZeMaxColor()
     {
@@ -19343,7 +19345,7 @@ class Measurement
      * Get imcZfMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcZfMax()
     {
@@ -19367,7 +19369,7 @@ class Measurement
      * Get imcZfMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getImcZfMaxColor()
     {
@@ -19391,7 +19393,7 @@ class Measurement
      * Get imcZgMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcZgMax()
     {
@@ -19415,7 +19417,7 @@ class Measurement
      * Get imcZgMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getImcZgMaxColor()
     {
@@ -19439,7 +19441,7 @@ class Measurement
      * Get imcZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcZone()
     {
@@ -19463,7 +19465,7 @@ class Measurement
      * Get fmslmirZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmslmirZaMax()
     {
@@ -19487,7 +19489,7 @@ class Measurement
      * Get fmslmirZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmslmirZaMaxColor()
     {
@@ -19511,7 +19513,7 @@ class Measurement
      * Get fmslmirZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmslmirZbMax()
     {
@@ -19535,7 +19537,7 @@ class Measurement
      * Get fmslmirZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmslmirZbMaxColor()
     {
@@ -19559,7 +19561,7 @@ class Measurement
      * Get fmslmirZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmslmirZone()
     {
@@ -19583,7 +19585,7 @@ class Measurement
      * Get fmirZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmirZaMax()
     {
@@ -19607,7 +19609,7 @@ class Measurement
      * Get fmirZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmirZaMaxColor()
     {
@@ -19631,7 +19633,7 @@ class Measurement
      * Get fmirZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmirZbMax()
     {
@@ -19655,7 +19657,7 @@ class Measurement
      * Get fmirZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getFmirZbMaxColor()
     {
@@ -19679,7 +19681,7 @@ class Measurement
      * Get fmirZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmirZone()
     {
@@ -19703,7 +19705,7 @@ class Measurement
      * Get slmirZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSlmirZaMax()
     {
@@ -19727,7 +19729,7 @@ class Measurement
      * Get slmirZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getSlmirZaMaxColor()
     {
@@ -19751,7 +19753,7 @@ class Measurement
      * Get slmirZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSlmirZbMax()
     {
@@ -19775,7 +19777,7 @@ class Measurement
      * Get slmirZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getSlmirZbMaxColor()
     {
@@ -19799,7 +19801,7 @@ class Measurement
      * Get slmirZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSlmirZone()
     {
@@ -19823,7 +19825,7 @@ class Measurement
      * Get whrZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWhrZaMax()
     {
@@ -19847,7 +19849,7 @@ class Measurement
      * Get whrZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getWhrZaMaxColor()
     {
@@ -19871,7 +19873,7 @@ class Measurement
      * Get whrZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWhrZbMax()
     {
@@ -19895,7 +19897,7 @@ class Measurement
      * Get whrZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getWhrZbMaxColor()
     {
@@ -19919,7 +19921,7 @@ class Measurement
      * Get whrZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWhrZone()
     {
@@ -19943,7 +19945,7 @@ class Measurement
      * Get whtrZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWhtrZaMax()
     {
@@ -19967,7 +19969,7 @@ class Measurement
      * Get whtrZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getWhtrZaMaxColor()
     {
@@ -19991,7 +19993,7 @@ class Measurement
      * Get whtrZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWhtrZbMax()
     {
@@ -20015,7 +20017,7 @@ class Measurement
      * Get whtrZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getWhtrZbMaxColor()
     {
@@ -20039,7 +20041,7 @@ class Measurement
      * Get whtrZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWhtrZone()
     {
@@ -20063,7 +20065,7 @@ class Measurement
      * Get totalCcScZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTotalCcScZaMax()
     {
@@ -20087,7 +20089,7 @@ class Measurement
      * Get totalCcScZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTotalCcScZaMaxColor()
     {
@@ -20111,7 +20113,7 @@ class Measurement
      * Get totalCcScZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTotalCcScZbMax()
     {
@@ -20135,7 +20137,7 @@ class Measurement
      * Get totalCcScZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTotalCcScZbMaxColor()
     {
@@ -20159,7 +20161,7 @@ class Measurement
      * Get totalCcScZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTotalCcScZcMax()
     {
@@ -20183,7 +20185,7 @@ class Measurement
      * Get totalCcScZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTotalCcScZcMaxColor()
     {
@@ -20207,7 +20209,7 @@ class Measurement
      * Get totalCcScZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTotalCcScZone()
     {
@@ -20231,7 +20233,7 @@ class Measurement
      * Get totalMuhScZaMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTotalMuhScZaMax()
     {
@@ -20255,7 +20257,7 @@ class Measurement
      * Get totalMuhScZaMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTotalMuhScZaMaxColor()
     {
@@ -20279,7 +20281,7 @@ class Measurement
      * Get totalMuhScZbMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTotalMuhScZbMax()
     {
@@ -20303,7 +20305,7 @@ class Measurement
      * Get totalMuhScZbMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTotalMuhScZbMaxColor()
     {
@@ -20327,7 +20329,7 @@ class Measurement
      * Get totalMuhScZcMax
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTotalMuhScZcMax()
     {
@@ -20351,7 +20353,7 @@ class Measurement
      * Get totalMuhScZcMaxColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getTotalMuhScZcMaxColor()
     {
@@ -20375,7 +20377,7 @@ class Measurement
      * Get totalMuhScZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTotalMuhScZone()
     {
@@ -20399,7 +20401,7 @@ class Measurement
      * Get cibleZaColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getCibleZaColor()
     {
@@ -20423,7 +20425,7 @@ class Measurement
      * Get cibleZbColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getCibleZbColor()
     {
@@ -20447,7 +20449,7 @@ class Measurement
      * Get cibleZcColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getCibleZcColor()
     {
@@ -20471,7 +20473,7 @@ class Measurement
      * Get cibleZdColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getCibleZdColor()
     {
@@ -20495,7 +20497,7 @@ class Measurement
      * Get cibleZeColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getCibleZeColor()
     {
@@ -20519,7 +20521,7 @@ class Measurement
      * Get cibleZfColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getCibleZfColor()
     {
@@ -20543,7 +20545,7 @@ class Measurement
      * Get cibleZone
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleZone()
     {
@@ -20567,7 +20569,7 @@ class Measurement
      * Get ciblePoint
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCiblePoint()
     {
@@ -20591,7 +20593,7 @@ class Measurement
      * Get cibleIcwPcStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleIcwPcStdB()
     {
@@ -20615,7 +20617,7 @@ class Measurement
      * Get cibleIcwPcStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleIcwPcStdC()
     {
@@ -20639,7 +20641,7 @@ class Measurement
      * Get cibleIcwPcStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleIcwPcStdD()
     {
@@ -20663,7 +20665,7 @@ class Measurement
      * Get cibleIcwPcStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleIcwPcStdE()
     {
@@ -20687,7 +20689,7 @@ class Measurement
      * Get cibleFmHcPcStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleFmHcPcStdA()
     {
@@ -20711,7 +20713,7 @@ class Measurement
      * Get cibleFmHcPcStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleFmHcPcStdB()
     {
@@ -20735,7 +20737,7 @@ class Measurement
      * Get cibleFmHcPcStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleFmHcPcStdC()
     {
@@ -20759,7 +20761,7 @@ class Measurement
      * Get cibleFmHcPcStdE
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleFmHcPcStdE()
     {
@@ -20783,7 +20785,7 @@ class Measurement
      * Get cibleFfwStdA
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleFfwStdA()
     {
@@ -20807,7 +20809,7 @@ class Measurement
      * Get cibleFfwStdB
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleFfwStdB()
     {
@@ -20831,7 +20833,7 @@ class Measurement
      * Get cibleFfwStdC
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleFfwStdC()
     {
@@ -20855,7 +20857,7 @@ class Measurement
      * Get cibleFfwStdD
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleFfwStdD()
     {
@@ -20879,7 +20881,7 @@ class Measurement
      * Get fmHcPcPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmHcPcPos()
     {
@@ -20903,7 +20905,7 @@ class Measurement
      * Get ffwPcPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfwPcPos()
     {
@@ -20927,7 +20929,7 @@ class Measurement
      * Get mmhiPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMmhiPos()
     {
@@ -20951,7 +20953,7 @@ class Measurement
      * Get adcrPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAdcrPos()
     {
@@ -20975,7 +20977,7 @@ class Measurement
      * Get adcrConsInf
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAdcrConsInf()
     {
@@ -20999,7 +21001,7 @@ class Measurement
      * Get adcrConsSup
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAdcrConsSup()
     {
@@ -21023,7 +21025,7 @@ class Measurement
      * Get asmmiPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmmiPos()
     {
@@ -21047,7 +21049,7 @@ class Measurement
      * Get ecwPcPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getEcwPcPos()
     {
@@ -21071,7 +21073,7 @@ class Measurement
      * Get icwPcPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIcwPcPos()
     {
@@ -21095,7 +21097,7 @@ class Measurement
      * Get fmPcPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmPcPos()
     {
@@ -21119,7 +21121,7 @@ class Measurement
      * Get tbwffmPcPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTbwffmPcPos()
     {
@@ -21143,7 +21145,7 @@ class Measurement
      * Get dffmiPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getDffmiPos()
     {
@@ -21167,7 +21169,7 @@ class Measurement
      * Get mpMetaiPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getMpMetaiPos()
     {
@@ -21191,7 +21193,7 @@ class Measurement
      * Get iffmiPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getIffmiPos()
     {
@@ -21215,7 +21217,7 @@ class Measurement
      * Get bmriPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBmriPos()
     {
@@ -21239,7 +21241,7 @@ class Measurement
      * Get ffecwPcPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwPcPos()
     {
@@ -21263,7 +21265,7 @@ class Measurement
      * Get ffecwiPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFfecwiPos()
     {
@@ -21287,7 +21289,7 @@ class Measurement
      * Get fficwPcPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwPcPos()
     {
@@ -21311,7 +21313,7 @@ class Measurement
      * Get fficwiPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFficwiPos()
     {
@@ -21335,7 +21337,7 @@ class Measurement
      * Get asmhiPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAsmhiPos()
     {
@@ -21359,7 +21361,7 @@ class Measurement
      * Get bcmiPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBcmiPos()
     {
@@ -21383,7 +21385,7 @@ class Measurement
      * Get imcPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getImcPos()
     {
@@ -21407,7 +21409,7 @@ class Measurement
      * Get fmslmirCcSc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmslmirCcSc()
     {
@@ -21431,7 +21433,7 @@ class Measurement
      * Get fmirCcSc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmirCcSc()
     {
@@ -21455,7 +21457,7 @@ class Measurement
      * Get slmirCcSc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSlmirCcSc()
     {
@@ -21479,7 +21481,7 @@ class Measurement
      * Get whrCcSc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWhrCcSc()
     {
@@ -21503,7 +21505,7 @@ class Measurement
      * Get whtrCcSc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWhtrCcSc()
     {
@@ -21527,7 +21529,7 @@ class Measurement
      * Get totalCcSc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTotalCcSc()
     {
@@ -21551,7 +21553,7 @@ class Measurement
      * Get totalCcScPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTotalCcScPos()
     {
@@ -21575,7 +21577,7 @@ class Measurement
      * Get fmslmirMuhSc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmslmirMuhSc()
     {
@@ -21599,7 +21601,7 @@ class Measurement
      * Get fmirMuhSc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getFmirMuhSc()
     {
@@ -21623,7 +21625,7 @@ class Measurement
      * Get slmirMuhSc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getSlmirMuhSc()
     {
@@ -21647,7 +21649,7 @@ class Measurement
      * Get totalMuhSc
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTotalMuhSc()
     {
@@ -21671,7 +21673,7 @@ class Measurement
      * Get totalMuhScPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getTotalMuhScPos()
     {
@@ -21695,7 +21697,7 @@ class Measurement
      * Get cibleIcwPcPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleIcwPcPos()
     {
@@ -21719,7 +21721,7 @@ class Measurement
      * Get cibleImcPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleImcPos()
     {
@@ -21743,7 +21745,7 @@ class Measurement
      * Get cibleFmHcPcPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleFmHcPcPos()
     {
@@ -21767,7 +21769,7 @@ class Measurement
      * Get cibleMmhiPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleMmhiPos()
     {
@@ -21791,7 +21793,7 @@ class Measurement
      * Get cibleAsmhiPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleAsmhiPos()
     {
@@ -21815,7 +21817,7 @@ class Measurement
      * Get cibleFfwPos
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getCibleFfwPos()
     {
@@ -21839,7 +21841,7 @@ class Measurement
      * Get asmliColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAsmliColor()
     {
@@ -21863,7 +21865,7 @@ class Measurement
      * Get asmtliColor
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getAsmtliColor()
     {
@@ -21887,7 +21889,7 @@ class Measurement
      * Get request
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getRequest()
     {
@@ -21911,7 +21913,7 @@ class Measurement
      * Get response
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getResponse()
     {
@@ -21935,7 +21937,7 @@ class Measurement
      * Get interpretationDate
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getInterpretationDate()
     {
@@ -21959,7 +21961,7 @@ class Measurement
      * Get createdAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -21983,7 +21985,7 @@ class Measurement
      * Get modifiedAt
      *
      * @access public
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModifiedAt()
     {
@@ -22007,7 +22009,7 @@ class Measurement
      * Get thighsSize
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getThighsSize()
     {
@@ -22031,7 +22033,7 @@ class Measurement
      * Get hipsSize
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getHipsSize()
     {
@@ -22055,7 +22057,7 @@ class Measurement
      * Get waistSize
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getWaistSize()
     {
@@ -22079,7 +22081,7 @@ class Measurement
      * Get chestSize
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getChestSize()
     {
@@ -22103,7 +22105,7 @@ class Measurement
      * Get bicepsSize
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getBicepsSize()
     {
@@ -22127,7 +22129,7 @@ class Measurement
      * Get age
      *
      * @access public
-     * @return float 
+     * @return float
      */
     public function getAge()
     {
@@ -22151,7 +22153,7 @@ class Measurement
      * Get biodyBluetoothMacAddress
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getBiodyBluetoothMacAddress()
     {
@@ -22175,7 +22177,7 @@ class Measurement
      * Get machineBluetoothMacAddress
      *
      * @access public
-     * @return string 
+     * @return string
      */
     public function getMachineBluetoothMacAddress()
     {
@@ -22199,7 +22201,7 @@ class Measurement
      * Get country
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\Country 
+     * @return \ContinuousNet\LivnYouBundle\Entity\Country
      */
     public function getCountry()
     {
@@ -22223,7 +22225,7 @@ class Measurement
      * Get physicalActivity
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\PhysicalActivity 
+     * @return \ContinuousNet\LivnYouBundle\Entity\PhysicalActivity
      */
     public function getPhysicalActivity()
     {
@@ -22247,7 +22249,7 @@ class Measurement
      * Get creatorUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getCreatorUser()
     {
@@ -22271,7 +22273,7 @@ class Measurement
      * Get modifierUser
      *
      * @access public
-     * @return \ContinuousNet\LivnYouBundle\Entity\User 
+     * @return \ContinuousNet\LivnYouBundle\Entity\User
      */
     public function getModifierUser()
     {
@@ -22291,8 +22293,7 @@ class Measurement
      */
     public function prePersist()
     {
-        if (is_null($this->getCreatedAt()))
-        {
+        if (is_null($this->getCreatedAt())) {
             $this->setCreatedAt(new \DateTime('now'));
         }
     }

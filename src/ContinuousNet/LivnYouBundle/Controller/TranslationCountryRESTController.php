@@ -19,16 +19,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Finder\Finder;;
+use Symfony\Component\Finder\Finder;
+
+;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Translation Country REST Controller
- * 
- * Manage TranslationCountries 
- * 
+ *
+ * Manage TranslationCountries
+ *
  * PHP version 5.4.4
- * 
+ *
  * @category   Symfony 2 REST Controller
  * @package  ContinuousNet\LivnYouBundle\Controller
  * @author    Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
@@ -86,7 +88,7 @@ class TranslationCountryRESTController extends BaseRESTController
             $filter_operators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
             $order_by = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
-            $params = compact('offset','limit','filter_operators','order_by','filters');
+            $params = compact('offset', 'limit', 'filter_operators', 'order_by', 'filters');
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
@@ -97,7 +99,6 @@ class TranslationCountryRESTController extends BaseRESTController
                 'results' => $results
             );
             return $data;
-
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -116,7 +117,7 @@ class TranslationCountryRESTController extends BaseRESTController
     public function postAction(Request $request)
     {
         $entity = new TranslationCountry();
-        $form = $this->createForm( TranslationCountryType::class, $entity, array('method' => $request->getMethod()));
+        $form = $this->createForm(TranslationCountryType::class, $entity, array('method' => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
         $form->submit($request->request->all());
@@ -140,7 +141,7 @@ class TranslationCountryRESTController extends BaseRESTController
         try {
             $entity = $this->getDoctrine()->getRepository('LivnYouBundle:TranslationCountry')->get(['id' => $id]);
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
-            $form = $this->createForm( TranslationCountryType::class, $entity, array('method' => $request->getMethod()));
+            $form = $this->createForm(TranslationCountryType::class, $entity, array('method' => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
             $form->submit($request->request->all());
@@ -187,6 +188,4 @@ class TranslationCountryRESTController extends BaseRESTController
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
-
 }

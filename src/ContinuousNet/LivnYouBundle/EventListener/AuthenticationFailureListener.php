@@ -2,7 +2,6 @@
 
 namespace ContinuousNet\LivnYouBundle\EventListener;
 
-
 use FOS\UserBundle\Model\UserManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Response\JWTAuthenticationFailureResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -10,8 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationFailureEvent;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class AuthenticationFailureListener {
-
+class AuthenticationFailureListener
+{
     private $userManager;
 
     private $request;
@@ -25,11 +24,11 @@ class AuthenticationFailureListener {
         $this->translator = $_translator;
     }
 
-    public function onAuthenticationFailureResponse(AuthenticationFailureEvent $event){
-
+    public function onAuthenticationFailureResponse(AuthenticationFailureEvent $event)
+    {
         $user_email = $this->request->getCurrentRequest()->request->get('email');
         $user = $this->userManager->findUserByEmail($user_email);
-        if(!is_null($user)){
+        if (!is_null($user)) {
             $user->setFailedLoginCount($user->getFailedLoginCount()+1);
             $user->setLastFailedLogin(new \DateTime('now'));
             $user->setLastFailedLoginCount($user->getLastFailedLoginCount()+1);
@@ -41,7 +40,5 @@ class AuthenticationFailureListener {
         ];
         $response = new JWTAuthenticationFailureResponse($data);
         $event->setResponse($response);
-
     }
 }
-?>
