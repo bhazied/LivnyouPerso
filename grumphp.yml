@@ -4,4 +4,7 @@ parameters:
     tasks:
         phplint: ~
         phpcsfixer2: ~
-        phpmd: ~
+        phpmd:
+            exclude: []
+            ruleset: ['cleancode',  'naming']
+            triggered_by: ['php']

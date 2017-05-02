@@ -11,6 +11,10 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  */
 class GroupRepository extends EntityRepository implements IRepository
 {
+    public function get__all()
+    {
+    }
+
     public function getAll($params = [])
     {
         $qb = $this->createQueryBuilder('group_');
