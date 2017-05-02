@@ -109,5 +109,17 @@ class GroupRepository extends EntityRepository implements IRepository{
         $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();
     }
+
+    public function count($params = [])
+    {
+        $qb = $this->createQueryBuilder('group_');
+        if(array_key_exists('filters', $params)){
+            foreach ($params['filters'] as $fKey => $value){
+                $qb->andWhere('group_.'.$fKey .'=:'.$fKey)->setParameter($fKey, $value);
+            }
+        }
+        $qb->select('count(group_.id)');
+        return $qb->getQuery()->getSingleScalarResult();;
+    }
 }
 ?>

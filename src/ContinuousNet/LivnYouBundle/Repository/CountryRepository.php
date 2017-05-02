@@ -109,5 +109,12 @@ class CountryRepository extends EntityRepository implements IRepository{
         $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();
     }
+
+    public function count()
+    {
+        $qb = $this->createQueryBuilder('country');
+        $qb->select('count(country.id)');
+        return $qb->getQuery()->getSingleScalarResult();;
+    }
 }
 ?>

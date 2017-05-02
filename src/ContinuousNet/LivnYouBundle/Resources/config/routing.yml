@@ -95,3 +95,10 @@ livn_you_user_api:
     prefix: /{_locale}/api
     requirements:
         _locale: en|fr
+
+livn_you_dashboard_api:
+    resource: "@LivnYouBundle/Controller/DashboardRestController.php"
+    type: rest
+    prefix: /{_locale}/api
+    requirements:
+        _locale: en|fr

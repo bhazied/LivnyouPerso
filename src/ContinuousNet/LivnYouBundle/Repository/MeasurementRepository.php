@@ -44,5 +44,17 @@ class MeasurementRepository extends EntityRepository implements IRepository{
         $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();
     }
+
+    public function count($params = [])
+    {
+        $qb = $this->createQueryBuilder('measurement');
+        if(array_key_exists('filters', $params)){
+            foreach ($params['filters'] as $fKey => $value){
+                $qb->andWhere('measurement.'.$fKey .'=:'.$fKey)->setParameter($fKey, $value);
+            }
+        }
+        $qb->select('count(measurement.id)');
+        return $qb->getQuery()->getSingleScalarResult();;
+    }
 }
 ?>

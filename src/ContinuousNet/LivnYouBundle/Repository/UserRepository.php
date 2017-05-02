@@ -135,6 +135,18 @@ class UserRepository extends EntityRepository implements IRepository{
         $this->getEntityManager()->flush();
     }
 
+    public function count($params = [])
+    {
+        $qb = $this->createQueryBuilder('country');
+        if(array_key_exists('filters', $params)){
+            foreach ($params['filters'] as $fKey => $value){
+                $qb->andWhere('country.'.$fKey .'=:'.$fKey)->setParameter($fKey, $value);
+            }
+        }
+        $qb->select('count(country.id)');
+        return $qb->getQuery()->getSingleScalarResult();;
+    }
+
     /**
      * @param User $entity
      * @param $isNew

@@ -138,7 +138,7 @@ class Country
      * @ORM\JoinColumns({
      *        @ORM\JoinColumn(name="creator_user_id", referencedColumnName="id")
      * })
-     * 
+     *
      * @Expose
      * @MaxDepth(1)
      * 
