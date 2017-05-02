@@ -102,3 +102,8 @@ livn_you_dashboard_api:
     prefix: /{_locale}/api
     requirements:
         _locale: en|fr
+
+livn_you_thumb:
+    path: /thumb
+    defaults:   { _controller: LivnYouBundle:Thumb:index }
+    methods: get

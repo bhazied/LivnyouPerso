@@ -120,6 +120,32 @@ lexik_jwt_authentication:
         service:     lexik_jwt_authentication.encoder.default   # token encoder / decoder service - defaults to the jwt encoder (based on the namshi/jose library)
     user_identity_field: email
 
+liip_imagine:
+    resolvers:
+        default:
+            web_path:
+                web_root:  %kernel.root_dir%/../web
+                cache_prefix: ~  media/cache
+
+    loaders:
+        default:
+            filesystem:
+                data_root: %kernel.root_dir%/../web/
+    driver:               gd
+    cache:                default
+    data_loader:          default
+    default_image:        null
+    controller:
+        filter_action:         liip_imagine.controller:filterAction
+        filter_runtime_action: liip_imagine.controller:filterRuntimeAction
+    filter_sets:
+       cache: ~
+       thumb:
+           quality: 100
+           filters:
+               relative_resize: { widen: 150 }
+
+
 assetic:
     debug:          '%kernel.debug%'
     use_controller: '%kernel.debug%'

@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new ContinuousNet\LivnYouBundle\LivnYouBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
