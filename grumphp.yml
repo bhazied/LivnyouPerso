@@ -4,3 +4,4 @@ parameters:
     tasks:
         phplint: ~
         phpcsfixer2: ~
+        phpmd: ~
