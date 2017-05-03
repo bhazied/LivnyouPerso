@@ -53,10 +53,10 @@ class SessionRESTController extends BaseRESTController
      * @return Response
      *
      */
-    public function getAction($id)
+    public function getAction($idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Session')->get(['id' => $id]);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Session')->get(['id' => $idEntity]);
             $this->createSubDirectory($entity);
             return $entity;
         } catch (\Exception $e) {
@@ -85,14 +85,14 @@ class SessionRESTController extends BaseRESTController
             $this->createSubDirectory(new Session());
             $offset = $paramFetcher->get('offset');
             $limit = $paramFetcher->get('limit');
-            $filter_operators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
-            $order_by = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
+            $filterOperators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
+            $orderBy = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
             );
-            $params = compact('offset', 'limit', 'filter_operators', 'order_by', 'filters');
+            $params = compact('offset', 'limit', 'filterOperators', 'orderBy', 'filters');
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
@@ -120,17 +120,13 @@ class SessionRESTController extends BaseRESTController
      */
     public function postAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
         $entity = new Session();
         $form = $this->createForm(SessionType::class, $entity, array('method' => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
         $form->submit($request->request->all());
         if ($form->isValid()) {
-            $entity->setCreatorUser($this->getUser());
-            $em->persist($entity);
-            $em->flush();
-            return $entity;
+            return $this->getDoctrine()->getRepository('LivnYouBundle:Session')->update($entity, ['CreatorUser' => $this->getUser()]);
         }
         return FOSView::create(
             ["status" => false, "message" => $this->getFormExactError($form->getErrors())],
@@ -144,24 +140,21 @@ class SessionRESTController extends BaseRESTController
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $id
+     * @param $idEntity
      *
      * @return Response
      */
-    public function putAction(Request $request, $id)
+    public function putAction(Request $request, $idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Session')->findOneById($id);
-            $em = $this->getDoctrine()->getManager();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Session')->findOneById($idEntity);
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(SessionType::class, $entity, array('method' => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
             $form->submit($request->request->all());
             if ($form->isValid()) {
-                $entity->setModifierUser($this->getUser());
-                $em->flush();
-                return $entity;
+                return $this->getDoctrine()->getRepository('LivnYouBundle:Session')->update($entity, ['modifierUser' => $this->getUser()]);
             }
             return FOSView::create(array('errors' => $form->getErrors()), Response::HTTP_INTERNAL_SERVER_ERROR);
         } catch (\Exception $e) {
@@ -175,13 +168,13 @@ class SessionRESTController extends BaseRESTController
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $id
+     * @param $idEntity
      *
      * @return Response
      */
-    public function patchAction(Request $request, $id)
+    public function patchAction(Request $request, $idEntity)
     {
-        return $this->putAction($request, $id);
+        return $this->putAction($request, $idEntity);
     }
 
     /**
@@ -190,17 +183,14 @@ class SessionRESTController extends BaseRESTController
      * @View(statusCode=204)
      *
      * @param Request $request
-     * @param $id
+     * @param $idEntity
      *
      * @return Response
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Session')->findOneById($id);
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($entity);
-            $em->flush();
+            $this->getDoctrine()->getRepository('LivnYouBundle:Session')->delete($idEntity);
             return null;
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);

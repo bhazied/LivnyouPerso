@@ -625,6 +625,7 @@
       }
     },
     "list": {
+      "SESSIONS": "Sessions",
       "MEASUREMENTS":"Measurement",
       "TRANSLATIONPATHOLOGIES": "Translation Pathologies",
       "TRANSLATIONPHYSICALACTIVITIES": "Translation Physical Activities",
