@@ -54,10 +54,10 @@ class GroupRESTController extends BaseRESTController
      * @return Response
      *
      */
-    public function getAction($id)
+    public function getAction($idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Group')->get(['id' =>$id]);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Group')->get(['id' =>$idEntity]);
             $this->createSubDirectory($entity);
             return $entity;
         } catch (\Exception $e) {
@@ -88,9 +88,9 @@ class GroupRESTController extends BaseRESTController
             $offset = $paramFetcher->get('offset');
             $limit = $paramFetcher->get('limit');
             $filterOperators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
-            $order_by = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
+            $orderBy = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
-            $params = compact('offset', 'limit', 'filterOperators', 'order_by', 'filters');
+            $params = compact('offset', 'limit', 'filterOperators', 'orderBy', 'filters');
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
@@ -139,15 +139,14 @@ class GroupRESTController extends BaseRESTController
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $id
+     * @param $idEntity
      *
      * @return Response
      */
-    public function putAction(Request $request, $id)
+    public function putAction(Request $request, $idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Group')->get(array('id' =>$id));
-            $em = $this->getDoctrine()->getManager();
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Group')->get(array('id' =>$idEntity));
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $entity->setRoles(array());
             $form = $this->createForm(GroupType::class, $entity, array('method' => $request->getMethod()));
@@ -169,13 +168,13 @@ class GroupRESTController extends BaseRESTController
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $id
+     * @param $idEntity
      *
      * @return Response
      */
-    public function patchAction(Request $request, $id)
+    public function patchAction(Request $request, $idEntity)
     {
-        return $this->putAction($request, $id);
+        return $this->putAction($request, $idEntity);
     }
 
     /**
@@ -184,14 +183,14 @@ class GroupRESTController extends BaseRESTController
      * @View(statusCode=204)
      *
      * @param Request $request
-     * @param $id
+     * @param $idEntity
      *
      * @return Response
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($idEntity)
     {
         try {
-            $this->getDoctrine()->getRepository('LivnYouBundle:Group')->delete($id);
+            $this->getDoctrine()->getRepository('LivnYouBundle:Group')->delete($idEntity);
             return null;
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);

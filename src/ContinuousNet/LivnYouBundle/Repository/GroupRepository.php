@@ -38,9 +38,9 @@ class GroupRepository extends EntityRepository implements IRepository
             if (!empty($value)) {
                 if (in_array($field, $textFields)) {
                     if (isset($filterOperators[$field]) && $filterOperators[$field] == 'eq') {
-                        $qBuilder->andWhere($qb->expr()->eq($field, $qb->expr()->literal($value)));
+                        $qBuilder->andWhere($qBuilder->expr()->eq($field, $qBuilder->expr()->literal($value)));
                     } else {
-                        $qBuilder->andWhere($qb->expr()->like($field, $qb->expr()->literal('%' . $value . '%')));
+                        $qBuilder->andWhere($qBuilder->expr()->like($field, $qBuilder->expr()->literal('%' . $value . '%')));
                     }
                 } else {
                     $qBuilder->andWhere($field.' = :'.$key.'')->setParameter($key, $value);
@@ -59,7 +59,7 @@ class GroupRepository extends EntityRepository implements IRepository
                 } elseif ($memberOfCondition['operator'] == 'and') {
                     $andX = $qBuilder->expr()->andX();
                     foreach ($memberOfCondition['items'] as $i => $item) {
-                        $andX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'group_.'.$listName));
+                        $andX->add($qBuilder->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'group_.'.$listName));
                         $qBuilder->setParameter($listName.'_value_'.$i, $item);
                     }
                     $qBuilder->andWhere($andX);
@@ -67,9 +67,9 @@ class GroupRepository extends EntityRepository implements IRepository
             }
         }
         $qbList = clone $qBuilder;
-        $qb->select('count(group_.id)');
-        $data['inlineCount'] = $qb->getQuery()->getSingleScalarResult();
-        foreach ($params['order_by'] as $field => $direction) {
+        $qBuilder->select('count(group_.id)');
+        $data['inlineCount'] = $qBuilder->getQuery()->getSingleScalarResult();
+        foreach ($params['orderBy'] as $field => $direction) {
             $qbList->addOrderBy($field, $direction);
         }
         $qbList->select('group_');
