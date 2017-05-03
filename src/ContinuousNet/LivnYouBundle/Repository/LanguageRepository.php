@@ -110,7 +110,7 @@ class LanguageRepository extends EntityRepository implements IRepository
     public function delete($idEntity)
     {
         $entity = $this->find($idEntity);
-        $this->getEntityManager()->remove($idEntity);
+        $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();
     }
 }

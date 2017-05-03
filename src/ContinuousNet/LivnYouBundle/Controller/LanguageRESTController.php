@@ -53,10 +53,10 @@ class LanguageRESTController extends BaseRESTController
      * @return Response
      *
      */
-    public function getAction($id)
+    public function getAction($idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->get(['id' => $id]);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Language')->get(['id' => $idEntity]);
             $this->createSubDirectory($entity);
             return $entity;
         } catch (\Exception $e) {
