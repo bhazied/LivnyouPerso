@@ -53,7 +53,7 @@ class Country
      * @Expose
      *
      */
-    private $id; 
+    private $id;
 
     /**
      * @var string
