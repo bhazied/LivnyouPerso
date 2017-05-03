@@ -53,10 +53,10 @@ class MeasurementRESTController extends BaseRESTController
      * @return Response
      *
      */
-    public function getAction($id)
+    public function getAction($idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById($id);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById($idEntity);
             $this->createSubDirectory($entity);
             return $entity;
         } catch (\Exception $e) {
@@ -85,91 +85,19 @@ class MeasurementRESTController extends BaseRESTController
             $this->createSubDirectory(new Measurement());
             $offset = $paramFetcher->get('offset');
             $limit = $paramFetcher->get('limit');
-            $filter_operators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
-            $order_by = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
+            $filterOperators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
+            $orderBy = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
             );
-            $em = $this->getDoctrine()->getManager();
-            $qb = $em->createQueryBuilder();
-            $qb->from('LivnYouBundle:Measurement', 'measurement');
-            $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\Country', 'country', \Doctrine\ORM\Query\Expr\Join::WITH, 'measurement.country = country.id');
-            $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\PhysicalActivity', 'physical_activity', \Doctrine\ORM\Query\Expr\Join::WITH, 'measurement.physicalActivity = physical_activity.id');
-            $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'measurement.creatorUser = creator_user.id');
-            $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'measurement.modifierUser = modifier_user.id');
-            $textFields = array('measurement.firstName', 'measurement.lastName', 'measurement.groupName', 'measurement.address', 'measurement.city', 'measurement.zipCode', 'measurement.state', 'measurement.mobileNumber', 'measurement.email', 'measurement.phone', 'measurement.appName', 'measurement.appVersion', 'measurement.dataReceived', 'measurement.fmHcPcZaMaxColor', 'measurement.fmHcPcZbMaxColor', 'measurement.fmHcPcZcMaxColor', 'measurement.fmHcPcZdMaxColor', 'measurement.fmHcPcZeMaxColor', 'measurement.fmHcPcZfMaxColor', 'measurement.ffwPcZaMaxColor', 'measurement.ffwPcZbMaxColor', 'measurement.ffwPcZcMaxColor', 'measurement.ffwPcZdMaxColor', 'measurement.ffwPcZeMaxColor', 'measurement.ffwPcZfMaxColor', 'measurement.ffwPcZgMaxColor', 'measurement.mmhiZaMaxColor', 'measurement.mmhiZbMaxColor', 'measurement.mmhiZcMaxColor', 'measurement.mmhiZdMaxColor', 'measurement.adcrZaMaxColor', 'measurement.adcrZbMaxColor', 'measurement.adcrZcMaxColor', 'measurement.adcrZdMaxColor', 'measurement.adcrZeMaxColor', 'measurement.asmmiZaMaxColor', 'measurement.asmmiZbMaxColor', 'measurement.asmmiZcMaxColor', 'measurement.asmmiZdMaxColor', 'measurement.ecwPcZaMaxColor', 'measurement.ecwPcZbMaxColor', 'measurement.ecwPcZcMaxColor', 'measurement.ecwPcZdMaxColor', 'measurement.ecwPcZeMaxColor', 'measurement.ecwPcZfMaxColor', 'measurement.ecwPcZgMaxColor', 'measurement.icwPcZaMaxColor', 'measurement.icwPcZbMaxColor', 'measurement.icwPcZcMaxColor', 'measurement.icwPcZdMaxColor', 'measurement.icwPcZeMaxColor', 'measurement.icwPcZfMaxColor', 'measurement.icwPcZgMaxColor', 'measurement.fmPcZaMaxColor', 'measurement.fmPcZbMaxColor', 'measurement.fmPcZcMaxColor', 'measurement.fmPcZdMaxColor', 'measurement.fmPcZeMaxColor', 'measurement.fmPcZfMaxColor', 'measurement.tbwffmPcZaMaxColor', 'measurement.tbwffmPcZbMaxColor', 'measurement.tbwffmPcZcMaxColor', 'measurement.tbwffmPcZdMaxColor', 'measurement.tbwffmPcZeMaxColor', 'measurement.tbwffmPcZfMaxColor', 'measurement.tbwffmPcZgMaxColor', 'measurement.dffmiZaMaxColor', 'measurement.dffmiZbMaxColor', 'measurement.dffmiZcMaxColor', 'measurement.dffmiZdMaxColor', 'measurement.mpMetaiZaMaxColor', 'measurement.mpMetaiZbMaxColor', 'measurement.mpMetaiZcMaxColor', 'measurement.mpMetaiZdMaxColor', 'measurement.iffmiZaMaxColor', 'measurement.iffmiZbMaxColor', 'measurement.iffmiZcMaxColor', 'measurement.iffmiZdMaxColor', 'measurement.bmriZaMaxColor', 'measurement.bmriZbMaxColor', 'measurement.bmriZcMaxColor', 'measurement.bmriZdMaxColor', 'measurement.ffecwPcZaMaxColor', 'measurement.ffecwPcZbMaxColor', 'measurement.ffecwPcZcMaxColor', 'measurement.ffecwPcZdMaxColor', 'measurement.ffecwPcZeMaxColor', 'measurement.ffecwPcZfMaxColor', 'measurement.ffecwPcZgMaxColor', 'measurement.fficwPcZaMaxColor', 'measurement.fficwPcZbMaxColor', 'measurement.fficwPcZcMaxColor', 'measurement.fficwPcZdMaxColor', 'measurement.fficwPcZeMaxColor', 'measurement.fficwPcZfMaxColor', 'measurement.fficwPcZgMaxColor', 'measurement.asmhiZaMaxColor', 'measurement.asmhiZbMaxColor', 'measurement.asmhiZcMaxColor', 'measurement.asmhiZdMaxColor', 'measurement.bcmiZaMaxColor', 'measurement.bcmiZbMaxColor', 'measurement.bcmiZcMaxColor', 'measurement.bcmiZdMaxColor', 'measurement.imcZaMaxColor', 'measurement.imcZbMaxColor', 'measurement.imcZcMaxColor', 'measurement.imcZdMaxColor', 'measurement.imcZeMaxColor', 'measurement.imcZfMaxColor', 'measurement.imcZgMaxColor', 'measurement.fmslmirZaMaxColor', 'measurement.fmslmirZbMaxColor', 'measurement.fmirZaMaxColor', 'measurement.fmirZbMaxColor', 'measurement.slmirZaMaxColor', 'measurement.slmirZbMaxColor', 'measurement.whrZaMaxColor', 'measurement.whrZbMaxColor', 'measurement.whtrZaMaxColor', 'measurement.whtrZbMaxColor', 'measurement.totalCcScZaMaxColor', 'measurement.totalCcScZbMaxColor', 'measurement.totalCcScZcMaxColor', 'measurement.totalMuhScZaMaxColor', 'measurement.totalMuhScZbMaxColor', 'measurement.totalMuhScZcMaxColor', 'measurement.cibleZaColor', 'measurement.cibleZbColor', 'measurement.cibleZcColor', 'measurement.cibleZdColor', 'measurement.cibleZeColor', 'measurement.cibleZfColor', 'measurement.asmliColor', 'measurement.asmtliColor', 'measurement.request', 'measurement.response', 'measurement.biodyBluetoothMacAddress', 'measurement.machineBluetoothMacAddress');
-            $memberOfConditions = array();
-            foreach ($filters as $field => $value) {
-                if (substr_count($field, '.') > 1) {
-                    if ($value == 'true' || $value == 'or' || $value == 'and') {
-                        list($entityName, $listName, $listItem) = explode('.', $field);
-                        if (!isset($memberOfConditions[$listName])) {
-                            $memberOfConditions[$listName] = array('items' => array(), 'operator' => 'or');
-                        }
-                        if ($value == 'or' || $value == 'and') {
-                            $memberOfConditions[$listName]['operator'] = $value;
-                        } else {
-                            $memberOfConditions[$listName]['items'][] = $listItem;
-                        }
-                    }
-                    continue;
-                }
-                $key = str_replace('.', '', $field);
-                if (!empty($value)) {
-                    if (in_array($field, $textFields)) {
-                        if (isset($filter_operators[$field]) && $filter_operators[$field] == 'eq') {
-                            $qb->andWhere($qb->expr()->eq($field, $qb->expr()->literal($value)));
-                        } else {
-                            $qb->andWhere($qb->expr()->like($field, $qb->expr()->literal('%' . $value . '%')));
-                        }
-                    } else {
-                        $qb->andWhere($field.' = :'.$key.'')->setParameter($key, $value);
-                    }
-                }
-            }
-            foreach ($memberOfConditions as $listName => $memberOfCondition) {
-                if (!empty($memberOfCondition['items'])) {
-                    if ($memberOfCondition['operator'] == 'or') {
-                        $orX = $qb->expr()->orX();
-                        foreach ($memberOfCondition['items'] as $i => $item) {
-                            $orX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'measurement.'.$listName));
-                            $qb->setParameter($listName.'_value_'.$i, $item);
-                        }
-                        $qb->andWhere($orX);
-                    } elseif ($memberOfCondition['operator'] == 'and') {
-                        $andX = $qb->expr()->andX();
-                        foreach ($memberOfCondition['items'] as $i => $item) {
-                            $andX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'measurement.'.$listName));
-                            $qb->setParameter($listName.'_value_'.$i, $item);
-                        }
-                        $qb->andWhere($andX);
-                    }
-                }
-            }
-            $roles = $this->getUser()->getRoles();
-            if (!empty($roles)) {
-                foreach ($roles as $role) {
-                    if (substr_count($role, 'ACC') > 0) {
-                        $qb->andWhere('measurement.creatorUser = :creatorUser')->setParameter('creatorUser', $this->getUser()->getId());
-                    }
-                }
-            }
-            $qbList = clone $qb;
-            $qb->select('count(measurement.id)');
-            $data['inlineCount'] = $qb->getQuery()->getSingleScalarResult();
-            foreach ($order_by as $field => $direction) {
-                $qbList->addOrderBy($field, $direction);
-            }
-            $qbList->select('measurement');
-            $qbList->setMaxResults($limit);
-            $qbList->setFirstResult($offset);
-            $qbList->groupBy('measurement.id');
-            $results = $qbList->getQuery()->getResult();
-            if ($results) {
-                $data['results'] = $results;
-            }
+            $params = compact('offset ','limit','filterOperators','orderBy','filters');
+            list($inlineCount, $results) = array_values($this->getDoctrine()->getRepository('LivnYouBundle:Log')->getAll($params));
+            $data = array(
+                'inlineCount' => $inlineCount,
+                'results' => $results
+            );
             return $data;
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -7364,14 +7292,14 @@ class MeasurementRESTController extends BaseRESTController
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $id
+     * @param $idEntity
      *
      * @return Response
      */
-    public function putAction(Request $request, $id)
+    public function putAction(Request $request, $idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById($id);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById($idEntity);
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $roles = $this->getUser()->getRoles();
@@ -12784,14 +12712,14 @@ class MeasurementRESTController extends BaseRESTController
      * @View(statusCode=204)
      *
      * @param Request $request
-     * @param $id
+     * @param $idEntity
      *
      * @return Response
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById($id);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById($idEntity);
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {
