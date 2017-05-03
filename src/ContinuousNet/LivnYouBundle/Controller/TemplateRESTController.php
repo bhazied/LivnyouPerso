@@ -131,16 +131,16 @@ class TemplateRESTController extends BaseRESTController
         $form->submit($request->request->all());
         if ($form->isValid()) {
             $entity->setCreatorUser($this->getUser());
-            $authorizedChangeShareLevel = false;
+            $canChangeShareLevel = false;
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {
                     if (substr_count($role, 'ADM') > 0) {
-                        $authorizedChangeShareLevel = true;
+                        $canChangeShareLevel = true;
                     }
                 }
             }
-            if (!$authorizedChangeShareLevel) {
+            if (!$canChangeShareLevel) {
                 $entity->setShareLevel('None');
             }
             return $this->getDoctrine()->getRepository('LivnYouBundle:Template')->store($entity, ['creatorUser' => $this->getUser()]);
@@ -182,12 +182,12 @@ class TemplateRESTController extends BaseRESTController
             $form->submit($request->request->all());
             if ($form->isValid()) {
                 $entity->setModifierUser($this->getUser());
-                $authorizedChangeShareLevel = false;
+                $canChangeShareLevel = false;
                 $roles = $this->getUser()->getRoles();
                 if (!empty($roles)) {
                     foreach ($roles as $role) {
                         if (substr_count($role, 'ADM') > 0) {
-                            $authorizedChangeShareLevel = true;
+                            $canChangeShareLevel = true;
                         }
                     }
                 }
