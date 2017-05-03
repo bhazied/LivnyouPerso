@@ -98,7 +98,8 @@
     "videogular-poster": "^1.4.4",
     "videogular-buffering": "^1.4.4",
     "angular-paging": "^2.2.2",
-    "isteven-angular-multiselect": "^4.0.0"
+    "isteven-angular-multiselect": "^4.0.0",
+    "ng-csv": "^0.3.6"
   },
   "moduleType": [
     "node"
