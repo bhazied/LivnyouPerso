@@ -53,10 +53,10 @@ class CountryRESTController extends BaseRESTController
      * @return Response
      *
      */
-    public function getAction($id)
+    public function getAction($idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->get(['id' => $id]);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->get(['id' => $idEntity]);
             $entity = $this->translateEntity($entity);
             $this->createSubDirectory($entity);
             return $entity;
@@ -144,10 +144,10 @@ class CountryRESTController extends BaseRESTController
      *
      * @return Response
      */
-    public function putAction(Request $request, $id)
+    public function putAction(Request $request, $idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->get(['id' =>$id]);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Country')->get(['id' =>$idEntity]);
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(CountryType::class, $entity, array('method' => $request->getMethod()));
             $this->removeExtraFields($request, $form);
@@ -173,9 +173,9 @@ class CountryRESTController extends BaseRESTController
      *
      * @return Response
      */
-    public function patchAction(Request $request, $id)
+    public function patchAction(Request $request, $idEntity)
     {
-        return $this->putAction($request, $id);
+        return $this->putAction($request, $idEntity);
     }
 
     /**
@@ -189,10 +189,10 @@ class CountryRESTController extends BaseRESTController
      *
      * @return Response
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($idEntity)
     {
         try {
-            $this->getDoctrine()->getRepository('LivnYouBundle:Country')->delete($id);
+            $this->getDoctrine()->getRepository('LivnYouBundle:Country')->delete($idEntity);
             return null;
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
