@@ -1,8 +1,8 @@
-var app = angular.module('ubidElectricityApp', ['ubid-electricity']);
+var app = angular.module('livnYouApp', ['livn-you', 'ngSanitize', 'ngCsv']);
 
 var languages = {
-    'en' : 'English'/*,
-    'fr' : 'Français',
+    'en' : 'English',
+    'fr' : 'Français',/*
     'es' : 'Español',
     'it' : 'Italiano',
     'de' : 'Deutsch'*/
@@ -23,11 +23,11 @@ app.run(['$rootScope', '$state', '$stateParams', '$localStorage', '$timeout',
     // GLOBAL APP SCOPE
     // set below basic information
     $rootScope.app = {
-        name: 'E-electricity', // name of your project
-        description: 'Electricity Tenders Marketplace', // brief description
-        keywords: 'Electricity, Tenders, Suppliers, Buyers, Consultations', // brief description
+        name: 'LivnYou', // name of your project
+        description: 'LivnYou', // brief description
+        keywords: 'LivnYou, santé, measurement', // brief description
         author: 'ContinuousNet', // author's name or company name
-        version: '2.0', // current version
+        version: '1.0', // current version
         year: ((new Date()).getFullYear()), // automatic current year (for copyright information)
         isMobile: (function () {// true if the browser is a mobile device
             var check = false;

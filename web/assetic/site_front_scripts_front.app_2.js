@@ -1,5 +1,5 @@
 'use strict'
-var app = angular.module('UbidElectricityFront', ['ubid-electricity', 'bw.paging', 'isteven-multi-select', 'angularFileUpload']);
+var app = angular.module('UbidElectricityFront', ['livn-you', 'bw.paging', 'isteven-multi-select', 'angularFileUpload']);
 
 var languages = {
     'en' : 'English'/*,

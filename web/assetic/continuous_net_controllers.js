@@ -308,7 +308,7 @@ app.controller('ModalInstanceCtrl', ["$scope", "$uibModalInstance", "items", fun
 'use strict';
 
 /**
- * E-Electricity Back Office Main Controller
+ * LivnYou Back Office Main Controller
  */
 app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar', '$filter', '$stateParams',
 function($rootScope, $scope, $state, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar, $filter, $stateParams) {

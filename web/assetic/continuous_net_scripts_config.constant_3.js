@@ -136,5 +136,8 @@ app.constant('JS_REQUIRES', {
     },{
         name: 'tree-grid-directive',
         files: ['/assets/bower_components/angular-bootstrap-nav-tree/dist/abn_tree_directive.js', '/assets/bower_components/angular-bootstrap-nav-tree/dist/abn_tree.css']
+    },{
+        name: 'ng-csv',
+        files: ['/assets/bower_components/ng-csv/src/ng-csv.js']
     }]
 });

@@ -625,6 +625,7 @@
       }
     },
     "list": {
+      "EXPORTTOCSV": "Export to CSV",
       "TEMPLATES": "Templates",
       "SESSIONS": "Sessions",
       "MEASUREMENTS":"Measurement",

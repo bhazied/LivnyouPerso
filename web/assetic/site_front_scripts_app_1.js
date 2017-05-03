@@ -1,8 +1,8 @@
 /** 
-  * declare 'ubid-electricity' module with dependencies
+  * declare 'livn-you' module with dependencies
 */
 'use strict';
-angular.module('ubid-electricity', [
+angular.module('livn-you', [
 	'ngAnimate',
 	'ngCookies',
 	'ngStorage',

@@ -232,12 +232,13 @@ assetic:
                 - "assets/bower_components/angular-cookies/angular-cookies.js" #.min
                 - "assets/bower_components/angular-animate/angular-animate.js" #.min
                 - "assets/bower_components/angular-touch/angular-touch.js" #.min
-                - "assets/bower_components/angular-sanitize/angular-sanitize.js" #.min
+                - "assets/bower_components/angular-sanitize/angular-sanitize.min.js" #.min
                 - "assets/bower_components/angular-ui-router/release/angular-ui-router.js" #.min
                 - "assets/bower_components/angular-resource/angular-resource.js" #.min
                 - "assets/bower_components/angular-bind-html-compile/angular-bind-html-compile.js"
                 - "assets/bower_components/angular-slugify/angular-slugify.js"
                 - "assets/bower_components/AngularJS-Toaster/toaster.js"
+                - "assets/bower_components/ng-csv/src/ng-csv/ng-csv.js"
         angular_storage:
             inputs:
                 - "assets/bower_components/ngstorage/ngStorage.js" #.min
@@ -297,11 +298,8 @@ assetic:
         site_front_scripts:
             inputs:
                 - "assets/js/app.js"
-                - "assets/js/front.app.js"
                 - "assets/js/config.constant.js"
                 - "bundles/livnyou/js/constant.js"
-                - "assets/js/front.config.router.js"
-                #- "bundles/livnyou/js/front.router.js"
                 - "assets/bower_components/angular-paging/dist/paging.min.js"
                 - "assets/bower_components/isteven-angular-multiselect/isteven-multi-select.js"
         continuous_net_services:
