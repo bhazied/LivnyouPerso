@@ -87,10 +87,10 @@ class CountryRESTController extends BaseRESTController
             $this->createSubDirectory(new Country());
             $offset = $paramFetcher->get('offset');
             $limit = $paramFetcher->get('limit');
-            $filter_operators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
-            $order_by = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
+            $filterOperators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
+            $orderBy = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
-            $params = compact('offset', 'limit', 'filter_operators', 'order_by', 'filters');
+            $params = compact('offset', 'limit', 'filterOperators', 'orderBy', 'filters');
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()

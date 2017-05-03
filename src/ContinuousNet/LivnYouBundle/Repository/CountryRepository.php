@@ -13,9 +13,9 @@ class CountryRepository extends EntityRepository implements IRepository
 {
     public function getAll($params = [])
     {
-        $qb = $this->createQueryBuilder('country');
-        $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'country.creatorUser = creator_user.id');
-        $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'country.modifierUser = modifier_user.id');
+        $qBuilder = $this->createQueryBuilder('country');
+        $qBuilder->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'country.creatorUser = creator_user.id');
+        $qBuilder->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'country.modifierUser = modifier_user.id');
         $textFields = array('country.name', 'country.picture', 'country.code', 'country.longCode', 'country.prefix');
         $memberOfConditions = array();
 
@@ -24,6 +24,7 @@ class CountryRepository extends EntityRepository implements IRepository
                 if ($value == 'true' || $value == 'or' || $value == 'and') {
                     list($entityName, $listName, $listItem) = explode('.', $field);
                     if (!isset($memberOfConditions[$listName])) {
+                        $entityName = null;
                         $memberOfConditions[$listName] = array('items' => array(), 'operator' => 'or');
                     }
                     if ($value == 'or' || $value == 'and') {
@@ -37,39 +38,39 @@ class CountryRepository extends EntityRepository implements IRepository
             $key = str_replace('.', '', $field);
             if (!empty($value)) {
                 if (in_array($field, $textFields)) {
-                    if (isset($filter_operators[$field]) && $filter_operators[$field] == 'eq') {
-                        $qb->andWhere($qb->expr()->eq($field, $qb->expr()->literal($value)));
+                    if (isset($filterOperators[$field]) && $filterOperators[$field] == 'eq') {
+                        $qBuilder->andWhere($qBuilder->expr()->eq($field, $qBuilder->expr()->literal($value)));
                     } else {
-                        $qb->andWhere($qb->expr()->like($field, $qb->expr()->literal('%' . $value . '%')));
+                        $qBuilder->andWhere($qBuilder->expr()->like($field, $qBuilder->expr()->literal('%' . $value . '%')));
                     }
                 } else {
-                    $qb->andWhere($field.' = :'.$key.'')->setParameter($key, $value);
+                    $qBuilder->andWhere($field.' = :'.$key.'')->setParameter($key, $value);
                 }
             }
         }
         foreach ($memberOfConditions as $listName => $memberOfCondition) {
             if (!empty($memberOfCondition['items'])) {
                 if ($memberOfCondition['operator'] == 'or') {
-                    $orX = $qb->expr()->orX();
+                    $orX = $qBuilder->expr()->orX();
                     foreach ($memberOfCondition['items'] as $i => $item) {
-                        $orX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'country.'.$listName));
-                        $qb->setParameter($listName.'_value_'.$i, $item);
+                        $orX->add($qBuilder->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'country.'.$listName));
+                        $qBuilder->setParameter($listName.'_value_'.$i, $item);
                     }
-                    $qb->andWhere($orX);
+                    $qBuilder->andWhere($orX);
                 } elseif ($memberOfCondition['operator'] == 'and') {
-                    $andX = $qb->expr()->andX();
+                    $andX = $qBuilder->expr()->andX();
                     foreach ($memberOfCondition['items'] as $i => $item) {
-                        $andX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'country.'.$listName));
-                        $qb->setParameter($listName.'_value_'.$i, $item);
+                        $andX->add($qBuilder->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'country.'.$listName));
+                        $qBuilder->setParameter($listName.'_value_'.$i, $item);
                     }
-                    $qb->andWhere($andX);
+                    $qBuilder->andWhere($andX);
                 }
             }
         }
-        $qbList = clone $qb;
-        $qb->select('count(country.id)');
-        $data['inlineCount'] = $qb->getQuery()->getSingleScalarResult();
-        foreach ($params['order_by'] as $field => $direction) {
+        $qbList = clone $qBuilder;
+        $qBuilder->select('count(country.id)');
+        $data['inlineCount'] = $qBuilder->getQuery()->getSingleScalarResult();
+        foreach ($params['orderBy'] as $field => $direction) {
             $qbList->addOrderBy($field, $direction);
         }
         $qbList->select('country');
@@ -107,18 +108,18 @@ class CountryRepository extends EntityRepository implements IRepository
         return $entity;
     }
 
-    public function delete($id)
+    public function delete($idEntity)
     {
-        $entity = $this->find($id);
+        $entity = $this->find($idEntity);
         $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();
     }
 
     public function count()
     {
-        $qb = $this->createQueryBuilder('country');
-        $qb->select('count(country.id)');
-        return $qb->getQuery()->getSingleScalarResult();
+        $qBuilder = $this->createQueryBuilder('country');
+        $qBuilder->select('count(country.id)');
+        return $qBuilder->getQuery()->getSingleScalarResult();
         ;
     }
 }
