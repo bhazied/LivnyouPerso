@@ -92,8 +92,16 @@ class MeasurementRESTController extends BaseRESTController
                 'inlineCount' => 0,
                 'results' => array()
             );
-            $params = compact('offset ','limit','filterOperators','orderBy','filters');
-            list($inlineCount, $results) = array_values($this->getDoctrine()->getRepository('LivnYouBundle:Log')->getAll($params));
+            $roles = $this->getUser()->getRoles();
+            if (!empty($roles)) {
+                foreach ($roles as $role) {
+                    if (substr_count($role, 'ACC') > 0) {
+                        $filters['measurement.creatorUser'] = $this->getUser()->getId();
+                    }
+                }
+            }
+            $params = compact('offset', 'limit', 'filterOperators', 'orderBy', 'filters');
+            list($inlineCount, $results) = array_values($this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->getAll($params));
             $data = array(
                 'inlineCount' => $inlineCount,
                 'results' => $results
@@ -116,7 +124,7 @@ class MeasurementRESTController extends BaseRESTController
      */
     public function postAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $eManager = $this->getDoctrine()->getManager();
         $entity = new Measurement();
         $form = $this->createForm(MeasurementType::class, $entity, array('method' => $request->getMethod()));
         $this->removeExtraFields($request, $form);
@@ -7276,8 +7284,8 @@ class MeasurementRESTController extends BaseRESTController
             if (!$authorizedChangeMachineBluetoothMacAddress) {
                 $entity->setMachineBluetoothMacAddress(null);
             }
-            $em->persist($entity);
-            $em->flush();
+            $eManager->persist($entity);
+            $eManager->flush();
             return $entity;
         }
         return FOSView::create(
@@ -7300,7 +7308,7 @@ class MeasurementRESTController extends BaseRESTController
     {
         try {
             $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->findOneById($idEntity);
-            $em = $this->getDoctrine()->getManager();
+            $eManager = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
@@ -12682,7 +12690,7 @@ class MeasurementRESTController extends BaseRESTController
                         }
                     }
                 }
-                $em->flush();
+                $eManager->flush();
                 return $entity;
             }
             return FOSView::create(array('errors' => $form->getErrors()), Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -12730,9 +12738,9 @@ class MeasurementRESTController extends BaseRESTController
                     }
                 }
             }
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($entity);
-            $em->flush();
+            $eManager = $this->getDoctrine()->getManager();
+            $eManager->remove($entity);
+            $eManager->flush();
             return null;
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);

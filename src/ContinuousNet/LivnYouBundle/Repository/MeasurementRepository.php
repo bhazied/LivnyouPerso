@@ -14,7 +14,6 @@ class MeasurementRepository extends EntityRepository implements IRepository
     public function getAll($params = [])
     {
         $qBuilder = $this->createQueryBuilder('measurement');
-        $qBuilder->from('LivnYouBundle:Measurement', 'measurement');
         $qBuilder->leftJoin('ContinuousNet\LivnYouBundle\Entity\Country', 'country', \Doctrine\ORM\Query\Expr\Join::WITH, 'measurement.country = country.id');
         $qBuilder->leftJoin('ContinuousNet\LivnYouBundle\Entity\PhysicalActivity', 'physical_activity', \Doctrine\ORM\Query\Expr\Join::WITH, 'measurement.physicalActivity = physical_activity.id');
         $qBuilder->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'measurement.creatorUser = creator_user.id');
@@ -66,14 +65,6 @@ class MeasurementRepository extends EntityRepository implements IRepository
                         $qBuilder->setParameter($listName.'_value_'.$i, $item);
                     }
                     $qBuilder->andWhere($andX);
-                }
-            }
-        }
-        $roles = $this->getUser()->getRoles();
-        if (!empty($roles)) {
-            foreach ($roles as $role) {
-                if (substr_count($role, 'ACC') > 0) {
-                    $qBuilder->andWhere('measurement.creatorUser = :creatorUser')->setParameter('creatorUser', $this->getUser()->getId());
                 }
             }
         }
