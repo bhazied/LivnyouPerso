@@ -91,7 +91,7 @@ class PathologyRESTController extends BaseRESTController
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
-            foreach ($roles as $role) {
+                foreach ($roles as $role) {
                     if (substr_count($role, 'MAN') > 0) {
                         $filters['pathology.creatorUser'] =  $this->getUser()->getId();
                     }
