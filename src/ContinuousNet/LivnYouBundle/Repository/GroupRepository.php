@@ -11,21 +11,18 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  */
 class GroupRepository extends EntityRepository implements IRepository
 {
-    public function get__all()
-    {
-    }
-
     public function getAll($params = [])
     {
-        $qb = $this->createQueryBuilder('group_');
-        $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'group_.creatorUser = creator_user.id');
-        $qb->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'group_.modifierUser = modifier_user.id');
+        $qBuilder = $this->createQueryBuilder('group_');
+        $qBuilder->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'group_.creatorUser = creator_user.id');
+        $qBuilder->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'group_.modifierUser = modifier_user.id');
         $textFields = array('group_.name', 'group_.roles');
         $memberOfConditions = array();
         foreach ($params['filters'] as $field => $value) {
             if (substr_count($field, '.') > 1) {
                 if ($value == 'true' || $value == 'or' || $value == 'and') {
                     list($entityName, $listName, $listItem) = explode('.', $field);
+                    $entityName = null;
                     if (!isset($memberOfConditions[$listName])) {
                         $memberOfConditions[$listName] = array('items' => array(), 'operator' => 'or');
                     }
@@ -40,36 +37,36 @@ class GroupRepository extends EntityRepository implements IRepository
             $key = str_replace('.', '', $field);
             if (!empty($value)) {
                 if (in_array($field, $textFields)) {
-                    if (isset($filter_operators[$field]) && $filter_operators[$field] == 'eq') {
-                        $qb->andWhere($qb->expr()->eq($field, $qb->expr()->literal($value)));
+                    if (isset($filterOperators[$field]) && $filterOperators[$field] == 'eq') {
+                        $qBuilder->andWhere($qb->expr()->eq($field, $qb->expr()->literal($value)));
                     } else {
-                        $qb->andWhere($qb->expr()->like($field, $qb->expr()->literal('%' . $value . '%')));
+                        $qBuilder->andWhere($qb->expr()->like($field, $qb->expr()->literal('%' . $value . '%')));
                     }
                 } else {
-                    $qb->andWhere($field.' = :'.$key.'')->setParameter($key, $value);
+                    $qBuilder->andWhere($field.' = :'.$key.'')->setParameter($key, $value);
                 }
             }
         }
         foreach ($memberOfConditions as $listName => $memberOfCondition) {
             if (!empty($memberOfCondition['items'])) {
                 if ($memberOfCondition['operator'] == 'or') {
-                    $orX = $qb->expr()->orX();
+                    $orX = $qBuilder->expr()->orX();
                     foreach ($memberOfCondition['items'] as $i => $item) {
-                        $orX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'group_.'.$listName));
-                        $qb->setParameter($listName.'_value_'.$i, $item);
+                        $orX->add($qBuilder->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'group_.'.$listName));
+                        $qBuilder->setParameter($listName.'_value_'.$i, $item);
                     }
-                    $qb->andWhere($orX);
+                    $qBuilder->andWhere($orX);
                 } elseif ($memberOfCondition['operator'] == 'and') {
-                    $andX = $qb->expr()->andX();
+                    $andX = $qBuilder->expr()->andX();
                     foreach ($memberOfCondition['items'] as $i => $item) {
                         $andX->add($qb->expr()->isMemberOf(':'.$listName.'_value_'.$i, 'group_.'.$listName));
-                        $qb->setParameter($listName.'_value_'.$i, $item);
+                        $qBuilder->setParameter($listName.'_value_'.$i, $item);
                     }
-                    $qb->andWhere($andX);
+                    $qBuilder->andWhere($andX);
                 }
             }
         }
-        $qbList = clone $qb;
+        $qbList = clone $qBuilder;
         $qb->select('count(group_.id)');
         $data['inlineCount'] = $qb->getQuery()->getSingleScalarResult();
         foreach ($params['order_by'] as $field => $direction) {
@@ -110,23 +107,23 @@ class GroupRepository extends EntityRepository implements IRepository
         return $entity;
     }
 
-    public function delete($id)
+    public function delete($idEntity)
     {
-        $entity = $this->find($id);
+        $entity = $this->find($idEntity);
         $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();
     }
 
     public function count($params = [])
     {
-        $qb = $this->createQueryBuilder('group_');
+        $qBuilder = $this->createQueryBuilder('group_');
         if (array_key_exists('filters', $params)) {
             foreach ($params['filters'] as $fKey => $value) {
-                $qb->andWhere('group_.'.$fKey .'=:'.$fKey)->setParameter($fKey, $value);
+                $qBuilder->andWhere('group_.'.$fKey .'=:'.$fKey)->setParameter($fKey, $value);
             }
         }
-        $qb->select('count(group_.id)');
-        return $qb->getQuery()->getSingleScalarResult();
+        $qBuilder->select('count(group_.id)');
+        return $qBuilder->getQuery()->getSingleScalarResult();
         ;
     }
 }

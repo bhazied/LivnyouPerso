@@ -45,6 +45,7 @@ class DashboardRestController extends BaseRESTController
      */
     public function getDataAction()
     {
+        
         $params = [];
         $data = [];
         $roles = $this->getUser()->getRoles();

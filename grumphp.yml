@@ -6,5 +6,5 @@ parameters:
         phpcsfixer2: ~
         phpmd:
             exclude: []
-            ruleset: ['cleancode',  'naming']
+            ruleset: ['design', 'naming', 'unusedcode', 'controversial']
             triggered_by: ['php']

@@ -87,10 +87,10 @@ class GroupRESTController extends BaseRESTController
             $this->createSubDirectory(new Group());
             $offset = $paramFetcher->get('offset');
             $limit = $paramFetcher->get('limit');
-            $filter_operators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
+            $filterOperators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
             $order_by = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
-            $params = compact('offset', 'limit', 'filter_operators', 'order_by', 'filters');
+            $params = compact('offset', 'limit', 'filterOperators', 'order_by', 'filters');
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
