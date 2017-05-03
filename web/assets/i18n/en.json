@@ -625,6 +625,7 @@
       }
     },
     "list": {
+      "TEMPLATES": "Templates",
       "SESSIONS": "Sessions",
       "MEASUREMENTS":"Measurement",
       "TRANSLATIONPATHOLOGIES": "Translation Pathologies",
