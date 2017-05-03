@@ -53,10 +53,10 @@ class PathologyRESTController extends BaseRESTController
      * @return Response
      *
      */
-    public function getAction($id)
+    public function getAction($idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->get(['id' => $id]);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->get(['id' => $idEntity]);
             $entity = $this->translateEntity($entity);
             $this->createSubDirectory($entity);
             return $entity;
@@ -86,18 +86,18 @@ class PathologyRESTController extends BaseRESTController
             $this->createSubDirectory(new Pathology());
             $offset = $paramFetcher->get('offset');
             $limit = $paramFetcher->get('limit');
-            $filter_operators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
-            $order_by = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
+            $filterOperators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
+            $orderBy = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
-                foreach ($roles as $role) {
+            foreach ($roles as $role) {
                     if (substr_count($role, 'MAN') > 0) {
                         $filters['pathology.creatorUser'] =  $this->getUser()->getId();
                     }
                 }
             }
-            $params = compact('offset', 'limit', 'filter_operators', 'order_by', 'filters');
+            $params = compact('offset', 'limit', 'filterOperators', 'orderBy', 'filters');
             $data = array(
                 'inlineCount' => 0,
                 'results' => array()
@@ -145,14 +145,14 @@ class PathologyRESTController extends BaseRESTController
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $id
+     * @param $idEntity
      *
      * @return Response
      */
-    public function putAction(Request $request, $id)
+    public function putAction(Request $request, $idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->get(['id' => $id]);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->get(['id' => $idEntity]);
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
@@ -183,13 +183,13 @@ class PathologyRESTController extends BaseRESTController
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @param Request $request
-     * @param $id
+     * @param $idEntity
      *
      * @return Response
      */
-    public function patchAction(Request $request, $id)
+    public function patchAction(Request $request, $idEntity)
     {
-        return $this->putAction($request, $id);
+        return $this->putAction($request, $idEntity);
     }
 
     /**
@@ -198,14 +198,14 @@ class PathologyRESTController extends BaseRESTController
      * @View(statusCode=204)
      *
      * @param Request $request
-     * @param $id
+     * @param $idEntity
      *
      * @return Response
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($idEntity)
     {
         try {
-            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->get(['id' => $id]);
+            $entity = $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->get(['id' => $idEntity]);
             $roles = $this->getUser()->getRoles();
             if (!empty($roles)) {
                 foreach ($roles as $role) {
@@ -216,7 +216,7 @@ class PathologyRESTController extends BaseRESTController
                     }
                 }
             }
-            $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->delete($id);
+            $this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->delete($idEntity);
             return null;
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
