@@ -37,7 +37,7 @@ class GroupRepository extends EntityRepository implements IRepository
             $key = str_replace('.', '', $field);
             if (!empty($value)) {
                 if (in_array($field, $textFields)) {
-                    if (isset($filterOperators[$field]) && $filterOperators[$field] == 'eq') {
+                    if (isset($params['filterOperators'][$field]) && $params['filterOperators'][$field] == 'eq') {
                         $qBuilder->andWhere($qBuilder->expr()->eq($field, $qBuilder->expr()->literal($value)));
                     } else {
                         $qBuilder->andWhere($qBuilder->expr()->like($field, $qBuilder->expr()->literal('%' . $value . '%')));

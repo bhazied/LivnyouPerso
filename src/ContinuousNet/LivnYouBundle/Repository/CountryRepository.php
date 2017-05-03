@@ -23,6 +23,7 @@ class CountryRepository extends EntityRepository implements IRepository
             if (substr_count($field, '.') > 1) {
                 if ($value == 'true' || $value == 'or' || $value == 'and') {
                     list($entityName, $listName, $listItem) = explode('.', $field);
+                    $entityName = null;
                     if (!isset($memberOfConditions[$listName])) {
                         $entityName = null;
                         $memberOfConditions[$listName] = array('items' => array(), 'operator' => 'or');
@@ -38,7 +39,7 @@ class CountryRepository extends EntityRepository implements IRepository
             $key = str_replace('.', '', $field);
             if (!empty($value)) {
                 if (in_array($field, $textFields)) {
-                    if (isset($filterOperators[$field]) && $filterOperators[$field] == 'eq') {
+                    if (isset($params['filterOperators'][$field]) && $params['filterOperators'][$field] == 'eq') {
                         $qBuilder->andWhere($qBuilder->expr()->eq($field, $qBuilder->expr()->literal($value)));
                     } else {
                         $qBuilder->andWhere($qBuilder->expr()->like($field, $qBuilder->expr()->literal('%' . $value . '%')));
