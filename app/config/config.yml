@@ -109,6 +109,23 @@ fos_user:
     from_email:
         address: livnyou@continuousnet.com
         sender_name: livnyou
+    registration:
+        confirmation:
+            from_email:
+                address: registration@livnyou.com
+                sender_name: LivnYou team
+            enabled: true
+            template:   '@FOSUser/Registration/email.txt.twig'
+    resetting:
+        token_ttl: 86400
+        email:
+            from_email:
+                address: resetting@livnyou.co
+                sender_name: LivnYou team
+            template: email/password_resetting.email.twig
+    service:
+        mailer: fos_user.mailer.twig_swift
+
 
 
 lexik_jwt_authentication:

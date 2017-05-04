@@ -12746,4 +12746,17 @@ class MeasurementRESTController extends BaseRESTController
             return FOSView::create($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    /**
+     * InterpretMesurement
+     *
+     * @View(serializerEnableMaxDepthChecks=true)
+     *
+     * @return Response
+     *
+     */
+    public function postInterpretAction($idEntity)
+    {
+        return true;
+    }
 }
