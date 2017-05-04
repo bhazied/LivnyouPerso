@@ -989,6 +989,67 @@ function($scope, $rootScope, $stateParams, $location, $sce, $timeout, $filter, n
         });
     };
 
+    $scope.filename = 'Measurements';
+    $scope.separator = ",";
+    $scope.csvData = [];
+    $scope.headers = [];
+    $scope.csvFields = [];
+    $scope.isDownloading = false;
+
+    $scope.getHeader = function(){
+        var showedHeaders = $filter('filter')($scope.cols, { show: true });
+         var headers = [];
+        $scope.csvFields = [];
+        if(showedHeaders.length > 0){
+            for(var i in showedHeaders){
+                if(showedHeaders[i].title != $filter('translate')('content.common.ACTIONS')){
+                    headers.push(showedHeaders[i].title);
+                    $scope.csvFields.push(showedHeaders[i].field);
+                }
+            }
+        }
+        return headers;
+    }
+
+    $scope.getDataCsv = function () {
+        $scope.csvData = [];
+        $scope.isDownloading = true;
+        var order_by = $scope.sorting;
+        var filters = $scope.filter;
+        var http_params = {
+            locale: $localStorage.language
+        };
+        for (var field in order_by) {
+            http_params['order_by['+field+']'] = order_by[field];
+        }
+        if (filters.length > 0) {
+            http_params.offset = 0;
+        }
+        for (var field in filters) {
+            if (filters[field] != null || filters[field] != '') {
+                http_params['filters['+field+']'] = filters[field];
+            }
+        }
+        return $measurementsDataFactory.query(http_params).$promise.then(function(data) {
+            $scope.isDownloading = false;
+            var tmp = {};
+            var csvData = [];
+            for(var i in data.results){
+                for (var j in $scope.csvFields){
+                    if(typeof data.results[i][$scope.csvFields[j]] == 'object' && data.results[i][$scope.csvFields[j]] != null){
+                        tmp[j] = (data.results[i][$scope.csvFields[j]].hasOwnProperty('name')) ? data.results[i][$scope.csvFields[j]].name  : data.results[i][$scope.csvFields[j]].first_name;
+                    }
+                    else {
+                        tmp[j] = data.results[i][$scope.csvFields[j]];
+                    }
+                }
+                csvData.push(tmp);
+            }
+            return csvData;
+        });
+
+    }
+
     $scope.add = function() {
         $state.go('app.measurementmanager.measurementsnew');
     };

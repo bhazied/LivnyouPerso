@@ -238,7 +238,7 @@ assetic:
                 - "assets/bower_components/angular-bind-html-compile/angular-bind-html-compile.js"
                 - "assets/bower_components/angular-slugify/angular-slugify.js"
                 - "assets/bower_components/AngularJS-Toaster/toaster.js"
-                - "assets/bower_components/ng-csv/src/ng-csv/ng-csv.js"
+                - "assets/bower_components/ng-csv/build/ng-csv.min.js"
         angular_storage:
             inputs:
                 - "assets/bower_components/ngstorage/ngStorage.js" #.min
