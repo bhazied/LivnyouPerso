@@ -1927,6 +1927,8 @@
                 }
             },
             "fields": {
+                "PRIORITY": "Priority",
+                "ISDEFAULT":"Is Default",
                 "GROUPNAME": "Group Name",
                 "ID": "Id",
                 "PATIENT": "Patient",
