@@ -5,6 +5,6 @@ parameters:
         phplint: ~
         phpcsfixer2: ~
         phpmd:
-            exclude: ['src/ContinuousNet/LivnYouBundle/Entity', 'src/ContinuousNet/LivnYouBundle/Controller/MeasurementRESTController.php']
+            exclude: ['src/ContinuousNet/LivnYouBundle/Entity', 'src/ContinuousNet/LivnYouBundle/Controller/MeasurementRESTController.php', 'app/AppKernel.php']
             ruleset: ['design', 'naming', 'unusedcode', 'controversial']
             triggered_by: ['php']
