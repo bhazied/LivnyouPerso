@@ -9,8 +9,13 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  * Class CountryRepository
  * @package ContinuousNet\LivnYouBundle\Repository
  */
-class CountryRepository extends EntityRepository implements IRepository
+class CountryRepository extends BaseRepository
 {
+    public function alias()
+    {
+        return 'country';
+    }
+
     public function getAll($params = [])
     {
         $qBuilder = $this->createQueryBuilder('country');
@@ -82,45 +87,10 @@ class CountryRepository extends EntityRepository implements IRepository
         $data['results'] = $results;
         return $data;
     }
-
-    public function get($params = [])
-    {
-        return $this->findOneBy($params);
-    }
-
-    public function store($entity, $params= [])
-    {
-        $accessor = PropertyAccess::createPropertyAccessor();
-        foreach ($params as $attribut => $value) {
-            $accessor->setValue($entity, $attribut, $value);
-        }
-        $this->getEntityManager()->persist($entity);
-        $this->getEntityManager()->flush();
-        return $entity;
-    }
-
-    public function update($entity, $params = [])
-    {
-        $accessor = PropertyAccess::createPropertyAccessor();
-        foreach ($params as $attribut => $value) {
-            $accessor->setValue($entity, $attribut, $value);
-        }
-        $this->getEntityManager()->flush();
-        return $entity;
-    }
-
-    public function delete($idEntity)
-    {
-        $entity = $this->find($idEntity);
-        $this->getEntityManager()->remove($entity);
-        $this->getEntityManager()->flush();
-    }
-
     public function count()
     {
-        $qBuilder = $this->createQueryBuilder('country');
+        $qBuilder = $this->_em('country');
         $qBuilder->select('count(country.id)');
         return $qBuilder->getQuery()->getSingleScalarResult();
-        ;
     }
 }

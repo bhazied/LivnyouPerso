@@ -9,8 +9,12 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  * Class UserRepository
  * @package ContinuousNet\LivnYouBundle\Repository
  */
-class UserRepository extends EntityRepository implements IRepository
+class UserRepository extends BaseRepository
 {
+    public function alias()
+    {
+        return 'user';
+    }
 
 
     /**
@@ -89,14 +93,6 @@ class UserRepository extends EntityRepository implements IRepository
         return $data;
     }
 
-    /**
-     * @param array $params
-     * @return null|object
-     */
-    public function get($params = [])
-    {
-        return $this->findOneBy($params);
-    }
 
     /**
      * @param $entity
@@ -131,15 +127,6 @@ class UserRepository extends EntityRepository implements IRepository
         return $entity;
     }
 
-    /**
-     * @param $idEntity
-     */
-    public function delete($idEntity)
-    {
-        $entity = $this->find($idEntity);
-        $this->getEntityManager()->remove($entity);
-        $this->getEntityManager()->flush();
-    }
 
     public function count($params = [])
     {

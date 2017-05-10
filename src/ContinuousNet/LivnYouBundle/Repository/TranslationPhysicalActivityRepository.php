@@ -9,8 +9,13 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  * Class TranslationPhysicalActivityRepository
  * @package ContinuousNet\LivnYouBundle\Repository
  */
-class TranslationPhysicalActivityRepository extends EntityRepository implements IRepository
+class TranslationPhysicalActivityRepository extends BaseRepository
 {
+    public function alias()
+    {
+        return 'translationPhysicalActivity';
+    }
+
     public function getAll($params = [])
     {
         $qBuilder = $this->createQueryBuilder('translationPhysicalActivity');
@@ -80,38 +85,5 @@ class TranslationPhysicalActivityRepository extends EntityRepository implements 
         $results = $qbList->getQuery()->getResult();
         $data['results'] = $results;
         return $data;
-    }
-
-    public function get($params = [])
-    {
-        return $this->findOneBy($params);
-    }
-
-    public function store($entity, $params= [])
-    {
-        $accessor = PropertyAccess::createPropertyAccessor();
-        foreach ($params as $attribut => $value) {
-            $accessor->setValue($entity, $attribut, $value);
-        }
-        $this->getEntityManager()->persist($entity);
-        $this->getEntityManager()->flush();
-        return $entity;
-    }
-
-    public function update($entity, $params = [])
-    {
-        $accessor = PropertyAccess::createPropertyAccessor();
-        foreach ($params as $attribut => $value) {
-            $accessor->setValue($entity, $attribut, $value);
-        }
-        $this->getEntityManager()->flush();
-        return $entity;
-    }
-
-    public function delete($idEntity)
-    {
-        $entity = $this->find($idEntity);
-        $this->getEntityManager()->remove($entity);
-        $this->getEntityManager()->flush();
     }
 }

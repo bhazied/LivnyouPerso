@@ -11,5 +11,5 @@ interface IRepository
 
     public function update($entity, $params = []);
 
-    public function delete($id);
+    public function delete($idEntity);
 }

@@ -8,8 +8,14 @@ use Doctrine\ORM\EntityRepository;
  * Class PathologyRepository
  * @package ContinuousNet\LivnYouBundle\Repository
  */
-class PathologyRepository extends EntityRepository implements IRepository
+class PathologyRepository extends BaseRepository
 {
+    public function alias()
+    {
+        return 'pathology';
+    }
+
+
     public function getAll($params = [])
     {
         $qBuilder = $this->createQueryBuilder('pathology');
@@ -79,38 +85,5 @@ class PathologyRepository extends EntityRepository implements IRepository
         $results = $qbList->getQuery()->getResult();
         $data['results'] = $results;
         return $data;
-    }
-
-    public function get($params = [])
-    {
-        return $this->findOneBy($params);
-    }
-
-    public function store($entity, $params= [])
-    {
-        foreach ($params as $attribut => $value) {
-            $method = 'set'.lcfirst($attribut);
-            $entity->$method($value);
-        }
-        $this->getEntityManager()->persist($entity);
-        $this->getEntityManager()->flush();
-        return $entity;
-    }
-
-    public function update($entity, $params = [])
-    {
-        foreach ($params as $attribut => $value) {
-            $method = 'set'.lcfirst($attribut);
-            $entity->$method($value);
-        }
-        $this->getEntityManager()->flush();
-        return $entity;
-    }
-
-    public function delete($idEntity)
-    {
-        $entity = $this->find($idEntity);
-        $this->getEntityManager()->remove($entity);
-        $this->getEntityManager()->flush();
     }
 }
