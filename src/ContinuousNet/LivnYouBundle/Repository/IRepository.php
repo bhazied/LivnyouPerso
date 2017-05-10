@@ -5,6 +5,8 @@ interface IRepository
 {
     public function getAll($params = []);
 
+    public function countAll();
+
     public function get($params = []);
 
     public function store($entity, $params= []);

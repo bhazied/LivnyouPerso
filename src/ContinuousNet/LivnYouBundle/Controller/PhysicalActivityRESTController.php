@@ -80,24 +80,18 @@ class PhysicalActivityRESTController extends BaseRESTController
      * @QueryParam(name="order_by", nullable=true, map=true, description="Order by fields. Must be an array ie. &order_by[name]=ASC&order_by[description]=DESC")
      * @QueryParam(name="filters", nullable=true, map=true, description="Filter by fields. Must be an array ie. &filters[id]=3")
      */
-    public function cgetAction(ParamFetcherInterface $paramFetcher)
+    public function cgetAction()
     {
         try {
-            $this->createSubDirectory(new PhysicalActivity());
-            $offset = $paramFetcher->get('offset');
-            $limit = $paramFetcher->get('limit');
-            $filterOperators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
-            $orderBy = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
-            $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
-            $params = compact('offset', 'limit', 'filterOperators', 'orderBy', 'filters');
             $data = array(
-                'inlineCount' => 0,
-                'results' => array()
-            );
-            list($inlineCount, $results) = array_values($this->getDoctrine()->getRepository('LivnYouBundle:PhysicalActivity')->getAll($params));
-            $data = array(
-                'inlineCount' => $inlineCount,
-                'results' => $this->translateEntities($results)
+                'inlineCount' => $this->getDoctrine()
+                    ->getRepository('LivnYouBundle:PhysicalActivity')
+                    ->pushCriteria($this->get('livn_you.params_fetcher_criteria_counter'))
+                    ->countAll(),
+                'results' => $this->translateEntities($this->getDoctrine()
+                    ->getRepository('LivnYouBundle:PhysicalActivity')
+                    ->pushCriteria($this->get('livn_you.params_fetcher_criteria'))
+                    ->getAll())
             );
             return $data;
         } catch (\Exception $e) {

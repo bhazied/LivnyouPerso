@@ -10,4 +10,14 @@ namespace ContinuousNet\LivnYouBundle\Repository\Criteria;
 interface IRepositoryCriteria
 {
     public function getByCriteria(BaseCriteria $criteria);
+
+    public function pushCriteria($criteria);
+
+    public function getCriteria();
+
+    public function skipCriteria($status = true);
+
+    public function applyCriteria();
+
+    public function resetCriteria();
 }

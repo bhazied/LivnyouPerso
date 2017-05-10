@@ -8,9 +8,9 @@
 
 namespace ContinuousNet\LivnYouBundle\Repository\Criteria;
 
-use ContinuousNet\LivnYouBundle\Repository\IRepository;
+use ContinuousNet\LivnYouBundle\Repository\BaseRepository;
 
 abstract class BaseCriteria
 {
-    abstract public function apply($queryBuilder, IRepository $repository);
+    abstract public function apply($queryBuilder, BaseRepository $repository);
 }
