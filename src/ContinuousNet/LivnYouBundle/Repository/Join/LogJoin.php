@@ -12,7 +12,7 @@ use ContinuousNet\LivnYouBundle\Repository\BaseRepository;
 
 class LogJoin extends BaseJoin
 {
-    public function apply($queryBuilder, BaseRepository $repository)
+    public function apply($queryBuilder)
     {
         $queryBuilder->leftJoin('ContinuousNet\LivnYouBundle\Entity\Session', 'session', \Doctrine\ORM\Query\Expr\Join::WITH, 'log.session = session.id');
         $queryBuilder->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'log.creatorUser = creator_user.id');

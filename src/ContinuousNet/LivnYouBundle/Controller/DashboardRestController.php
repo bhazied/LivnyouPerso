@@ -55,9 +55,9 @@ class DashboardRestController extends BaseRESTController
                 }
             }
         }
-        $data['countUsers'] = $this->getDoctrine()->getRepository('LivnYouBundle:User')->count();
+        $data['countUsers'] = $this->getDoctrine()->getRepository('LivnYouBundle:User')->countAll();
         $data['countGroups'] = $this->getDoctrine()->getRepository('LivnYouBundle:Group')->countAll();
-        $data['countMeasurements'] = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->count();
+        $data['countMeasurements'] = $this->getDoctrine()->getRepository('LivnYouBundle:Measurement')->countAll();
         return $data;
     }
 }

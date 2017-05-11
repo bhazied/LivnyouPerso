@@ -81,7 +81,6 @@ class ParamFetcherCriteria extends BaseCriteria
         foreach ($orderBy as $field => $direction) {
             $qBuilder->addOrderBy($field, $direction);
         }
-        $qBuilder->select($repository->alias());
         $qBuilder->setMaxResults($limit);
         $qBuilder->setFirstResult($offset);
         $qBuilder->groupBy($repository->alias().'.'.$repository->getCountby());

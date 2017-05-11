@@ -80,32 +80,20 @@ class PathologyRESTController extends BaseRESTController
      * @QueryParam(name="order_by", nullable=true, map=true, description="Order by fields. Must be an array ie. &order_by[name]=ASC&order_by[description]=DESC")
      * @QueryParam(name="filters", nullable=true, map=true, description="Filter by fields. Must be an array ie. &filters[id]=3")
      */
-    public function cgetAction(ParamFetcherInterface $paramFetcher)
+    public function cgetAction()
     {
         try {
-            $this->createSubDirectory(new Pathology());
-            $offset = $paramFetcher->get('offset');
-            $limit = $paramFetcher->get('limit');
-            $filterOperators = $paramFetcher->get('filter_operators') ? $paramFetcher->get('filter_operators') : array();
-            $orderBy = $paramFetcher->get('order_by') ? $paramFetcher->get('order_by') : array();
-            $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
-            $roles = $this->getUser()->getRoles();
-            if (!empty($roles)) {
-                foreach ($roles as $role) {
-                    if (substr_count($role, 'MAN') > 0) {
-                        $filters['pathology.creatorUser'] =  $this->getUser()->getId();
-                    }
-                }
-            }
-            $params = compact('offset', 'limit', 'filterOperators', 'orderBy', 'filters');
             $data = array(
-                'inlineCount' => 0,
-                'results' => array()
-            );
-            list($inlineCount, $results) = array_values($this->getDoctrine()->getRepository('LivnYouBundle:Pathology')->getAll($params));
-            $data = array(
-                'inlineCount' => $inlineCount,
-                'results' => $this->translateEntities($results)
+                'inlineCount' => $this->getDoctrine()
+                    ->getRepository('LivnYouBundle:Pathology')
+                    ->pushCriteria($this->get('livn_you.params_fetcher_criteria_counter'))
+                    ->pushCriteria($this->get('livn_you.params_owner_criteria'))
+                    ->countAll(),
+                'results' => $this->translateEntities($this->getDoctrine()
+                    ->getRepository('LivnYouBundle:Pathology')
+                    ->pushCriteria($this->get('livn_you.params_fetcher_criteria'))
+                    ->pushCriteria($this->get('livn_you.params_owner_criteria'))
+                    ->getAll())
             );
             return $data;
         } catch (\Exception $e) {

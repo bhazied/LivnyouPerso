@@ -14,6 +14,7 @@ use ContinuousNet\LivnYouBundle\Repository\Join\BaseJoin;
 use ContinuousNet\LivnYouBundle\Repository\Join\IRepositoryJoin;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NoResultException;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -162,7 +163,7 @@ abstract class BaseRepository extends EntityRepository implements IRepository, I
         $join = $this->getJoin();
         if ($join) {
             foreach ($join as $joined) {
-                $this->queryBuilder = $joined->apply($this->queryBuilder, $this);
+                $this->queryBuilder = $joined->apply($this->queryBuilder);
             }
         }
         return $this;
@@ -175,16 +176,22 @@ abstract class BaseRepository extends EntityRepository implements IRepository, I
     }
 
 
-    public function getAll($params = [])
+    public function getAll()
     {
         $this->applyCriteria();
+        $this->queryBuilder->select($this->alias());
         return $this->queryBuilder->getQuery()->getResult();
     }
 
     public function countAll()
     {
         $this->applyCriteria();
-        return $this->queryBuilder->getQuery()->getSingleScalarResult();
+        try {
+            $this->queryBuilder->select('count('.$this->alias().'.'.$this->getCountby().')');
+            return $this->queryBuilder->getQuery()->getSingleScalarResult();
+        } catch (NoResultException $exception) {
+            return 0;
+        }
     }
 
     public function get($params = [])

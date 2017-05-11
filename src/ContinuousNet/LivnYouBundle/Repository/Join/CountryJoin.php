@@ -12,7 +12,7 @@ use ContinuousNet\LivnYouBundle\Repository\BaseRepository;
 
 class CountryJoin extends BaseJoin
 {
-    public function apply($queryBuilder, BaseRepository $repository)
+    public function apply($queryBuilder)
     {
         $queryBuilder->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'creator_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'country.creatorUser = creator_user.id');
         $queryBuilder->leftJoin('ContinuousNet\LivnYouBundle\Entity\User', 'modifier_user', \Doctrine\ORM\Query\Expr\Join::WITH, 'country.modifierUser = modifier_user.id');

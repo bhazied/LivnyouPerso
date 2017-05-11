@@ -11,5 +11,5 @@ use ContinuousNet\LivnYouBundle\Repository\BaseRepository;
  */
 abstract class BaseJoin
 {
-    abstract public function apply($queryBuilder, BaseRepository $repository);
+    abstract public function apply($queryBuilder);
 }

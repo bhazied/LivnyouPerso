@@ -3,7 +3,7 @@ namespace ContinuousNet\LivnYouBundle\Repository;
 
 interface IRepository
 {
-    public function getAll($params = []);
+    public function getAll();
 
     public function countAll();
 

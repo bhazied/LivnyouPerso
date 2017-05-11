@@ -75,7 +75,6 @@ class ParameterFetcherCriteriaCounter extends BaseCriteria
                 }
             }
         }
-        $qBuilder->select('count('.$repository->alias().'.'.$repository->getCountby().')');
         return $qBuilder;
     }
 }

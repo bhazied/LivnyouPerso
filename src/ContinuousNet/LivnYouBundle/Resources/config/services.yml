@@ -7,6 +7,7 @@ parameters:
     livn_you.event.jwt_expired_token_listener.class: ContinuousNet\LivnYouBundle\EventListener\JWTExpiredTokenListener
     livn_you.params_fetcher_criteria.class: ContinuousNet\LivnYouBundle\Repository\Criteria\ParamFetcherCriteria
     livn_you.params_fetcher_criteria_counter.class: ContinuousNet\LivnYouBundle\Repository\Criteria\ParameterFetcherCriteriaCounter
+    livn_you.params_owner_criteria.class: ContinuousNet\LivnYouBundle\Repository\Criteria\OwnerCriteria
 
 services:
     livn_you.services.measurement_interpretation:
@@ -47,4 +48,8 @@ services:
 
     livn_you.params_fetcher_criteria_counter:
             class: %livn_you.params_fetcher_criteria_counter.class%
+            autowire: true
+
+    livn_you.params_owner_criteria:
+            class: %livn_you.params_owner_criteria.class%
             autowire: true
