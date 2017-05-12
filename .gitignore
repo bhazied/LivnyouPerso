@@ -21,5 +21,5 @@
 /web/css/
 /web/assetic/
 /nbproject/*
-.idea/workspace.xml
 /.php_cs.cache
+.idea/workspace.xml
