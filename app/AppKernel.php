@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new ContinuousNet\LivnYouBundle\LivnYouBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new FM\ElfinderBundle\FMElfinderBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
