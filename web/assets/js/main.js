@@ -126,6 +126,23 @@ app.run(['$rootScope', '$state', '$stateParams', '$localStorage', '$timeout',
     
 }]);
 
+//age filter
+
+app.filter('age', function() {
+    return function(birthday) {
+        if (birthday) {
+            var parts = birthday.split(/[-T.]/);
+            var birthDate = new Date( parts.slice(0,3).join('/'));
+            var ageDiff = Date.now() - birthDate.getTime();
+            var age = Math.abs(new Date(ageDiff).getUTCFullYear() - 1970);
+            if (isNaN(age)) {
+                age = '';
+            }
+            return age;
+        }
+    }
+});
+
 // translate config
 app.config(['$translateProvider',
 function ($translateProvider) {

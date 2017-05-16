@@ -12745,6 +12745,17 @@ class MeasurementRESTController extends BaseRESTController
      */
     public function postInterpretAction($idEntity)
     {
-        return true;
+        try {
+            try {
+                $this->get('livn_you.services.measurement_interpretation')->updateMeasurementInterpretation($idEntity);
+                $message = $this->get('translator')->trans('interpretation.success');
+                $data = array('status' => true, 'message' => $message);
+            } catch (\Exception $e) {
+                $data = array('status' => false, 'message' => $e->getMessage());
+            }
+            return $data;
+        } catch (\Exception $e) {
+            return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }

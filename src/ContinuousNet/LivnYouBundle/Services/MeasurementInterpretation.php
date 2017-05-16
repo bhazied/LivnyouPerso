@@ -15,14 +15,14 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class MeasurementInterpretation
 {
-    protected $em;
+    protected $entityManger;
     protected $translator;
     protected $logger;
     protected $parameters;
 
-    public function __construct(EntityManager $em, TranslatorInterface $translator, Logger $logger, $parameters)
+    public function __construct(EntityManager $entityManager, TranslatorInterface $translator, Logger $logger, $parameters)
     {
-        $this->em = $em;
+        $this->entityManger = $entityManager;
         $this->translator = $translator;
         $this->logger = $logger;
         $this->parameters = $parameters;
@@ -41,18 +41,18 @@ class MeasurementInterpretation
 
     private function postData($url, $fields)
     {
-        $fields_string = http_build_query($fields);
+        $fieldsString = http_build_query($fields);
 
-        $ch = curl_init();
+        $channel = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, count($fields));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($channel, CURLOPT_URL, $url);
+        curl_setopt($channel, CURLOPT_POST, count($fields));
+        curl_setopt($channel, CURLOPT_POSTFIELDS, $fieldsString);
+        curl_setopt($channel, CURLOPT_RETURNTRANSFER, true);
 
-        $response = curl_exec($ch);
+        $response = curl_exec($channel);
 
-        curl_close($ch);
+        curl_close($channel);
 
         return $response;
     }
@@ -94,13 +94,13 @@ class MeasurementInterpretation
 
         $url = $this->getParameter('base_url') . $this->getParameter('measurement_action');
 
-        if ($measurement->getPatient()->getGender() == 'Male') {
+        if ($measurement->getGender() == 'Male') {
             $sex = $this->getParameter('male_value');
-        } elseif ($measurement->getPatient()->getGender() == 'Female') {
+        } elseif ($measurement->getGender() == 'Female') {
             $sex = $this->getParameter('female_value');
         }
 
-        $birthday = $measurement->getPatient()->getBirthDate()->format($this->getParameter('birth_date_format'));
+        $birthday = $measurement->getBirthDate()->format($this->getParameter('birth_date_format'));
         $physicalAct = null;
         if (!is_null($measurement->getPhysicalActivity())) {
             $physicalAct = $measurement->getPhysicalActivity()->getId();
@@ -136,7 +136,7 @@ class MeasurementInterpretation
 
         $measurement->setResponse(json_encode($response));
 
-        $this->em->flush();
+        $this->entityManager->flush();
 
         $data = json_decode($response);
 
@@ -157,9 +157,9 @@ class MeasurementInterpretation
 
     public function updateMeasurementInterpretation($measurementId)
     {
-        $measurement = $this->em->getRepository('LivnYouBundle:Measurement')->find($measurementId);
+        $measurement = $this->entityManager->getRepository('LivnYouBundle:Measurement')->find($measurementId);
         if (!is_null($measurement)) {
-            if (!is_null($measurement->getPatient())) {
+            if (!is_null($measurement)) {
                 $interpretation = $this->getMeasurementInterpretation($measurement);
 
                 try {
@@ -167,7 +167,7 @@ class MeasurementInterpretation
                     $measurement->setStatus('Analyzed');
                     $measurement->setInterpretationDate(new \DateTime());
                     $measurement->setModifierUser($measurement->getCreatorUser());
-                    $this->em->flush();
+                    $this->entityManager->flush();
                 } catch (\Exception $ex) {
                     throw $ex;
                 }

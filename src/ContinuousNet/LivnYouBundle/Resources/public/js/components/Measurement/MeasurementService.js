@@ -7,7 +7,7 @@ app.factory('$measurementsDataFactory', ['$resource', '$rootScope', '$localStora
 function($resource, $rootScope, $localStorage) {
 
    return $resource('/:locale' + $rootScope.app.apiURL + ':controller', {locale: $localStorage.language, controller: 'measurements', id: '@id'}, {
-        interpret: { method: 'POST', url: $rootScope.app.apiURL + 'interpret' },
+        interpret: { method: 'POST', url: '/:locale'+$rootScope.app.apiURL + ':controller/:id/interprets' },
         previous: { method: 'POST', url: $rootScope.app.apiURL + 'previous' },
         create: { method: 'POST', isArray: false},
         query: { method: 'GET'},
