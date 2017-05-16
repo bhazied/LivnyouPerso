@@ -95,7 +95,7 @@ abstract class BaseRepository extends EntityRepository implements IRepository, I
             $criteria = new $criteria();
         }
         if (! $criteria instanceof BaseCriteria) {
-            throw  new Exception('the class '. get_class($criteria) . 'must be instance of Repository\Criteria\BaseCriteria');
+            throw  new \CriteriaNotFoundException('the class '. get_class($criteria) . 'must be instance of Repository\Criteria\BaseCriteria');
         }
         $this->criteria->append($criteria);
         return $this;
@@ -138,7 +138,7 @@ abstract class BaseRepository extends EntityRepository implements IRepository, I
             $join = new $join();
         }
         if (! $join instanceof BaseJoin) {
-            throw  new Exception('the class '. get_class($join) . 'must be instance of Repository\Join\BaseJoin');
+            throw  new \JoinNotFoundException('the class '. get_class($join) . 'must be instance of Repository\Join\BaseJoin');
         }
         $this->join->append($join);
         return $this;
