@@ -157,7 +157,7 @@ class MeasurementInterpretation
 
     public function updateMeasurementInterpretation($measurementId)
     {
-        $measurement = $this->entityManager->getRepository('LivnYouBundle:Measurement')->find($measurementId);
+        $measurement = $this->entityManger->getRepository('LivnYouBundle:Measurement')->find($measurementId);
         if (!is_null($measurement)) {
             if (!is_null($measurement)) {
                 $interpretation = $this->getMeasurementInterpretation($measurement);
