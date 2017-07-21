@@ -15,14 +15,14 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class MeasurementInterpretation
 {
-    protected $entityManger;
+    protected $entityManager;
     protected $translator;
     protected $logger;
     protected $parameters;
 
     public function __construct(EntityManager $entityManager, TranslatorInterface $translator, Logger $logger, $parameters)
     {
-        $this->entityManger = $entityManager;
+        $this->entityManager = $entityManager;
         $this->translator = $translator;
         $this->logger = $logger;
         $this->parameters = $parameters;
@@ -157,7 +157,7 @@ class MeasurementInterpretation
 
     public function updateMeasurementInterpretation($measurementId)
     {
-        $measurement = $this->entityManger->getRepository('LivnYouBundle:Measurement')->find($measurementId);
+        $measurement = $this->entityManager->getRepository('LivnYouBundle:Measurement')->find($measurementId);
         if (!is_null($measurement)) {
             if (!is_null($measurement)) {
                 $interpretation = $this->getMeasurementInterpretation($measurement);
