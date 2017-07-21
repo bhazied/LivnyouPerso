@@ -26,12 +26,12 @@ use FOS\RestBundle\Controller\FOSRestController;
  * PHP version 5.4.4
  *
  * @category   Symfony 2 REST Controller
- * @package  ContinuousNet\UbidElectricityBundle\Controller
+ * @package  ContinuousNet\livnyouBundle\Controller
  * @author    Sahbi KHALFALLAH <sahbi.khalfallah@continuousnet.com>
  * @copyright  2016 CONTINUOUS NET
  * @license  CONTINUOUS NET REGULAR LICENSE
  * @version  Release: 1.0
- * @link    http://ubid-electricity.continuousnet.com/ContinuousNet/UbidElectricityBundle/Controller
+ * @link    http://livnyou.continuousnet.com/ContinuousNet/livnyouBundle/Controller
  * @see      ApiV1RESTController
  * @since      Class available since Release 1.0
  * @access    public
@@ -553,7 +553,7 @@ class ApiV1RESTController extends FOSRestController
         try {
             $data = array();
             $em = $this->getDoctrine()->getManager();
-            $user = $em->getRepository('UbidElectricityBundle:User')->find($this->getUser()->getId());
+            $user = $em->getRepository('LivnYouBundle:User')->find($this->getUser()->getId());
             $fields = array(
                 'firstName', 'lastName', 'gender', 'country', 'language', 'phone', 'picture'
             );
