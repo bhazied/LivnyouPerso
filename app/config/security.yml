@@ -52,6 +52,12 @@ security:
             pattern:  ^/(en|fr|ar)/api/v1/reset
             stateless: true
             anonymous: true
+
+        api_doc:
+            pattern:  /api/doc
+            stateless: true
+            anonymous: true
+
         login:
             pattern:  ^/api/login
             stateless: true

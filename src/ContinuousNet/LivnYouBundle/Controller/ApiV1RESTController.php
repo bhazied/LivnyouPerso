@@ -17,6 +17,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\FOSRestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * Public Api V1 REST Controller
@@ -671,6 +672,18 @@ class ApiV1RESTController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This service check if entred passwword is equal to user current password",
+     *  requirements={
+     *      {
+     *     "name"="newPassword",
+     *      "dataType"="string",
+     *      "description"="the new password to be set it"
+     *      }
+     *   },
+     *      output="ContinuousNet\LivnYouBundle\Entity\Country"
+     * )
      * @POST("/checkPassword")
      * @View(serializerEnableMaxDepthChecks=true)
      */

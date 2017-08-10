@@ -8,6 +8,6 @@ parameters:
         phplint: ~
         phpcsfixer2: ~
         phpmd:
-            exclude: ['src/ContinuousNet/LivnYouBundle/Entity', 'src/ContinuousNet/LivnYouBundle/Controller/MeasurementRESTController.php', 'app/AppKernel.php']
+            exclude: ['src/ContinuousNet/LivnYouBundle/Entity', 'src/ContinuousNet/LivnYouBundle/Controller/MeasurementRESTController.php', 'app/AppKernel.php', 'src/ContinuousNet/LivnYouBundle/Controller/ApiV1RESTController']
             ruleset: ['design', 'naming', 'unusedcode', 'controversial']
             triggered_by: ['php']

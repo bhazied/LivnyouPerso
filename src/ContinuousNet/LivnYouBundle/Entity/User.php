@@ -40,7 +40,6 @@ use FOS\UserBundle\Model\GroupInterface;
  * @UniqueEntity("phone")
  * @UniqueEntity("email")
  * @ORM\HasLifecycleCallbacks()
- *
  * @ExclusionPolicy("none")
  *
  */
